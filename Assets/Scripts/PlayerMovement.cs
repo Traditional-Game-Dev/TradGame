@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
-    //public ParticleSystem particles;
+    public ParticleSystem particles;
 
     private float moveSpeed;
     public float baseSpeed = 6f;
@@ -16,10 +16,15 @@ public class PlayerMovement : MonoBehaviour
     private float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
-    private const float MAX_DASH_TIME = 5f;
+    private const float MAX_DASH_TIME = 2.5f;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
-    public float dashMultiplier = 6f;
+    public float dashMultiplier = 12f;
+
+    void Start()
+    {
+        particles.Stop();
+    }
 
     void Update()
     {
@@ -39,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentDashTime = 0;
 
-                //particles.Play();
+                particles.Play();
             }
 
             if (currentDashTime < MAX_DASH_TIME)
@@ -52,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 moveSpeed = baseSpeed;
 
-                //particles.Stop();
+                particles.Stop();
             }
 
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
