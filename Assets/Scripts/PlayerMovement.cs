@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,18 +20,39 @@ public class PlayerMovement : MonoBehaviour
     private const float MAX_DASH_TIME = 2.5f;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
-    public float dashMultiplier = 12f;
+    private Vector2 dir = new Vector2(0f, 0f);
+    public float dashMultiplier = 6f;
+    public InputActionAsset playerControls;
+    private InputAction movement;
+    private InputAction dash;
 
-    void Start()
+
+    void Awake()
     {
-        particles.Stop();
+        var gameplayActionMap = playerControls.FindActionMap("Gameplay");
+
+        movement = gameplayActionMap.FindAction("Movement");
+        movement.performed += ctx =>
+        {
+            dir = ctx.ReadValue<Vector2>();
+        };
+        movement.canceled += ctx =>
+        {
+            dir = ctx.ReadValue<Vector2>();
+        };
+        movement.Enable();
+
+        dash = gameplayActionMap.FindAction("Dash");
+        dash.performed += ctx =>
+        {
+            currentDashTime = 0;
+        };
+        dash.Enable();
     }
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        Vector3 direction = new Vector3(dir.x, 0f, dir.y).normalized;
 
         if (direction.magnitude >= 0.1f)
         {
@@ -39,13 +61,6 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                currentDashTime = 0;
-
-                particles.Play();
-            }
 
             if (currentDashTime < MAX_DASH_TIME)
             {
@@ -56,12 +71,9 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 moveSpeed = baseSpeed;
-
-                particles.Stop();
             }
 
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
         }
-
     }
 }

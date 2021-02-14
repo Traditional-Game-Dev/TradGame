@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BossHealth : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class BossHealth : MonoBehaviour
     public GameObject player;
     public int range;
     public int damageInflicted;
+    public InputActionAsset playerControls;
+    private InputAction attack;
 
     // Start is called before the first frame update
     void Start()
@@ -18,12 +21,18 @@ public class BossHealth : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Vector3.Distance(transform.position, player.transform.position) < range){
-            TakeDamage(damageInflicted);
-        }
+        var gameplayActionMap = playerControls.FindActionMap("Gameplay");
+        attack = gameplayActionMap.FindAction("Attack");
+        attack.performed += ctx =>
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) < range)
+            {
+                TakeDamage(damageInflicted);
+            }
+        };
+        attack.Enable();
     }
 
     void TakeDamage(int damage){
