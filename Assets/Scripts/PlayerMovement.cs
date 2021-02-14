@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
-    public ParticleSystem particles;
+    //public ParticleSystem particles;
 
     private float moveSpeed;
     public float baseSpeed = 6f;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
     private Vector2 dir = new Vector2(0f, 0f);
-    public float dashMultiplier = 6f;
+    public float dashMultiplier = 12f;
     public InputActionAsset playerControls;
     private InputAction movement;
     private InputAction dash;
