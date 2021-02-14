@@ -285,7 +285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 452722199}
   cam: {fileID: 963194228}
-  particles: {fileID: 452722201}
   baseSpeed: 12
   turnSmoothTime: 0.1
   dashMultiplier: 6
