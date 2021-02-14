@@ -285,7 +285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 452722199}
   cam: {fileID: 963194228}
-  baseSpeed: 6
+  particles: {fileID: 452722201}
+  baseSpeed: 12
   turnSmoothTime: 0.1
   dashMultiplier: 6
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
@@ -1369,7 +1370,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149377860}
-  m_LocalRotation: {x: 0.41275346, y: 0.00000001567231, z: -0.0000000071019937, w: 0.91084284}
+  m_LocalRotation: {x: 0.41275346, y: -0.000000015672308, z: 0.0000000071019923, w: 0.91084284}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1714,7 +1715,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596492587}
-  m_LocalRotation: {x: 0.39616147, y: -0.000000015798573, z: 0.0000000068165056, w: 0.9181809}
+  m_LocalRotation: {x: 0.39616147, y: 0.000000015798568, z: -0.0000000068165034, w: 0.9181809}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

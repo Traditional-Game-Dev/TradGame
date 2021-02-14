@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
-    //public ParticleSystem particles;
+    public ParticleSystem particles;
 
     private float moveSpeed;
     public float baseSpeed = 6f;
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
-    private const float MAX_DASH_TIME = 5f;
+    private const float MAX_DASH_TIME = 2.5f;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
     private Vector2 dir = new Vector2(0f, 0f);
@@ -61,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
 
             if (currentDashTime < MAX_DASH_TIME)
             {
