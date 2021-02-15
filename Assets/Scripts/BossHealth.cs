@@ -8,7 +8,7 @@ public class BossHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
-    public GameObject player;
+    public GameObject boss;
     public int range;
     public int damageInflicted;
     public InputActionAsset playerControls;
@@ -27,15 +27,15 @@ public class BossHealth : MonoBehaviour
         attack = gameplayActionMap.FindAction("Attack");
         attack.performed += ctx =>
         {
-            if (Vector3.Distance(transform.position, player.transform.position) < range)
+            if (Vector3.Distance(boss.transform.position, transform.position) < range)
             {
-                TakeDamage(damageInflicted);
+                dealDamage(damageInflicted);
             }
         };
         attack.Enable();
     }
 
-    void TakeDamage(int damage){
+    void dealDamage(int damage){
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
