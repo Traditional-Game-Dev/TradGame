@@ -11,17 +11,21 @@ public class PlayerMovement : MonoBehaviour
 
     private float moveSpeed;
     public float baseSpeed = 6f;
-
     private Vector3 moveDirection;
 
     private float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
     private const float MAX_DASH_TIME = 2.5f;
+    private const float MAX_DASH_COOLDOWN = 25f;
+    private const int MAX_DASH_COUNTER = 3;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
-    private Vector2 dir = new Vector2(0f, 0f);
+    private float currentCooldownTime = 0;
     public float dashMultiplier = 12f;
+    public int dashCounter = 0;
+
+    private Vector2 dir = new Vector2(0f, 0f);
     public InputActionAsset playerControls;
     private InputAction movement;
     private InputAction dash;
@@ -46,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         dash.performed += ctx =>
         {
             currentDashTime = 0;
+
+            dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
         };
         dash.Enable();
     }
@@ -62,7 +68,25 @@ public class PlayerMovement : MonoBehaviour
 
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            if (currentDashTime < MAX_DASH_TIME)
+
+            if (dashCounter > MAX_DASH_COUNTER) 
+            {
+                if (currentCooldownTime < MAX_DASH_COOLDOWN) 
+                {
+                    currentCooldownTime += dashStoppingSpeed;
+                }
+                else   
+                {
+                    currentCooldownTime = 0;
+
+                    dashCounter = 0;
+
+                    currentDashTime = MAX_DASH_TIME;
+                }
+
+                moveSpeed = baseSpeed;
+            }
+            else if (currentDashTime < MAX_DASH_TIME)
             {
                 moveSpeed = baseSpeed * dashMultiplier;
 
