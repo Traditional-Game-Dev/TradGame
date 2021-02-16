@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 142765629}
   - component: {fileID: 142765628}
   - component: {fileID: 142765627}
+  - component: {fileID: 142765626}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -140,6 +141,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &142765626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142765625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65bcfd2dd7e53884fb66ce40122f5570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 452722196}
+  bossAttackTime: 4
+  laser: {fileID: 0}
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -265,9 +281,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 452722199}
   cam: {fileID: 963194228}
+  camera: {fileID: 963194227}
   baseSpeed: 6
   turnSmoothTime: 0.1
   dashMultiplier: 12
+  dashCounter: 0
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
 --- !u!143 &452722199
@@ -810,6 +828,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -841,7 +860,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 32.96973
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -875,7 +894,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.42102063, y: -0.0000000050391415, z: 0.000000002338989, w: 0.9070511}
+  m_LocalRotation: {x: 0.42102063, y: 0.000000036253276, z: -0.000000016827473, w: 0.9070511}
   m_LocalPosition: {x: -1.4655285, y: 33.819042, z: -26.06571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -895,7 +914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
+  m_ShowCameraFrustum: 0
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
@@ -916,6 +935,20 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aba9a1e773a0344d9014e7327b4d5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 772c992a3988a5e40877efbc431c0aec, type: 2}
+  useBlur: 0
 --- !u!1 &981968879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,7 +1747,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596492587}
-  m_LocalRotation: {x: 0.39616147, y: -0.000000015798573, z: 0.0000000068165056, w: 0.9181809}
+  m_LocalRotation: {x: 0.39616147, y: 0.000000015798568, z: -0.0000000068165034, w: 0.9181809}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1788,7 +1821,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634393753}
-  m_LocalRotation: {x: 0.42925292, y: -0.000000015540532, z: 0.0000000073858883, w: 0.90318435}
+  m_LocalRotation: {x: 0.42925292, y: 0.000000015540532, z: -0.0000000073858883, w: 0.90318435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
