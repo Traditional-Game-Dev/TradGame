@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float turnSmoothTime = 0.1f;
 
     private const float MAX_DASH_TIME = 2.5f;
-    private const float MAX_DASH_COOLDOWN = 25f;
     private const int MAX_DASH_COUNTER = 3;
+    public float dashCooldown = 25f;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
     private float currentCooldownTime = 0;
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (dashCounter > MAX_DASH_COUNTER) 
             {
-                if (currentCooldownTime < MAX_DASH_COOLDOWN) 
+                if (currentCooldownTime < dashCooldown) 
                 {
                     currentCooldownTime += dashStoppingSpeed;
                 }
