@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
     //public ParticleSystem particles;
+    public Camera camera; //
 
     private float moveSpeed;
     public float baseSpeed = 6f;
@@ -30,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private InputAction movement;
     private InputAction dash;
 
+
+    private PostProcessingBehavior postProcessingBehavior;
 
     void Awake()
     {
@@ -54,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
             dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
         };
         dash.Enable();
+
+        postProcessingBehavior = camera.GetComponent<PostProcessingBehavior>(); //
     }
 
     void Update()
@@ -84,6 +89,8 @@ public class PlayerMovement : MonoBehaviour
                     currentDashTime = MAX_DASH_TIME;
                 }
 
+                postProcessingBehavior.useBlur = false; //
+
                 moveSpeed = baseSpeed;
             }
             else if (currentDashTime < MAX_DASH_TIME)
@@ -91,10 +98,14 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = baseSpeed * dashMultiplier;
 
                 currentDashTime += dashStoppingSpeed;
+
+                postProcessingBehavior.useBlur = true; //
             }
             else
             {
                 moveSpeed = baseSpeed;
+
+                postProcessingBehavior.useBlur = false; //
             }
 
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
