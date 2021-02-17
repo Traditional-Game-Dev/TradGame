@@ -38,9 +38,10 @@ public class BossAttack : MonoBehaviour
         }
 
         if(firingLaser){
+
             float angle = i * Mathf.PI*2f / 365;
 
-            lineRenderer.SetPosition(1, new Vector3(Mathf.Cos(angle)*radius, transform.position.y, Mathf.Sin(angle)*radius));
+            lineRenderer.SetPosition(1, new Vector3(Mathf.Cos(angle)*radius + transform.position.x, 0, Mathf.Sin(angle)*radius + transform.position.z));
             i++;
 
             if(i > 365){
