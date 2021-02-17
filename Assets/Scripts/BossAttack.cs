@@ -7,7 +7,14 @@ public class BossAttack : MonoBehaviour
     public GameObject player;
     public float bossAttackTime;
     private float timer = 0.0f;
-    public GameObject laser;
+    public LineRenderer lineRenderer;
+    private bool firingLaser = false;    
+    private int i = 0;
+    public float radius = 10f;
+
+    void start(){
+        lineRenderer.enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -17,13 +24,28 @@ public class BossAttack : MonoBehaviour
         //Check if we have passed 5 seconds
         if(timer > bossAttackTime)
         {
-            bossFire();
+            if(firingLaser){
+                firingLaser = false;
+                lineRenderer.enabled = false;
+            }
+            else{
+                firingLaser = true;
+                lineRenderer.enabled = true;
+                lineRenderer.SetPosition(0, transform.position);
+            }           
+
             timer = timer - bossAttackTime;
         }
-    }
 
-    void bossFire()
-    {
-        return;
+        if(firingLaser){
+            float angle = i * Mathf.PI*2f / 365;
+
+            lineRenderer.SetPosition(1, new Vector3(Mathf.Cos(angle)*radius, transform.position.y, Mathf.Sin(angle)*radius));
+            i++;
+
+            if(i > 365){
+                i = 0;
+            }
+        }
     }
 }
