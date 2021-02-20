@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;
-    //public ParticleSystem particles;
-    public Camera camera; ///
+    public ParticleSystem attackParticles;
+    //public Camera camera; ///
 
     private float moveSpeed;
     public float baseSpeed = 6f;
@@ -29,12 +29,17 @@ public class PlayerMovement : MonoBehaviour
     public float dashMultiplier = 12f;
     public int dashCounter = 0;
 
+    //private float attackCooldown = 25f; // for future use
+    private float attackParticlesCooldown = 0.5f;
+    private float currentAttackParticlesCooldown = 0f;
+
     public InputActionAsset playerControls;
     private InputAction movement;
     private InputAction dash;
+    private InputAction attack;
 
 
-    private PostProcessingBehavior postProcessingBehavior;
+    //private PostProcessingBehavior postProcessingBehavior; ///
 
     void Awake()
     {
@@ -62,7 +67,30 @@ public class PlayerMovement : MonoBehaviour
         };
         dash.Enable();
 
+        attackParticles.Stop();
+        attack = gameplayActionMap.FindAction("Attack");
+        attack.performed += ctx =>
+        {
+            attackParticles.Play();
+            currentAttackParticlesCooldown = 0;
+        };
+
         //postProcessingBehavior = camera.GetComponent<PostProcessingBehavior>(); ///
+    }
+
+    void FixedUpdate()
+    {
+        // particles are active
+        if (attackParticles.isEmitting)
+        {
+            currentAttackParticlesCooldown += dashStoppingSpeed; // this makes sense, trust me
+
+            if (currentAttackParticlesCooldown > attackParticlesCooldown)
+            {
+                attackParticles.Stop();
+                currentAttackParticlesCooldown = 0;
+            }
+        }
     }
 
     void Update()
