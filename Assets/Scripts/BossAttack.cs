@@ -11,6 +11,7 @@ public class BossAttack : MonoBehaviour
     private bool firingLaser = false;    
     private int i = 0;
     public float radius = 10f;
+    public float attackSpeed = 150f;
 
     void start(){
         lineRenderer.enabled = false;
@@ -38,14 +39,22 @@ public class BossAttack : MonoBehaviour
         }
 
         if(firingLaser){
+            
+            float angle = i * Mathf.PI*2f / attackSpeed;
+            Vector3 lineEndPosition = new Vector3(Mathf.Cos(angle)*radius + transform.position.x, 0, Mathf.Sin(angle)*radius + transform.position.z);
 
-            float angle = i * Mathf.PI*2f / 365;
-
-            lineRenderer.SetPosition(1, new Vector3(Mathf.Cos(angle)*radius + transform.position.x, 0, Mathf.Sin(angle)*radius + transform.position.z));
+            lineRenderer.SetPosition(1, lineEndPosition);
             i++;
 
-            if(i > 365){
+            if(i > attackSpeed){
                 i = 0;
+            }
+
+            RaycastHit hit;
+            if(Physics.Linecast(transform.position, lineRenderer.GetPosition(1), out hit)){
+                if(hit.transform.tag == "player"){
+                    Debug.Log("Hit");
+                }
             }
         }
     }
