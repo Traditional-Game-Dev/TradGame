@@ -8,25 +8,27 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public Transform cam;
     //public ParticleSystem particles;
-    public Camera camera; //
+    public Camera camera; ///
 
     private float moveSpeed;
     public float baseSpeed = 6f;
     private Vector3 moveDirection;
+    private Vector2 dir = new Vector2(0f, 0f);
 
     private float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
     private const float MAX_DASH_TIME = 2.5f;
     private const int MAX_DASH_COUNTER = 3;
-    public float dashCooldown = 25f;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
-    private float currentCooldownTime = 0;
+    private float currentMaxCooldownTime = 0;
+    private float currentStepCooldownTime = 0;
+    public float maxDashCooldown = 35f;
+    public float stepDashCooldown = 50f;
     public float dashMultiplier = 12f;
     public int dashCounter = 0;
 
-    private Vector2 dir = new Vector2(0f, 0f);
     public InputActionAsset playerControls;
     private InputAction movement;
     private InputAction dash;
@@ -54,11 +56,13 @@ public class PlayerMovement : MonoBehaviour
         {
             currentDashTime = 0;
 
+            currentStepCooldownTime = 0;
+
             dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
         };
         dash.Enable();
 
-        postProcessingBehavior = camera.GetComponent<PostProcessingBehavior>(); //
+        //postProcessingBehavior = camera.GetComponent<PostProcessingBehavior>(); ///
     }
 
     void Update()
@@ -73,39 +77,48 @@ public class PlayerMovement : MonoBehaviour
 
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-
-            if (dashCounter > MAX_DASH_COUNTER) 
+            if (dashCounter > MAX_DASH_COUNTER) // exceeded max dash count
             {
-                if (currentCooldownTime < dashCooldown) 
+                if (currentMaxCooldownTime < maxDashCooldown) 
                 {
-                    currentCooldownTime += dashStoppingSpeed;
+                    currentMaxCooldownTime += dashStoppingSpeed;
                 }
                 else   
                 {
-                    currentCooldownTime = 0;
-
+                    currentMaxCooldownTime = 0;
+                    currentStepCooldownTime = 0;
                     dashCounter = 0;
-
                     currentDashTime = MAX_DASH_TIME;
                 }
 
-                postProcessingBehavior.useBlur = false; //
+                //postProcessingBehavior.useBlur = false; ///
 
                 moveSpeed = baseSpeed;
             }
-            else if (currentDashTime < MAX_DASH_TIME)
+            else if (currentDashTime < MAX_DASH_TIME) // can, and is, dashing
             {
                 moveSpeed = baseSpeed * dashMultiplier;
 
                 currentDashTime += dashStoppingSpeed;
 
-                postProcessingBehavior.useBlur = true; //
+                //postProcessingBehavior.useBlur = true; ///
             }
-            else
+            else // not dashing
             {
                 moveSpeed = baseSpeed;
 
-                postProcessingBehavior.useBlur = false; //
+                //postProcessingBehavior.useBlur = false; ///
+            }
+
+            // keep track of constant dash cooldown
+            if (dashCounter > 0)
+            {
+                currentStepCooldownTime += dashStoppingSpeed;
+            }
+            if (currentStepCooldownTime >= stepDashCooldown)
+            {
+                dashCounter -= dashCounter > 0 ? 1 : 0;
+                currentStepCooldownTime = 0;
             }
 
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
