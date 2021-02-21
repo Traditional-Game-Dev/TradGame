@@ -51,9 +51,9 @@ public class BossAttack : MonoBehaviour
             }
 
             RaycastHit hit;
-            if(Physics.Linecast(transform.position, lineRenderer.GetPosition(1), out hit)){
-                if(hit.transform.tag == "player"){
-                    Debug.Log("Hit");
+            if(Physics.Linecast(transform.position, new Vector3(Mathf.Cos(angle)*radius + transform.position.x, 0, Mathf.Sin(angle)*radius + transform.position.z), out hit)){
+                if(hit.collider.name == "Player"){
+                    Debug.Log("Player Detected");
                 }
             }
         }
