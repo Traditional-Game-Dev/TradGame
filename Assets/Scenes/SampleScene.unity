@@ -365,6 +365,7 @@ MonoBehaviour:
   bossAttackTime: 4
   lineRenderer: {fileID: 142765631}
   radius: 10
+  attackSpeed: 150
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5873,7 +5874,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.42102063, y: -0.00000002664293, z: 0.0000000123666934, w: 0.9070511}
+  m_LocalRotation: {x: 0.42102063, y: -0.0000000045712008, z: 0.0000000021217876,
+    w: 0.9070511}
   m_LocalPosition: {x: -1.4655285, y: 33.819042, z: -44.595715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6891,7 +6893,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634393753}
-  m_LocalRotation: {x: 0.4292529, y: -0.000000021977636, z: 0.000000010445226, w: 0.90318435}
+  m_LocalRotation: {x: 0.4292529, y: 0.000000021977636, z: -0.000000010445226, w: 0.90318435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6910,7 +6912,7 @@ GameObject:
   - component: {fileID: 1705194712}
   - component: {fileID: 1705194711}
   - component: {fileID: 1705194710}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Arena Terrain V1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,6 +12,7 @@ public class BossAttack : MonoBehaviour
     private int i = 0;
     public float radius = 10f;
     public float attackSpeed = 150f;
+    private int hitCounter = 0;
 
     void start(){
         lineRenderer.enabled = false;
@@ -53,7 +54,8 @@ public class BossAttack : MonoBehaviour
             RaycastHit hit;
             if(Physics.Linecast(transform.position, new Vector3(Mathf.Cos(angle)*radius + transform.position.x, 0, Mathf.Sin(angle)*radius + transform.position.z), out hit)){
                 if(hit.collider.name == "Player"){
-                    Debug.Log("Player Detected");
+                    hitCounter++;
+                    Debug.Log("Player Detected" + hitCounter);
                 }
             }
         }
