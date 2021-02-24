@@ -14,6 +14,7 @@ public class BossAttack : MonoBehaviour
     public float attackSpeed = 150f;
     private int hitCounter = 0;
     public float hitboxOffset = 3f;
+    public int damageDealt;
 
     void start(){
         lineRenderer.enabled = false;
@@ -57,6 +58,7 @@ public class BossAttack : MonoBehaviour
                 if(hit.collider.name == "Player"){
                     hitCounter++;
                     Debug.Log("Player Detected" + hitCounter);
+                    player.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
                 }
             }
         }

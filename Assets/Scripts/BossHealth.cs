@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class BossHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth;
     public int currentHealth;
     public HealthBar healthBar;
     public GameObject boss;
