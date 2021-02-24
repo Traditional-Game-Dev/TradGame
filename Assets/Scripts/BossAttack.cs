@@ -55,7 +55,7 @@ public class BossAttack : MonoBehaviour
             }
 
             RaycastHit hit;
-            if(Physics.Linecast(transform.position, new Vector3(Mathf.Cos(angle)*(radius + hitboxOffset) + transform.position.x, 0, Mathf.Sin(angle)*(radius + hitboxOffset) + transform.position.z), out hit)){
+            if(Physics.Linecast(new Vector3(transform.position.x, 1, transform.position.z), new Vector3(Mathf.Cos(angle)*(radius + hitboxOffset) + transform.position.x, 0, Mathf.Sin(angle)*(radius + hitboxOffset) + transform.position.z), out hit)){
                 if(hit.collider.name == "Player"){
                     hitCounter++;
                     Debug.Log("Player Detected" + hitCounter);
