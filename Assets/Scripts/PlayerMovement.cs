@@ -6,19 +6,19 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public Transform cam;
     public ParticleSystem attackParticles;
-    //public Camera camera; ///
+    public Camera cam;
+    private Transform camTransform;
 
     private float moveSpeed;
-    public float baseSpeed = 6f;
+    public float baseSpeed = 16f;
     private Vector3 moveDirection;
     private Vector2 dir = new Vector2(0f, 0f);
 
     private float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
-    private const float MAX_DASH_TIME = 2.5f;
+    private const float MAX_DASH_TIME = 1.5f;
     private const int MAX_DASH_COUNTER = 3;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        camTransform = cam.transform;
+
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
         movement = gameplayActionMap.FindAction("Movement");
@@ -99,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camTransform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
