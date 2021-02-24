@@ -266,9 +266,9 @@ MonoBehaviour:
   player: {fileID: 452722196}
   bossAttackTime: 4
   lineRenderer: {fileID: 142765631}
-  radius: 10
+  radius: 100
   attackSpeed: 150
-  hitboxOffset: 1.25
+  hitboxOffset: 10
   damageDealt: 1
 --- !u!136 &142765627
 CapsuleCollider:
@@ -727,7 +727,6 @@ MonoBehaviour:
   attackParticles: {fileID: 452722203}
   cam: {fileID: 963194227}
   baseSpeed: 12
-  turnSmoothTime: 0.1
   maxDashCooldown: 25
   stepDashCooldown: 15
   dashMultiplier: 12
@@ -6064,7 +6063,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.42102063, y: 0.000000004571203, z: -0.0000000021217885, w: 0.9070511}
+  m_LocalRotation: {x: 0.42102063, y: -0.00000002664293, z: 0.0000000123666934, w: 0.9070511}
   m_LocalPosition: {x: -1.4655285, y: 33.819042, z: -44.595715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6586,7 +6585,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149377860}
-  m_LocalRotation: {x: 0.41275346, y: 0.00000001567231, z: -0.0000000071019937, w: 0.91084284}
+  m_LocalRotation: {x: 0.41275346, y: -0.000000015672308, z: 0.0000000071019923, w: 0.91084284}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
