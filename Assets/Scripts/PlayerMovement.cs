@@ -10,13 +10,14 @@ public class PlayerMovement : MonoBehaviour
     public Camera cam;
     private Transform camTransform;
 
+    public float baseSpeed;
     private float moveSpeed;
-    public float baseSpeed = 16f;
+
     private Vector3 moveDirection;
     private Vector2 dir = new Vector2(0f, 0f);
 
     private float turnSmoothVelocity;
-    public float turnSmoothTime = 0.1f;
+    private float turnSmoothTime = 0.1f;
 
     private const float MAX_DASH_TIME = 1.5f;
     private const int MAX_DASH_COUNTER = 3;
@@ -24,10 +25,10 @@ public class PlayerMovement : MonoBehaviour
     private float currentDashTime = MAX_DASH_TIME;
     private float currentMaxCooldownTime = 0;
     private float currentStepCooldownTime = 0;
-    public float maxDashCooldown = 35f;
-    public float stepDashCooldown = 50f;
-    public float dashMultiplier = 12f;
-    public int dashCounter = 0;
+    public float maxDashCooldown;
+    public float stepDashCooldown;
+    public float dashMultiplier;
+    public int dashCounter;
 
     //private float attackCooldown = 25f; // for future use
     private float attackParticlesCooldown = 0.5f;
