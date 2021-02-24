@@ -6,15 +6,16 @@ public class BossAttack : MonoBehaviour
 {
     public GameObject player;
     public float bossAttackTime;
-    private float timer = 0.0f;
     public LineRenderer lineRenderer;
-    private bool firingLaser = false;    
-    private int i = 0;
-    public float radius = 10f;
-    public float attackSpeed = 150f;
-    private int hitCounter = 0;
-    public float hitboxOffset = 3f;
+    public float radius;
+    public float attackSpeed;
+    public float hitboxOffset;
     public int damageDealt;
+
+    private int hitCounter = 0;
+    private int i = 0;
+    private bool firingLaser = false;
+    private float timer = 0.0f;
 
     void start(){
         lineRenderer.enabled = false;
