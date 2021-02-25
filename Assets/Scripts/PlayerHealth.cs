@@ -25,10 +25,10 @@ public class PlayerHealth : MonoBehaviour
         if(currentHP <= 0)
         {
             //If the player runs out of lives
-            if(currentLives <= 0)
+            if(currentLives <= 1)
             {
                 //TODO: End game or restart or whatever
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("Game Over");
             }
             else
             {
