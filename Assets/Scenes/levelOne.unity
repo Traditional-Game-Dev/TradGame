@@ -274,9 +274,10 @@ MonoBehaviour:
   bossWaitTime: 0
   lineRenderer: {fileID: 142765631}
   radius: 100
-  attackSpeed: 150
-  hitboxOffset: 10
-  damageDealt: 1
+  circleSpeed: 6
+  circleDivide: 1250
+  hitboxOffset: 32
+  damageDealt: 10
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0
