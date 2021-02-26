@@ -9,7 +9,8 @@ public class BossAttack : MonoBehaviour
     public float bossWaitTime;
     public LineRenderer lineRenderer;
     public float radius;
-    public float attackSpeed;
+    public float circleSpeed;
+    public float circleDivide;
     public float hitboxOffset;
     public int damageDealt;
 
@@ -18,6 +19,9 @@ public class BossAttack : MonoBehaviour
     private bool firingLaser = false;
     private float timerBetweenAttacks = 0.0f;
     private float timerDuringAttacks = 0.0f;
+    private float invinTimer = 0.0f;
+    private bool playerInvin = false;
+    private float playerInvinTime = 1.0f;
 
     void start(){
         lineRenderer.enabled = false;
@@ -26,24 +30,6 @@ public class BossAttack : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        /*timerBetweenAttacks += Time.deltaTime;
-
-        //Check if we have passed 5 seconds
-        if(timerBetweenAttacks > bossAttackTime)
-        {
-            if(firingLaser){
-                firingLaser = false;
-                lineRenderer.enabled = false;
-            }
-            else{
-                firingLaser = true;
-                lineRenderer.enabled = true;
-                lineRenderer.SetPosition(0, transform.position);
-            }
-
-            timerBetweenAttacks = timerBetweenAttacks - bossAttackTime;
-        }*/
-
         if(firingLaser)
         {
             timerDuringAttacks += Time.deltaTime;
@@ -68,25 +54,45 @@ public class BossAttack : MonoBehaviour
         }
 
         if(firingLaser){
-            
-            float angle = i * Mathf.PI*2f / attackSpeed;
-            Vector3 lineEndPosition = new Vector3(Mathf.Cos(angle)*radius + transform.position.x, 0, Mathf.Sin(angle)*radius + transform.position.z);
+            for (int j = 0; j < circleSpeed; j++)
+            {
+                float angle = i * Mathf.PI * 2f / circleDivide;
+                Vector3 lineEndPosition = new Vector3(Mathf.Cos(angle) * radius + transform.position.x, 0, Mathf.Sin(angle) * radius + transform.position.z);
 
-            lineRenderer.SetPosition(1, lineEndPosition);
-            i++;
+                lineRenderer.SetPosition(1, lineEndPosition);
+                i++;
 
-            if(i > attackSpeed){
-                i = 0;
-            }
+                if (i > circleDivide)
+                {
+                    i = 0;
+                }
 
-            RaycastHit hit;
-            if(Physics.Linecast(new Vector3(transform.position.x, 1, transform.position.z), new Vector3(Mathf.Cos(angle)*(radius + hitboxOffset) + transform.position.x, 0, Mathf.Sin(angle)*(radius + hitboxOffset) + transform.position.z), out hit)){
-                if(hit.collider.name == "Player"){
-                    hitCounter++;
-                    Debug.Log("Player Detected" + hitCounter);
-                    player.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
+                RaycastHit hit;
+                if (Physics.Linecast(new Vector3(transform.position.x, 1, transform.position.z), new Vector3(Mathf.Cos(angle) * (radius + hitboxOffset) + transform.position.x, 0, Mathf.Sin(angle) * (radius + hitboxOffset) + transform.position.z), out hit))
+                {
+                    if (hit.collider.name == "Player")
+                    {
+                        hitCounter++;
+                        if (!playerInvin)
+                        {
+                            player.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
+                        }
+                        playerInvin = true;
+                    }
+                }
+
+                if (playerInvin)
+                {
+                    invinTimer += Time.deltaTime;
+                    if (invinTimer > playerInvinTime)
+                    {
+                        invinTimer = 0f;
+                        playerInvin = false;
+                    }
                 }
             }
         }
+
+        
     }
 }
