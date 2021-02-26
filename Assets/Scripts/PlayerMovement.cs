@@ -24,13 +24,13 @@ public class PlayerMovement : MonoBehaviour
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
     private float currentMaxCooldownTime = 0;
-    private float currentStepCooldownTime = 0;
+    private float currentDashCooldownTime = 0;
     public float maxDashCooldown;
     public float stepDashCooldown;
     public float dashMultiplier;
     public int dashCounter;
 
-    //private float attackCooldown = 25f; // for future use
+    //private float attackCooldown = 25f; // future use
     private float attackParticlesCooldown = 0.5f;
     private float currentAttackParticlesCooldown = 0f;
 
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction attack;
 
 
-    //private PostProcessingBehavior postProcessingBehavior; ///
+    //private PostProcessingBehavior postProcessingBehavior; // future use
 
     void Awake()
     {
@@ -62,11 +62,12 @@ public class PlayerMovement : MonoBehaviour
         dash = gameplayActionMap.FindAction("Dash");
         dash.performed += ctx =>
         {
-            currentDashTime = 0;
-
-            currentStepCooldownTime = 0;
-
-            dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
+            if (dashCounter < MAX_DASH_COUNTER)
+            {
+                currentDashTime = 0;
+                currentDashCooldownTime = 0;
+                dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
+            }
         };
         dash.Enable();
 
@@ -77,8 +78,6 @@ public class PlayerMovement : MonoBehaviour
             attackParticles.Play();
             currentAttackParticlesCooldown = 0;
         };
-
-        //postProcessingBehavior = camera.GetComponent<PostProcessingBehavior>(); ///
     }
 
     void FixedUpdate()
@@ -108,51 +107,32 @@ public class PlayerMovement : MonoBehaviour
 
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            if (dashCounter > MAX_DASH_COUNTER) // exceeded max dash count
-            {
-                if (currentMaxCooldownTime < maxDashCooldown) 
-                {
-                    currentMaxCooldownTime += dashStoppingSpeed;
-                }
-                else   
-                {
-                    currentMaxCooldownTime = 0;
-                    currentStepCooldownTime = 0;
-                    dashCounter = 0;
-                    currentDashTime = MAX_DASH_TIME;
-                }
-
-                //postProcessingBehavior.useBlur = false; ///
-
-                moveSpeed = baseSpeed;
-            }
-            else if (currentDashTime < MAX_DASH_TIME) // can, and is, dashing
-            {
-                moveSpeed = baseSpeed * dashMultiplier;
-
-                currentDashTime += dashStoppingSpeed;
-
-                //postProcessingBehavior.useBlur = true; ///
-            }
-            else // not dashing
-            {
-                moveSpeed = baseSpeed;
-
-                //postProcessingBehavior.useBlur = false; ///
-            }
-
-            // keep track of constant dash cooldown
             if (dashCounter > 0)
             {
-                currentStepCooldownTime += dashStoppingSpeed;
+                if (dashCounter <= MAX_DASH_COUNTER && currentDashTime < MAX_DASH_TIME)
+                {
+                    moveSpeed = baseSpeed * dashMultiplier;
+                    currentDashTime += dashStoppingSpeed;
+                }
+                else
+                {
+                    moveSpeed = baseSpeed;
+                }
+
+                currentDashCooldownTime += dashStoppingSpeed;
             }
-            if (currentStepCooldownTime >= stepDashCooldown)
+            else
             {
-                dashCounter -= dashCounter > 0 ? 1 : 0;
-                currentStepCooldownTime = 0;
+                moveSpeed = baseSpeed;
             }
 
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
+        }
+
+        if (currentDashCooldownTime >= stepDashCooldown)
+        {
+            dashCounter -= dashCounter > 0 ? 1 : 0;
+            currentDashCooldownTime = MAX_DASH_TIME + 1;
         }
     }
 }
