@@ -23,10 +23,8 @@ public class PlayerMovement : MonoBehaviour
     private const int MAX_DASH_COUNTER = 3;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
-    private float currentMaxCooldownTime = 0;
     private float currentDashCooldownTime = 0;
-    public float maxDashCooldown;
-    public float stepDashCooldown;
+    public float dashCooldown;
     public float dashMultiplier;
     public int dashCounter;
 
@@ -129,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
         }
 
-        if (currentDashCooldownTime >= stepDashCooldown)
+        if (currentDashCooldownTime >= dashCooldown)
         {
             dashCounter -= dashCounter > 0 ? 1 : 0;
             currentDashCooldownTime = MAX_DASH_TIME + 1;
