@@ -7,6 +7,8 @@ public class CameraController : MonoBehaviour
 {
     public GameObject thirdPersonCamera;
     public GameObject topDownCamera;
+    public GameObject gameplayUI;
+    public GameObject planningUI;
 
     void Awake()
     {
@@ -18,12 +20,16 @@ public class CameraController : MonoBehaviour
                 Debug.Log("going top down");
                 topDownCamera.gameObject.SetActive(true);
                 thirdPersonCamera.gameObject.SetActive(false);
+                gameplayUI.SetActive(false);
+                planningUI.SetActive(true);
             }
             else
             {
                 Debug.Log("going third person");
                 topDownCamera.gameObject.SetActive(false);
                 thirdPersonCamera.gameObject.SetActive(true);
+                gameplayUI.SetActive(true);
+                planningUI.SetActive(false);
             }
         };
         cameraSwap.Enable();
