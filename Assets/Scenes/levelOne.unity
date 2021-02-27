@@ -277,7 +277,7 @@ MonoBehaviour:
   circleSpeed: 6
   circleDivide: 1250
   hitboxOffset: 32
-  damageDealt: 5
+  damageDealt: 10
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0

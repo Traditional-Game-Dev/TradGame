@@ -37,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
     private InputAction dash;
     private InputAction attack;
 
-
     //private PostProcessingBehavior postProcessingBehavior; // future use
 
     void Awake()
@@ -60,7 +59,8 @@ public class PlayerMovement : MonoBehaviour
         dash = gameplayActionMap.FindAction("Dash");
         dash.performed += ctx =>
         {
-            if (dashCounter < MAX_DASH_COUNTER)
+            Vector3 direction = new Vector3(dir.x, 0f, dir.y).normalized;
+            if (direction.magnitude >= 0.1f && dashCounter < MAX_DASH_COUNTER)
             {
                 currentDashTime = 0;
                 currentDashCooldownTime = 0;
@@ -127,6 +127,10 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
         }
 
+        if (dashCounter > 0) 
+        {
+            currentDashCooldownTime += dashStoppingSpeed;
+        }
         if (currentDashCooldownTime >= dashCooldown)
         {
             dashCounter -= dashCounter > 0 ? 1 : 0;

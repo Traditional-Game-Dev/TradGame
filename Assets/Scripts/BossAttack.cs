@@ -67,6 +67,13 @@ public class BossAttack : MonoBehaviour
                     i = 0;
                 }
 
+                RaycastHit hitNotPlayer;
+                if(Physics.Linecast(transform.position, lineEndPosition, out hitNotPlayer))
+                {
+                    lineRenderer.SetPosition(1, hitNotPlayer.point);
+                }
+
+
                 RaycastHit hit;
                 if (Physics.Linecast(new Vector3(transform.position.x, 1, transform.position.z), new Vector3(Mathf.Cos(angle) * (radius + hitboxOffset) + transform.position.x, 0, Mathf.Sin(angle) * (radius + hitboxOffset) + transform.position.z), out hit))
                 {
