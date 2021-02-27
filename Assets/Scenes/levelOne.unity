@@ -831,7 +831,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cashMoney: 10
   wall: {fileID: 287612667}
+  wallCost: 2
   rock: {fileID: 64143074}
+  rockCost: 1
 --- !u!4 &413116130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5050196155077435023, guid: 3a5887ed64fce5b4e89574705bc72486,

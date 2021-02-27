@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour
             thirdPersonCamera.gameObject.SetActive(false);
             gameplayUI.SetActive(false);
             planningUI.SetActive(true);
+            planningUI.GetComponent<spawnObject>().cashMoney = 10;
         }
         else
         {

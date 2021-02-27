@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BlueprintScript : MonoBehaviour
@@ -12,11 +13,14 @@ public class BlueprintScript : MonoBehaviour
 
     private InputAction deselect;
     private GameObject planningUI;
+    private Dictionary<GameObject, int> cost;
 
     void Awake()
     {
         var planActionMap = playerControls.FindActionMap("Planning");
         planningUI = GameObject.Find("PlanningUI");
+        
+        cost = planningUI.GetComponent<spawnObject>().getCosts();
 
         place = planActionMap.FindAction("Place");
         place.Enable();
@@ -66,12 +70,14 @@ public class BlueprintScript : MonoBehaviour
             }
         }
 
-        if(place.triggered && planningUI.GetComponent<spawnObject>().cashMoney > 0)
+        int cashAfterPurchase = planningUI.GetComponent<spawnObject>().cashMoney - cost[gameObject];
+
+        if(place.triggered && cashAfterPurchase >= 0)
         {
             if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
                 Instantiate(prefab, transform.position, transform.rotation);
-                planningUI.GetComponent<spawnObject>().cashMoney--;
+                planningUI.GetComponent<spawnObject>().cashMoney = cashAfterPurchase;
             }
         }
     }

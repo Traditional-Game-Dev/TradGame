@@ -7,7 +7,24 @@ public class spawnObject : MonoBehaviour
 {
     public int cashMoney;
     public GameObject wall;
+    public int wallCost;
     public GameObject rock;
+    public int rockCost;
+
+    void Awake()
+    {
+        GameObject.Find("SpawnWall").GetComponentInChildren<Text>().text = $"Create Wall - ${wallCost}";
+        GameObject.Find("SpawnRock").GetComponentInChildren<Text>().text = $"Create Rock - ${rockCost}";
+    }
+
+    public Dictionary<GameObject, int> getCosts()
+    {
+        Dictionary<GameObject, int> costs = new Dictionary<GameObject, int>();
+        costs.Add(wall, wallCost);
+        costs.Add(rock, rockCost);
+
+        return costs;
+    }
 
     public void createWall()
     {
@@ -23,13 +40,7 @@ public class spawnObject : MonoBehaviour
 
     void Update()
     {
-        foreach(Transform child in transform)
-        {
-            if(child.name == "MoneyCount")
-            {
-                child.gameObject.GetComponent<Text>().text = cashMoney.ToString();
-            }
-        }
+        GameObject.Find("MoneyCount").GetComponent<Text>().text = cashMoney.ToString();
 
         if(cashMoney <= 0)
         {
