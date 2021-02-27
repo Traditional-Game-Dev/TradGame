@@ -10,15 +10,22 @@ public class BlueprintScript : MonoBehaviour
     private InputAction place;
     private InputAction rotate;
 
+    private InputAction deselect;
+    private GameObject planningUI;
+
     void Awake()
     {
         var planActionMap = playerControls.FindActionMap("Planning");
+        planningUI = GameObject.Find("PlanningUI");
 
         place = planActionMap.FindAction("Place");
         place.Enable();
 
         rotate = planActionMap.FindAction("Rotation");
         rotate.Enable();
+
+        deselect = planActionMap.FindAction("Deselect");
+        deselect.Enable();
     }
 
     void Start()
@@ -42,15 +49,9 @@ public class BlueprintScript : MonoBehaviour
             transform.position = tempLocation;
         }
 
-
-        
-        if(Mouse.current.scroll.ReadValue().y < 0)
+        if(deselect.triggered)
         {
-        }
-
-        if(Mouse.current.scroll.ReadValue().y > 0)
-        {
-            
+            gameObject.SetActive(false);
         }
 
         if(rotate.triggered)
@@ -65,9 +66,13 @@ public class BlueprintScript : MonoBehaviour
             }
         }
 
-        if(place.triggered)
+        if(place.triggered && planningUI.GetComponent<spawnObject>().cashMoney > 0)
         {
-            Instantiate(prefab, transform.position, transform.rotation);
+            if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            {
+                Instantiate(prefab, transform.position, transform.rotation);
+                planningUI.GetComponent<spawnObject>().cashMoney--;
+            }
         }
     }
 }

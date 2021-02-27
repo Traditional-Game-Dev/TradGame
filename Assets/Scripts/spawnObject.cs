@@ -12,23 +12,13 @@ public class spawnObject : MonoBehaviour
     public void createWall()
     {
         rock.SetActive(false);
-
-        if(cashMoney > 0)
-        {
-            cashMoney--;
-            wall.SetActive(true);
-        }
+        wall.SetActive(true);
     }
 
     public void createRock()
     {
         wall.SetActive(false);
-
-        if(cashMoney > 0)
-        {
-            cashMoney--;
-            rock.SetActive(true);
-        }
+        rock.SetActive(true);
     }
 
     void Update()
@@ -39,6 +29,12 @@ public class spawnObject : MonoBehaviour
             {
                 child.gameObject.GetComponent<Text>().text = cashMoney.ToString();
             }
+        }
+
+        if(cashMoney <= 0)
+        {
+            Camera.main.GetComponent<CameraController>().swapMode();
+            cashMoney++;
         }
     }
 }

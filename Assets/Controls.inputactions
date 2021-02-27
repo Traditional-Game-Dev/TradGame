@@ -172,10 +172,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Complete",
+                    "name": "Deselect",
                     "type": "Value",
-                    "id": "6adbc048-1db8-44f0-a6ff-83c126003e5e",
-                    "expectedControlType": "",
+                    "id": "df1f0d4a-6ae2-43e7-9776-ffce168d4ab2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -271,23 +271,23 @@
                 },
                 {
                     "name": "",
-                    "id": "9810c64b-4b5f-4e3c-a8e6-0623b059b045",
-                    "path": "<Keyboard>/enter",
+                    "id": "6660046d-2680-4e2c-9f7b-8ced8e05656c",
+                    "path": "<XInputController>/buttonSouth",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Complete",
+                    "action": "Deselect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "2af2b94b-f268-4371-b026-50894641b88b",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
+                    "id": "470e46fa-ebd6-436a-b65e-bd0e4919875c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Complete",
+                    "action": "Deselect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
