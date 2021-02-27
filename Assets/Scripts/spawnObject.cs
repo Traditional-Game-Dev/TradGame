@@ -11,32 +11,23 @@ public class spawnObject : MonoBehaviour
 
     public void createWall()
     {
-        var rock = GameObject.Find("Rock1Blueprint(Clone)");
-        Debug.Log(rock);
-        if(rock != null)
-        {
-            Destroy(rock);
-        }
+        rock.SetActive(false);
 
-        if(cashMoney > 0 && GameObject.Find("WallBlueprint(Clone)") == null)
+        if(cashMoney > 0)
         {
             cashMoney--;
-            Instantiate(wall);
+            wall.SetActive(true);
         }
     }
 
     public void createRock()
     {
-        var wall = GameObject.Find("WallBlueprint(Clone)");
-        if(wall != null)
-        {
-            Destroy(wall);
-        }
+        wall.SetActive(false);
 
-        if(cashMoney > 0 && GameObject.Find("Rock1Blueprint(Clone)") == null)
+        if(cashMoney > 0)
         {
             cashMoney--;
-            Instantiate(rock);
+            rock.SetActive(true);
         }
     }
 

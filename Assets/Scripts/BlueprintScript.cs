@@ -15,18 +15,25 @@ public class BlueprintScript : MonoBehaviour
         var planActionMap = playerControls.FindActionMap("Planning");
 
         place = planActionMap.FindAction("Place");
-        place.performed += ctx => 
-        {
-            Instantiate(prefab, transform.position, transform.rotation);
-        };
+        // place.performed += ctx => 
+        // {
+        // };
 
         place.Enable();
     }
 
-    void Start()
+    void OnEnable()
     {
         place.Enable();
+    }
 
+    void OnDisable()
+    {
+        place.Disable();
+    }
+
+    void Start()
+    {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if(Physics.Raycast(ray, out hit, 50000.0f, (1 << 8)))
@@ -55,10 +62,10 @@ public class BlueprintScript : MonoBehaviour
         {
             transform.Rotate(Vector3.down * 10f, Space.Self);
         }
-    }
 
-    void OnDestroy()
-    {
-        place.Disable();
+        if(place.triggered)
+        {
+            Instantiate(prefab, transform.position, transform.rotation);
+        }
     }
 }
