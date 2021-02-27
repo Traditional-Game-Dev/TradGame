@@ -15,21 +15,10 @@ public class BlueprintScript : MonoBehaviour
         var planActionMap = playerControls.FindActionMap("Planning");
 
         place = planActionMap.FindAction("Place");
-        // place.performed += ctx => 
-        // {
-        // };
-
         place.Enable();
-    }
 
-    void OnEnable()
-    {
-        place.Enable();
-    }
-
-    void OnDisable()
-    {
-        place.Disable();
+        rotate = planActionMap.FindAction("Rotation");
+        rotate.Enable();
     }
 
     void Start()
@@ -52,15 +41,28 @@ public class BlueprintScript : MonoBehaviour
             tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y;
             transform.position = tempLocation;
         }
+
+
         
         if(Mouse.current.scroll.ReadValue().y < 0)
         {
-            transform.Rotate(Vector3.up * 10f, Space.Self);
         }
 
         if(Mouse.current.scroll.ReadValue().y > 0)
         {
-            transform.Rotate(Vector3.down * 10f, Space.Self);
+            
+        }
+
+        if(rotate.triggered)
+        {
+            if(rotate.ReadValue<float>() > 0)
+            {
+                transform.Rotate(Vector3.down * 10f, Space.Self);
+            }
+            else if(rotate.ReadValue<float>() < 0)
+            {
+              transform.Rotate(Vector3.up * 10f, Space.Self);
+            }
         }
 
         if(place.triggered)
