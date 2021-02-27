@@ -27,13 +27,13 @@ public class PlayerHealth : MonoBehaviour
             //If the player runs out of lives
             if(currentLives <= 1)
             {
-                //TODO: End game or restart or whatever
                 SceneManager.LoadScene("Game Over");
             }
             else
             {
                 currentLives--;
                 currentHP = totalHp;
+                Camera.main.GetComponent<CameraController>().swapMode();
             }
         }
 

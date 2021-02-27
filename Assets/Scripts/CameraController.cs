@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public GameObject topDownCamera;
     public GameObject gameplayUI;
     public GameObject planningUI;
+    public GameObject player;
 
     void Awake()
     {
@@ -29,11 +30,14 @@ public class CameraController : MonoBehaviour
             thirdPersonCamera.gameObject.SetActive(false);
             gameplayUI.SetActive(false);
             planningUI.SetActive(true);
+            player.SetActive(false);
             planningUI.GetComponent<spawnObject>().cashMoney = 10;
         }
         else
         {
             Debug.Log("going third person");
+            player.SetActive(true);
+            player.transform.position = new Vector3(0f, 1f, -50f);
             topDownCamera.gameObject.SetActive(false);
             thirdPersonCamera.gameObject.SetActive(true);
             gameplayUI.SetActive(true);
