@@ -30,6 +30,16 @@ public class CameraController : MonoBehaviour
                 thirdPersonCamera.gameObject.SetActive(true);
                 gameplayUI.SetActive(true);
                 planningUI.SetActive(false);
+                var rock = GameObject.Find("Rock1Blueprint(Clone)");
+                if(rock != null)
+                {
+                    Destroy(rock);
+                }
+                var wall = GameObject.Find("WallBlueprint(Clone)");
+                if(wall != null)
+                {
+                    Destroy(wall);
+                }
             }
         };
         cameraSwap.Enable();

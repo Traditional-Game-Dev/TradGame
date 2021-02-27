@@ -93,3 +93,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1485442318257172256, guid: e2a4799973e5c344fb16eed5a105ca86, type: 3}
+  playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
+    type: 3}

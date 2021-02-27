@@ -274,9 +274,10 @@ MonoBehaviour:
   bossWaitTime: 0
   lineRenderer: {fileID: 142765631}
   radius: 100
-  attackSpeed: 150
-  hitboxOffset: 10
-  damageDealt: 1
+  circleSpeed: 6
+  circleDivide: 1250
+  hitboxOffset: 32
+  damageDealt: 5
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -818,6 +819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 5981015435478400584, guid: 102e26276df577c4da783b0851066db4, type: 3}
   rock: {fileID: 4390729350279958443, guid: 3fd2f778c4ea6b94a87b0894c8010455, type: 3}
+  cashMoney: 10
 --- !u!4 &413116130 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5050196155077435023, guid: 3a5887ed64fce5b4e89574705bc72486,

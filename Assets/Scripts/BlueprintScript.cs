@@ -6,9 +6,27 @@ public class BlueprintScript : MonoBehaviour
     RaycastHit hit;
     Vector3 createLocation;
     public GameObject prefab;
+    public InputActionAsset playerControls;
+    private InputAction place;
+    private InputAction rotate;
+
+    void Awake()
+    {
+        var planActionMap = playerControls.FindActionMap("Planning");
+
+        place = planActionMap.FindAction("Place");
+        place.performed += ctx => 
+        {
+            Instantiate(prefab, transform.position, transform.rotation);
+        };
+
+        place.Enable();
+    }
 
     void Start()
     {
+        place.Enable();
+
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if(Physics.Raycast(ray, out hit, 50000.0f, (1 << 8)))
@@ -37,11 +55,10 @@ public class BlueprintScript : MonoBehaviour
         {
             transform.Rotate(Vector3.down * 10f, Space.Self);
         }
+    }
 
-        if (Mouse.current.leftButton.ReadValue() == 1)
-        {
-            Instantiate(prefab, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
+    void OnDestroy()
+    {
+        place.Disable();
     }
 }
