@@ -39,8 +39,12 @@ public class PlayerMovement : MonoBehaviour
 
     //private PostProcessingBehavior postProcessingBehavior; // future use
 
+    private Animator anim;
+
     void Awake()
     {
+        anim = gameObject.GetComponent<Animator>();
+
         camTransform = cam.transform;
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
@@ -136,5 +140,7 @@ public class PlayerMovement : MonoBehaviour
             dashCounter -= dashCounter > 0 ? 1 : 0;
             currentDashCooldownTime = MAX_DASH_TIME + 1;
         }
+
+        anim.SetFloat("Movement", direction.magnitude);
     }
 }
