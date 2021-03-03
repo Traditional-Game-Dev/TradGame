@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
         var cameraSwap = new InputAction(binding: "<Keyboard>/q");
         cameraSwap.started += cxt =>
         {
-            swapMode();
+            //swapMode();
         };
         cameraSwap.Enable();
     }
