@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private float turnSmoothVelocity;
     private float turnSmoothTime = 0.1f;
 
-    public const float MAX_DASH_TIME = 1f;
+    public const float MAX_DASH_TIME = 0.35f;
     private const int MAX_DASH_COUNTER = 3;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
@@ -95,10 +95,7 @@ public class PlayerMovement : MonoBehaviour
                 currentAttackParticlesCooldown = 0;
             }
         }
-    }
 
-    void Update()
-    {
         Vector3 direction = new Vector3(dir.x, 0f, dir.y).normalized;
 
         if (direction.magnitude >= 0.1f)
@@ -131,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime);
         }
 
-        if (dashCounter > 0) 
+        if (dashCounter > 0)
         {
             currentDashCooldownTime += dashStoppingSpeed;
         }
@@ -142,6 +139,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         anim.SetFloat("Movement", direction.magnitude);
+    }
+
+    void Update()
+    {
+        
     }
 
     public float GetCurrentDashTime()
