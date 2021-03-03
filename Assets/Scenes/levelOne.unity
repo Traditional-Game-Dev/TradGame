@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 651.73926, g: 773.637, b: 961.98505, a: 1}
+  m_IndirectSpecularColor: {r: 652.7036, g: 775.5618, b: 964.21747, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -418,10 +418,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 452722196}
   bossAttackTime: 4
-  bossWaitTime: 0
+  bossWaitTime: 2
   lineRenderer: {fileID: 142765631}
   radius: 100
-  circleSpeed: 6
+  circleSpeed: 10
   circleDivide: 1250
   hitboxOffset: 32
   damageDealt: 20
