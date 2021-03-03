@@ -111,7 +111,7 @@
                 {
                     "name": "",
                     "id": "fd6fb739-9f25-4b1b-b7aa-93398dddd4fc",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/space",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
@@ -133,7 +133,7 @@
                 {
                     "name": "",
                     "id": "3759b084-11d4-4184-a8fa-e60bcc0a1b12",
-                    "path": "<Keyboard>/space",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
