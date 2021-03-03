@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
             planningUI.SetActive(true);
             player.SetActive(false);
             planningUI.GetComponent<spawnObject>().cashMoney = 10;
+            GameObject.Find("Boss").GetComponent<BossAttack>().planningPhase = true;
         }
         else
         {
@@ -52,6 +53,12 @@ public class CameraController : MonoBehaviour
             {
                 wall.gameObject.SetActive(false);
             }
+            var ruinsWall = GameObject.Find("RuinsWallBlueprint");
+            if(ruinsWall != null)
+            {
+                ruinsWall.gameObject.SetActive(false);
+            }
+            GameObject.Find("Boss").GetComponent<BossAttack>().planningPhase = false;
         }
     }
 }

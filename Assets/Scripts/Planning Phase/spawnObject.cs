@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class spawnObject : MonoBehaviour
 {
     public int cashMoney;
+    public GameObject ruinsWall;
+    public int ruinsWallCost;
     public GameObject wall;
     public int wallCost;
     public GameObject rock;
@@ -15,6 +17,7 @@ public class spawnObject : MonoBehaviour
     {
         GameObject.Find("SpawnWall").GetComponentInChildren<Text>().text = $"Create Wall - ${wallCost}";
         GameObject.Find("SpawnRock").GetComponentInChildren<Text>().text = $"Create Rock - ${rockCost}";
+        GameObject.Find("SpawnRuins").GetComponentInChildren<Text>().text = $"Create Wide Wall - ${ruinsWallCost}";
     }
 
     public Dictionary<GameObject, int> getCosts()
@@ -22,6 +25,7 @@ public class spawnObject : MonoBehaviour
         Dictionary<GameObject, int> costs = new Dictionary<GameObject, int>();
         costs.Add(wall, wallCost);
         costs.Add(rock, rockCost);
+        costs.Add(ruinsWall, ruinsWallCost);
 
         return costs;
     }
@@ -29,13 +33,22 @@ public class spawnObject : MonoBehaviour
     public void createWall()
     {
         rock.SetActive(false);
+        ruinsWall.SetActive(false);
         wall.SetActive(true);
     }
 
     public void createRock()
     {
         wall.SetActive(false);
+        ruinsWall.SetActive(false);
         rock.SetActive(true);
+    }
+
+    public void createRuinsWall()
+    {
+        wall.SetActive(false);
+        rock.SetActive(false);
+        ruinsWall.SetActive(true);
     }
 
     void Update()

@@ -22,6 +22,7 @@ public class BossAttack : MonoBehaviour
     private float invinTimer = 0.0f;
     private bool playerInvin = false;
     private float playerInvinTime = 1.0f;
+    [System.NonSerialized] public bool planningPhase = true;
 
     void start()
     {
@@ -31,6 +32,8 @@ public class BossAttack : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(!planningPhase)
+        {
         if (firingLaser)
         {
             timerDuringAttacks += Time.deltaTime;
@@ -101,7 +104,6 @@ public class BossAttack : MonoBehaviour
                 }
             }
         }
-
-
+        }
     }
 }
