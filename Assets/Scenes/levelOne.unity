@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 651.68085, g: 775.7284, b: 964.14764, a: 1}
+  m_IndirectSpecularColor: {r: 648.2383, g: 779.39435, b: 966.6276, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -424,7 +424,7 @@ MonoBehaviour:
   circleSpeed: 6
   circleDivide: 1250
   hitboxOffset: 32
-  damageDealt: 10
+  damageDealt: 20
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1690,7 +1690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &452722197
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,7 +1774,7 @@ MonoBehaviour:
   healthBar: {fileID: 1127596275}
   boss: {fileID: 142765625}
   range: 7
-  damageInflicted: 20
+  damageInflicted: 5
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
 --- !u!199 &452722202
@@ -8856,6 +8856,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6574863414505531112, guid: c320424acb753f34884e5834533cfaa4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 472698c6086b8e44381aa78e42c1b605, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c320424acb753f34884e5834533cfaa4, type: 3}
 --- !u!1 &1060844265

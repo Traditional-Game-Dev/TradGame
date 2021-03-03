@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class BossHealth : MonoBehaviour
 {
@@ -38,5 +39,10 @@ public class BossHealth : MonoBehaviour
     void dealDamage(int damage){
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+
+        if(currentHealth <= 0)
+        {
+            SceneManager.LoadScene("winScreen");
+        }
     }
 }
