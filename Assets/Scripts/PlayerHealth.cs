@@ -13,10 +13,16 @@ public class PlayerHealth : MonoBehaviour
     [System.NonSerialized] public int currentHP;
     [System.NonSerialized] public int currentLives;
 
+    private PlayerMovement playerMoveScript;
+    private float MaxDashTime;
+
     void Start()
     {
         currentHP = totalHp;
         currentLives = totalLives;
+
+        playerMoveScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        MaxDashTime = playerMoveScript.GetMaxDashTime();
     }
 
     void Update()
@@ -47,6 +53,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void damagePlayer(int totalDamage)
     {
-        currentHP -= totalDamage;
+        if (playerMoveScript.GetCurrentDashTime() >= MaxDashTime)
+        {
+            currentHP -= totalDamage;
+        }
     }
 }

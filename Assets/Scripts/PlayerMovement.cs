@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private float turnSmoothVelocity;
     private float turnSmoothTime = 0.1f;
 
-    private const float MAX_DASH_TIME = 1.5f;
+    public const float MAX_DASH_TIME = 1f;
     private const int MAX_DASH_COUNTER = 3;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
@@ -142,5 +142,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         anim.SetFloat("Movement", direction.magnitude);
+    }
+
+    public float GetCurrentDashTime()
+    {
+        return currentDashTime;
+    }
+
+    public float GetMaxDashTime()
+    {
+        return MAX_DASH_TIME;
     }
 }

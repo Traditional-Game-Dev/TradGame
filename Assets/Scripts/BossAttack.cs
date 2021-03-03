@@ -23,17 +23,18 @@ public class BossAttack : MonoBehaviour
     private bool playerInvin = false;
     private float playerInvinTime = 1.0f;
 
-    void start(){
+    void start()
+    {
         lineRenderer.enabled = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(firingLaser)
+        if (firingLaser)
         {
             timerDuringAttacks += Time.deltaTime;
-            if(timerDuringAttacks > bossAttackTime)
+            if (timerDuringAttacks > bossAttackTime)
             {
                 firingLaser = false;
                 lineRenderer.enabled = false;
@@ -43,7 +44,7 @@ public class BossAttack : MonoBehaviour
         else
         {
             timerBetweenAttacks += Time.deltaTime;
-            if(timerBetweenAttacks > bossWaitTime)
+            if (timerBetweenAttacks > bossWaitTime)
             {
                 firingLaser = true;
                 lineRenderer.enabled = true;
@@ -53,7 +54,8 @@ public class BossAttack : MonoBehaviour
             }
         }
 
-        if(firingLaser){
+        if (firingLaser)
+        {
             for (int j = 0; j < circleSpeed; j++)
             {
                 float angle = i * Mathf.PI * 2f / circleDivide;
@@ -68,7 +70,7 @@ public class BossAttack : MonoBehaviour
                 }
 
                 RaycastHit hitNotPlayer;
-                if(Physics.Linecast(transform.position, lineEndPosition, out hitNotPlayer))
+                if (Physics.Linecast(transform.position, lineEndPosition, out hitNotPlayer))
                 {
                     lineRenderer.SetPosition(1, hitNotPlayer.point);
                 }
@@ -100,6 +102,6 @@ public class BossAttack : MonoBehaviour
             }
         }
 
-        
+
     }
 }
