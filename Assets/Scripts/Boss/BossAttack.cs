@@ -61,7 +61,12 @@ public class BossAttack : MonoBehaviour
             if (firingLaser)
             {
                 float dist = Vector3.Distance(player.transform.position, transform.position);
-                for (int j = 0; j < circleSpeed; j++)
+                int updatedSpeed = (int)(circleSpeed * ((100 - radius) / 50));
+                if(updatedSpeed < circleSpeed)
+                {
+                    updatedSpeed = (int)circleSpeed;
+                }
+                for (int j = 0; j < updatedSpeed; j++)
                 {
                     radius = Vector3.Distance(player.transform.position, transform.position) + 5;
                     float angle = i * Mathf.PI * 2f / circleDivide;
