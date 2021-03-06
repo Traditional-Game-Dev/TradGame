@@ -13,6 +13,7 @@ public class BossAttack : MonoBehaviour
     public float circleDivide;
     public float hitboxOffset;
     public int damageDealt;
+    public int headOffset;
 
     private int hitCounter = 0;
     private int i = 0;
@@ -34,76 +35,83 @@ public class BossAttack : MonoBehaviour
     {
         if(!planningPhase)
         {
-        if (firingLaser)
-        {
-            timerDuringAttacks += Time.deltaTime;
-            if (timerDuringAttacks > bossAttackTime)
+            if (firingLaser)
             {
-                firingLaser = false;
-                lineRenderer.enabled = false;
-                timerDuringAttacks = timerDuringAttacks - bossAttackTime;
-            }
-        }
-        else
-        {
-            timerBetweenAttacks += Time.deltaTime;
-            if (timerBetweenAttacks > bossWaitTime)
-            {
-                firingLaser = true;
-                lineRenderer.enabled = true;
-                lineRenderer.SetPosition(0, transform.position);
-
-                timerBetweenAttacks = timerBetweenAttacks - bossWaitTime;
-            }
-        }
-
-        if (firingLaser)
-        {
-            for (int j = 0; j < circleSpeed; j++)
-            {
-                float angle = i * Mathf.PI * 2f / circleDivide;
-                Vector3 lineEndPosition = new Vector3(Mathf.Cos(angle) * radius + transform.position.x, 0, Mathf.Sin(angle) * radius + transform.position.z);
-
-                lineRenderer.SetPosition(1, lineEndPosition);
-                i++;
-
-                if (i > circleDivide)
+                timerDuringAttacks += Time.deltaTime;
+                if (timerDuringAttacks > bossAttackTime)
                 {
-                    i = 0;
+                    firingLaser = false;
+                    lineRenderer.enabled = false;
+                    timerDuringAttacks = timerDuringAttacks - bossAttackTime;
                 }
-
-                RaycastHit hitNotPlayer;
-                if (Physics.Linecast(transform.position, lineEndPosition, out hitNotPlayer))
+            }
+            else
+            {
+                timerBetweenAttacks += Time.deltaTime;
+                if (timerBetweenAttacks > bossWaitTime)
                 {
-                    lineRenderer.SetPosition(1, hitNotPlayer.point);
+                    firingLaser = true;
+                    lineRenderer.enabled = true;
+                    lineRenderer.SetPosition(0, new Vector3(transform.position.x - headOffset, 10, transform.position.z));
+
+                    timerBetweenAttacks = timerBetweenAttacks - bossWaitTime;
                 }
+            }
 
-
-                RaycastHit hit;
-                if (Physics.Linecast(new Vector3(transform.position.x, 1, transform.position.z), new Vector3(Mathf.Cos(angle) * (radius + hitboxOffset) + transform.position.x, 0, Mathf.Sin(angle) * (radius + hitboxOffset) + transform.position.z), out hit))
+            if (firingLaser)
+            {
+                float dist = Vector3.Distance(player.transform.position, transform.position);
+                int updatedSpeed = (int)(circleSpeed * ((100 - radius) / 50));
+                if(updatedSpeed < circleSpeed)
                 {
-                    if (hit.collider.name == "Player")
+                    updatedSpeed = (int)circleSpeed;
+                }
+                for (int j = 0; j < updatedSpeed; j++)
+                {
+                    radius = Vector3.Distance(player.transform.position, transform.position) + 5;
+                    float angle = i * Mathf.PI * 2f / circleDivide;
+                    Vector3 lineEndPosition = new Vector3(Mathf.Cos(angle) * radius + transform.position.x, 0, Mathf.Sin(angle) * radius + transform.position.z);
+
+                    lineRenderer.SetPosition(1, lineEndPosition);
+                    i++;
+
+                    if (i > circleDivide)
                     {
-                        hitCounter++;
-                        if (!playerInvin)
+                        i = 0;
+                    }
+
+                    RaycastHit hitNotPlayer;
+                    if (Physics.Linecast(new Vector3(transform.position.x - headOffset, 10, transform.position.z), lineEndPosition, out hitNotPlayer))
+                    {
+                        lineRenderer.SetPosition(1, hitNotPlayer.point);
+                    }
+
+
+                    RaycastHit hit;
+                    if (Physics.Linecast(new Vector3(transform.position.x - headOffset, 10, transform.position.z), lineEndPosition, out hit))
+                    {
+                        if (hit.collider.name == "Player")
                         {
-                            player.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
+                            hitCounter++;
+                            if (!playerInvin)
+                            {
+                                player.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
+                            }
+                            playerInvin = true;
                         }
-                        playerInvin = true;
                     }
-                }
 
-                if (playerInvin)
-                {
-                    invinTimer += Time.deltaTime;
-                    if (invinTimer > playerInvinTime)
+                    if (playerInvin)
                     {
-                        invinTimer = 0f;
-                        playerInvin = false;
+                        invinTimer += Time.deltaTime;
+                        if (invinTimer > playerInvinTime)
+                        {
+                            invinTimer = 0f;
+                            playerInvin = false;
+                        }
                     }
                 }
             }
-        }
         }
     }
 }
