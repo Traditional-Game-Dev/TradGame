@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 651.68823, g: 775.7368, b: 964.1672, a: 1}
+  m_IndirectSpecularColor: {r: 651.7915, g: 776.8714, b: 965.4655, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -425,6 +425,7 @@ MonoBehaviour:
   circleDivide: 1250
   hitboxOffset: 32
   damageDealt: 20
+  headOffset: 0
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1797,8 +1798,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f003422a0e612174b92a78852743677b, type: 2}
+  - {fileID: 2100000, guid: f003422a0e612174b92a78852743677b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8026,6 +8027,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3195915809943380395, guid: 24941c520d812e749aee660f1581828a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f003422a0e612174b92a78852743677b, type: 2}
     - target: {fileID: 919132149155446097, guid: 24941c520d812e749aee660f1581828a,
         type: 3}
       propertyPath: m_Name
@@ -9743,7 +9749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowMo: 0.1
-  normTime: 1
+  slowdownLength: 1
 --- !u!4 &1262566579
 Transform:
   m_ObjectHideFlags: 0
