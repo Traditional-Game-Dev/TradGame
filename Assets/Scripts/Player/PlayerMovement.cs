@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public ParticleSystem attackParticles;
+    public TimeManager timeManager;
     public Camera cam;
     private Transform camTransform;
 
@@ -37,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     private InputAction dash;
     private InputAction attack;
 
-    //private PostProcessingBehavior postProcessingBehavior; // future use
 
     private Animator anim;
 
@@ -69,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
                 currentDashTime = 0;
                 currentDashCooldownTime = 0;
                 dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
+
+                timeManager.DoSlowMotion();
             }
         };
         dash.Enable();

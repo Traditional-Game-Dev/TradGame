@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 652.7036, g: 775.5618, b: 964.21747, a: 1}
+  m_IndirectSpecularColor: {r: 651.68823, g: 775.7368, b: 964.1672, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1720,10 +1720,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 452722199}
   attackParticles: {fileID: 452722203}
+  timeManager: {fileID: 1262566578}
   cam: {fileID: 963194227}
   baseSpeed: 12
   dashCooldown: 15
-  dashMultiplier: 24
+  dashMultiplier: 16
   dashCounter: 0
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
@@ -8353,6 +8354,7 @@ MonoBehaviour:
   gameplayUI: {fileID: 1327584419}
   planningUI: {fileID: 377297241}
   player: {fileID: 452722196}
+  timeManager: {fileID: 1262566577}
 --- !u!1 &981968879
 GameObject:
   m_ObjectHideFlags: 0
@@ -9711,6 +9713,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd2f778c4ea6b94a87b0894c8010455, type: 3}
+--- !u!1 &1262566577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262566579}
+  - component: {fileID: 1262566578}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1262566578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262566577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8cd2fe2acb55bb4aa306af1d2314660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowMo: 0.1
+  normTime: 1
+--- !u!4 &1262566579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262566577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03447151, y: 1.6520791, z: 0.12000421}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1280309709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6613650068512556911, guid: fccab9643eb78e946b84c867bf067ac8,

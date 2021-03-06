@@ -10,13 +10,14 @@ public class CameraController : MonoBehaviour
     public GameObject gameplayUI;
     public GameObject planningUI;
     public GameObject player;
+    public GameObject timeManager;
 
     void Awake()
     {
         var cameraSwap = new InputAction(binding: "<Keyboard>/q");
         cameraSwap.started += cxt =>
         {
-            //swapMode();
+            swapMode();
         };
         cameraSwap.Enable();
     }
@@ -30,6 +31,7 @@ public class CameraController : MonoBehaviour
             thirdPersonCamera.gameObject.SetActive(false);
             gameplayUI.SetActive(false);
             planningUI.SetActive(true);
+            timeManager.SetActive(false);
             player.SetActive(false);
             planningUI.GetComponent<spawnObject>().cashMoney = 10;
             GameObject.Find("Boss").GetComponent<BossAttack>().planningPhase = true;
@@ -38,6 +40,7 @@ public class CameraController : MonoBehaviour
         {
             Debug.Log("going third person");
             player.SetActive(true);
+            timeManager.SetActive(true);
             player.transform.position = new Vector3(0f, 1f, -50f);
             topDownCamera.gameObject.SetActive(false);
             thirdPersonCamera.gameObject.SetActive(true);
