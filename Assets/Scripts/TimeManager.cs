@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public float slowMo = 0.25f;
+    public float slowMo = 0.05f;
     public float slowdownLength = 1f;
+    private float defaultFixedDelta;
 
-    void FixedUpdate()
+    void Start()
     {
-        Time.timeScale += (1f / slowdownLength) * Time.deltaTime;
-        Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        defaultFixedDelta = Time.fixedDeltaTime;
     }
 
-    public void DoSlowMotion() 
+    void Update()
+    {
+        Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
+        Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+
+        Time.fixedDeltaTime += (defaultFixedDelta / slowdownLength) * Time.unscaledDeltaTime;
+        Time.fixedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0f, defaultFixedDelta);
+    }
+
+    public void DoSlowMotion()
     {
         Time.timeScale = slowMo;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;

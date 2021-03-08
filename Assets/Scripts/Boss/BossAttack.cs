@@ -62,11 +62,11 @@ public class BossAttack : MonoBehaviour
             {
                 float dist = Vector3.Distance(player.transform.position, transform.position);
                 int updatedSpeed = (int)(circleSpeed * ((100 - radius) / 50));
-                if(updatedSpeed < circleSpeed)
+                if (updatedSpeed < circleSpeed)
                 {
                     updatedSpeed = (int)circleSpeed;
                 }
-                for (int j = 0; j < updatedSpeed; j++)
+                for (int j = 0; j < updatedSpeed / (0.02f / Time.fixedDeltaTime); j++)
                 {
                     radius = Vector3.Distance(player.transform.position, transform.position) + 5;
                     float angle = i * Mathf.PI * 2f / circleDivide;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 651.7915, g: 776.8714, b: 965.4655, a: 1}
+  m_IndirectSpecularColor: {r: 649.8291, g: 778.2879, b: 966.1149, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1725,7 +1725,7 @@ MonoBehaviour:
   cam: {fileID: 963194227}
   baseSpeed: 12
   dashCooldown: 15
-  dashMultiplier: 16
+  dashMultiplier: 24
   dashCounter: 0
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
