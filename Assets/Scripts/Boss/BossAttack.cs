@@ -8,6 +8,7 @@ public class BossAttack : MonoBehaviour
     public float bossAttackTime;
     public float bossWaitTime;
     public LineRenderer lineRenderer;
+    public ParticleSystem laserImpact;
     public float radius;
     public float circleSpeed;
     public float circleDivide;
@@ -27,6 +28,7 @@ public class BossAttack : MonoBehaviour
 
     void start()
     {
+        laserImpact.Stop();
         lineRenderer.enabled = false;
     }
 
@@ -42,6 +44,7 @@ public class BossAttack : MonoBehaviour
                 {
                     firingLaser = false;
                     lineRenderer.enabled = false;
+                    laserImpact.Stop();
                     timerDuringAttacks = timerDuringAttacks - bossAttackTime;
                 }
             }
@@ -52,6 +55,7 @@ public class BossAttack : MonoBehaviour
                 {
                     firingLaser = true;
                     lineRenderer.enabled = true;
+                    laserImpact.Play();
                     lineRenderer.SetPosition(0, new Vector3(transform.position.x - headOffset, 10, transform.position.z));
 
                     timerBetweenAttacks = timerBetweenAttacks - bossWaitTime;
@@ -73,6 +77,12 @@ public class BossAttack : MonoBehaviour
                     Vector3 lineEndPosition = new Vector3(Mathf.Cos(angle) * radius + transform.position.x, 0, Mathf.Sin(angle) * radius + transform.position.z);
 
                     lineRenderer.SetPosition(1, lineEndPosition);
+                    laserImpact.transform.position = lineEndPosition;
+
+                    Vector3 relativePos = lineEndPosition - transform.position;
+                    // the second argument, upwards, defaults to Vector3.up
+                    Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+                    laserImpact.transform.rotation = rotation;
                     i++;
 
                     if (i > circleDivide)
@@ -84,6 +94,7 @@ public class BossAttack : MonoBehaviour
                     if (Physics.Linecast(new Vector3(transform.position.x - headOffset, 10, transform.position.z), lineEndPosition, out hitNotPlayer))
                     {
                         lineRenderer.SetPosition(1, hitNotPlayer.point);
+                        laserImpact.transform.position = hitNotPlayer.point;
                     }
 
 
