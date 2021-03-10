@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float turnSmoothVelocity;
     private float turnSmoothTime = 0.1f;
 
-    public const float MAX_DASH_TIME = 1f;
+    private const float MAX_DASH_TIME = 0.6f;
     private const int MAX_DASH_COUNTER = 3;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
@@ -69,8 +69,6 @@ public class PlayerMovement : MonoBehaviour
                 currentDashTime = 0;
                 currentDashCooldownTime = 0;
                 dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
-
-                timeManager.DoSlowMotion();
             }
         };
         dash.Enable();
