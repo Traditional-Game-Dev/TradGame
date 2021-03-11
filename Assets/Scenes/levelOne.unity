@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 648.8638, g: 780.1319, b: 967.9167, a: 1}
+  m_IndirectSpecularColor: {r: 651.64355, g: 776.98346, b: 965.4987, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1784,16 +1784,16 @@ GameObject:
   m_Component:
   - component: {fileID: 452722197}
   - component: {fileID: 452722199}
-  - component: {fileID: 452722198}
   - component: {fileID: 452722200}
   - component: {fileID: 452722204}
   - component: {fileID: 452722201}
   - component: {fileID: 452722203}
   - component: {fileID: 452722202}
   - component: {fileID: 452722205}
+  - component: {fileID: 452722198}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1822,19 +1822,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 452722196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b95446ee6ae2fdf41af9915597ae3d5d, type: 3}
+  m_Script: {fileID: 11500000, guid: b499f1a2b46ce7e46a4414cce5ccf147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 963194227}
   controller: {fileID: 452722199}
   attackParticles: {fileID: 452722203}
-  timeManager: {fileID: 1262566578}
-  cam: {fileID: 963194227}
+  timeManager: {fileID: 0}
   baseSpeed: 12
-  dashCooldown: 15
+  dashCooldown: 20
   dashMultiplier: 18
   dashCounter: 0
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
+  anim: {fileID: 452722205}
 --- !u!143 &452722199
 CharacterController:
   m_ObjectHideFlags: 0

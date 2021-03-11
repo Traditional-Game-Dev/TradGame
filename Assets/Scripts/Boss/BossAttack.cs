@@ -26,7 +26,7 @@ public class BossAttack : MonoBehaviour
     private float playerInvinTime = 1.0f;
     [System.NonSerialized] public bool planningPhase = true;
 
-    void start()
+    void Start()
     {
         laserImpact.Stop();
         lineRenderer.enabled = false;

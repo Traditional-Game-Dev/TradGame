@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[Obsolete("Currently replaced by PlayerController", true)]
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private Transform camTransform;
     public Camera cam;
@@ -16,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed;
     private Vector3 moveDirection;
     private Vector2 dir = new Vector2(0f, 0f);
+    private Vector3 direction;
     private float turnSmoothVelocity;
     private float turnSmoothTime = 0.1f;
     public float baseSpeed;
@@ -38,13 +37,10 @@ public class PlayerMovement : MonoBehaviour
     private InputAction attack;
     public InputActionAsset playerControls;
 
-    private Animator anim;
-
+    public Animator anim;
 
     void Awake()
     {
-        anim = gameObject.GetComponent<Animator>();
-
         camTransform = cam.transform;
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
@@ -83,6 +79,32 @@ public class PlayerMovement : MonoBehaviour
         };
     }
 
+    private PlayerBaseState currentState;
+
+    public PlayerBaseState CurrentState
+    {
+        get { return currentState; }
+    }
+
+    public readonly PlayerIdleState IdleState = new PlayerIdleState();
+    public readonly PlayerMovingState MovingState = new PlayerMovingState();
+
+    public void TransitionToState(PlayerBaseState state)
+    {
+        currentState = state;
+        currentState.EnterState(this);
+    }
+
+    void Start()
+    {
+        TransitionToState(IdleState);
+    }
+
+    void Update()
+    {
+        currentState.Update(this);
+    }
+
     void FixedUpdate()
     {
         // particles are active
@@ -97,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        Vector3 direction = new Vector3(dir.x, 0f, dir.y).normalized;
+        direction = new Vector3(dir.x, 0f, dir.y).normalized;
 
         if (direction.magnitude >= 0.1f)
         {
@@ -138,13 +160,11 @@ public class PlayerMovement : MonoBehaviour
             dashCounter -= dashCounter > 0 ? 1 : 0;
             currentDashCooldownTime = MAX_DASH_TIME + 1;
         }
-
-        anim.SetFloat("Movement", direction.magnitude);
     }
 
-    void Update()
+    public float GetDirectionMag()
     {
-        
+        return direction.magnitude;
     }
 
     public float GetCurrentDashTime()
