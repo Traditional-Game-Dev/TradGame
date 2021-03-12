@@ -20,11 +20,7 @@ public class BossController : MonoBehaviour
     [System.NonSerialized] public bool planningPhase = true;
 
     private BossBaseState currentState;
-
-    public BossBaseState CurrentState
-    {
-        get { return currentState; }
-    }
+    public BossBaseState CurrentState { get => currentState; }
 
     public readonly BossIdleState IdleState = new BossIdleState();
     public readonly BossLaserAttackState LaserAttackState = new BossLaserAttackState();

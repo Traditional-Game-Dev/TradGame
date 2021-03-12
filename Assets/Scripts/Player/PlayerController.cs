@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public ParticleSystem attackParticles;
     public TimeManager timeManager;
+    public Animator anim;
 
     private float moveSpeed;
     private Vector3 moveDirection;
@@ -37,7 +38,17 @@ public class PlayerController : MonoBehaviour
     private InputAction attack;
     public InputActionAsset playerControls;
 
-    public Animator anim;
+    private PlayerBaseState currentState;
+    public PlayerBaseState CurrentState { get => currentState; }
+
+    public readonly PlayerIdleState IdleState = new PlayerIdleState();
+    public readonly PlayerMovingState MovingState = new PlayerMovingState();
+
+    public void TransitionToState(PlayerBaseState state)
+    {
+        currentState = state;
+        currentState.EnterState(this);
+    }
 
     void Awake()
     {
@@ -77,22 +88,6 @@ public class PlayerController : MonoBehaviour
             attackParticles.Play();
             currentAttackParticlesCooldown = 0;
         };
-    }
-
-    private PlayerBaseState currentState;
-
-    public PlayerBaseState CurrentState
-    {
-        get { return currentState; }
-    }
-
-    public readonly PlayerIdleState IdleState = new PlayerIdleState();
-    public readonly PlayerMovingState MovingState = new PlayerMovingState();
-
-    public void TransitionToState(PlayerBaseState state)
-    {
-        currentState = state;
-        currentState.EnterState(this);
     }
 
     void Start()
