@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete("Currently replaced by BossController", true)]
 public class BossAttack : MonoBehaviour
 {
     public GameObject player;

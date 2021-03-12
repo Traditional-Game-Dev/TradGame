@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 651.64355, g: 776.98346, b: 965.4987, a: 1}
+  m_IndirectSpecularColor: {r: 652.6997, g: 775.49396, b: 964.1491, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -394,9 +394,9 @@ GameObject:
   - component: {fileID: 142765630}
   - component: {fileID: 142765628}
   - component: {fileID: 142765627}
-  - component: {fileID: 142765626}
   - component: {fileID: 142765631}
   - component: {fileID: 142765629}
+  - component: {fileID: 142765626}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 142765625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65bcfd2dd7e53884fb66ce40122f5570, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ebefe27f7757634da54b82067cd53d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 452722196}
@@ -421,6 +421,7 @@ MonoBehaviour:
   bossWaitTime: 2
   lineRenderer: {fileID: 142765631}
   laserImpact: {fileID: 400961135}
+  anim: {fileID: 142765629}
   radius: 100
   circleSpeed: 10
   circleDivide: 1250
