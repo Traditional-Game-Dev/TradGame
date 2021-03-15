@@ -5,13 +5,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [Header("Basic Settings:")]
     public InputActionAsset playerControls;
     public Camera cam;
     public CharacterController controller;
     public ParticleSystem attackParticles;
     public TimeManager timeManager;
     public Animator anim;
+    [Header("Movement Settings:")]
     public float baseSpeed;
+    [Header("Dash Settings:")]
     public float dashCooldown;
     public float dashMultiplier;
     public int dashCounter;
