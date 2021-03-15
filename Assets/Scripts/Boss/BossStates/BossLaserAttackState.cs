@@ -29,11 +29,11 @@ public class BossLaserAttackState : BossBaseState
         player = boss.player;
         lineRenderer = boss.lineRenderer;
         laserImpact = boss.laserImpact;
-        radius = boss.radius;
+        radius = 100;
         circleSpeed = boss.circleSpeed;
         circleDivide = boss.circleDivide;
         headOffset = boss.headOffset;
-        damageDealt = boss.damageDealt;
+        damageDealt = boss.laserDamage;
         bossAttackTime = boss.bossAttackTime;
 
         lineRenderer.enabled = true;

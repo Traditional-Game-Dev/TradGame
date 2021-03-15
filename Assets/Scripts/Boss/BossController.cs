@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    [Header("General Settings:")]
     public GameObject player;
+    public Animator anim;
     public float bossAttackTime;
     public float bossWaitTime;
+
+    [Header("Laser Attack:")]
     public LineRenderer lineRenderer;
     public ParticleSystem laserImpact;
-    public Animator anim;
-    public float radius;
-    public float circleSpeed;
-    public float circleDivide;
-    public float hitboxOffset;
-    public int damageDealt;
+    [Range(10, 50)] public float circleSpeed;
+    [Range(1, 100)] public int laserDamage;
+    [Tooltip("Player center aim adjustment")]
     public int headOffset;
+    [Tooltip("Adjusts laser collision, do not change")]
+    public float hitboxOffset;
+    [Tooltip("Number of points laser hits on the circle, do not change")]
+    public float circleDivide;
+
+    [Header("Bullet Hell Attack:")]
+    [Range(1, 100)] public int bulletDamage;
+    public int bulletCount;
+    public int bulletRadius;
+
+    [Header("Poison Cloud Attack:")]
+    [Range(1, 100)] public int poisonDamage;
+    public int poisonRadius;
 
     [System.NonSerialized] public bool planningPhase = true;
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 645.1533, g: 770.9488, b: 907.4548, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -417,17 +417,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 452722196}
+  anim: {fileID: 142765629}
   bossAttackTime: 4
   bossWaitTime: 2
   lineRenderer: {fileID: 142765631}
   laserImpact: {fileID: 400961135}
-  anim: {fileID: 142765629}
-  radius: 100
-  circleSpeed: 10
-  circleDivide: 1250
-  hitboxOffset: 32
-  damageDealt: 20
+  laserRadius: 100
+  circleSpeed: 20
+  laserDamage: 20
   headOffset: 0
+  hitboxOffset: 32
+  circleDivide: 1250
+  bulletDamage: 0
+  bulletCount: 0
+  bulletRadius: 0
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0
