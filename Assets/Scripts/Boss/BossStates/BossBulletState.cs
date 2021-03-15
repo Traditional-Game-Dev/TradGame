@@ -53,7 +53,7 @@ public class BossBulletState : BossBaseState
             Vector3 pos = boss.transform.position;
             pos.y = 1;
             bullet.transform.position = pos;
-            bullet.transform.Rotate(0, Random.Range(bulletStartDegree, bulletEndDegree), 0);
+            bullet.transform.rotation = Quaternion.Euler(0.0f, Random.Range(bulletStartDegree, bulletEndDegree), 0.0f);
             bullet.SetActive(true);
         }
     }
