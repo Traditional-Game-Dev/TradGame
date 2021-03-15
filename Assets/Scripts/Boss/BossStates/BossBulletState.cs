@@ -9,9 +9,12 @@ public class BossBulletState : BossBaseState
     private float bulletStartDegree;
     private float bulletEndDegree;
     private int bulletDamage;
+    private ObjectPool bulletPool;
     private int bulletCount;
+    private float bulletSpeed;
 
     private float timerDuringAttacks = 0.0f;
+
     public override void EnterState(BossController boss)
     {
         //TODO: New Anim Plays Here
@@ -20,7 +23,9 @@ public class BossBulletState : BossBaseState
         bulletStartDegree = boss.bulletStartDegree;
         bulletEndDegree = boss.bulletEndDegree;
         bulletDamage = boss.bulletDamage;
+        bulletPool = boss.bulletPool;
         bulletCount = boss.bulletCount;
+        bulletSpeed = boss.bulletSpeed;
     }
 
     public override void Update(BossController boss)
@@ -28,11 +33,28 @@ public class BossBulletState : BossBaseState
         timerDuringAttacks += Time.deltaTime;
         if (timerDuringAttacks > bossAttackTime)
         {
+            timerDuringAttacks -= bossAttackTime;
             boss.TransitionToState(boss.IdleState);
         }
 
-        //TODO: Spawn bullets
+        for(int i = 0; i < bulletCount/((1.0f/Time.smoothDeltaTime)*bossAttackTime); i++)
+        {
+            spawnBullet(boss);
+        }
+    }
 
-        throw new System.NotImplementedException();
+    private void spawnBullet(BossController boss)
+    {
+        GameObject bullet = bulletPool.GetPooledObject();
+        if(bullet != null)
+        {
+            bullet.GetComponent<BulletScript>().damageDealt = bulletDamage;
+            bullet.GetComponent<BulletScript>().movementSpeed = bulletSpeed;
+            Vector3 pos = boss.transform.position;
+            pos.y = 1;
+            bullet.transform.position = pos;
+            bullet.transform.Rotate(0, Random.Range(bulletStartDegree, bulletEndDegree), 0);
+            bullet.SetActive(true);
+        }
     }
 }

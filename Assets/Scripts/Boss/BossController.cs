@@ -23,10 +23,13 @@ public class BossController : MonoBehaviour
     public float circleDivide;
 
     [Header("Bullet Hell Attack:")]
+    public ObjectPool bulletPool;
+    public GameObject bulletObject;
     [Range(1, 100)] public int bulletDamage;
     public int bulletCount;
-    [Range(0.0f, 360.0f)]public float bulletStartDegree;
-    [Range(0.0f, 360.0f)]public float bulletEndDegree;
+    [Range(0.0f, 360.0f)] public float bulletStartDegree;
+    [Range(0.0f, 360.0f)] public float bulletEndDegree;
+    [Range(50.0f, 75.0f)] public float bulletSpeed;
 
     [Header("Poison Cloud Attack:")]
     [Range(1, 100)] public int poisonDamage;
@@ -51,6 +54,8 @@ public class BossController : MonoBehaviour
     {
         laserImpact.Stop();
         lineRenderer.enabled = false;
+        //TODO: Find Ratio of BulletCount to PoolSize (Optimization Task)
+        bulletPool.CreatePool(bulletObject, bulletCount/4);
 
         TransitionToState(IdleState);
     }
