@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 652.7217, g: 775.3863, b: 964.0173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -422,15 +422,17 @@ MonoBehaviour:
   bossWaitTime: 2
   lineRenderer: {fileID: 142765631}
   laserImpact: {fileID: 400961135}
-  laserRadius: 100
   circleSpeed: 20
   laserDamage: 20
   headOffset: 0
   hitboxOffset: 32
   circleDivide: 1250
-  bulletDamage: 0
-  bulletCount: 0
-  bulletRadius: 0
+  bulletDamage: 10
+  bulletCount: 90
+  bulletStartDegree: 0
+  bulletEndDegree: 180
+  poisonDamage: 0
+  poisonRadius: 0
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0

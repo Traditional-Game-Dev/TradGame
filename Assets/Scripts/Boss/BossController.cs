@@ -25,7 +25,8 @@ public class BossController : MonoBehaviour
     [Header("Bullet Hell Attack:")]
     [Range(1, 100)] public int bulletDamage;
     public int bulletCount;
-    public int bulletRadius;
+    [Range(0.0f, 360.0f)]public float bulletStartDegree;
+    [Range(0.0f, 360.0f)]public float bulletEndDegree;
 
     [Header("Poison Cloud Attack:")]
     [Range(1, 100)] public int poisonDamage;
@@ -38,6 +39,7 @@ public class BossController : MonoBehaviour
 
     public readonly BossIdleState IdleState = new BossIdleState();
     public readonly BossLaserAttackState LaserAttackState = new BossLaserAttackState();
+    public readonly BossBulletState BulletState = new BossBulletState();
 
     public void TransitionToState(BossBaseState state)
     {
