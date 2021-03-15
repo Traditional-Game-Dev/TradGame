@@ -5,30 +5,31 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Transform camTransform;
+    public InputActionAsset playerControls;
     public Camera cam;
     public CharacterController controller;
     public ParticleSystem attackParticles;
     public TimeManager timeManager;
     public Animator anim;
+    public float baseSpeed;
+    public float dashCooldown;
+    public float dashMultiplier;
+    public int dashCounter;
 
+    private Transform camTransform;
+    private DashSprites dashSprites;
     private float moveSpeed;
     private Vector3 moveDirection;
     private Vector2 dir = new Vector2(0f, 0f);
     private Vector3 direction;
     private float turnSmoothVelocity;
-    private float turnSmoothTime = 0.1f;
-    public float baseSpeed;
-    
+
+    private float turnSmoothTime = 0.1f; 
     private const float MAX_DASH_TIME = 0.6f;
     private const int MAX_DASH_COUNTER = 3;
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
     private float currentDashCooldownTime = 0f;
-    public float dashCooldown;
-    public float dashMultiplier;
-    public int dashCounter;
-
     //private float attackCooldown = 25f; // future use
     private float attackParticlesCooldown = 0.5f;
     private float currentAttackParticlesCooldown = 0f;
@@ -36,7 +37,6 @@ public class PlayerController : MonoBehaviour
     private InputAction movement;
     private InputAction dash;
     private InputAction attack;
-    public InputActionAsset playerControls;
 
     private PlayerBaseState currentState;
     public PlayerBaseState CurrentState { get => currentState; }
@@ -78,6 +78,8 @@ public class PlayerController : MonoBehaviour
                 currentDashTime = 0;
                 currentDashCooldownTime = 0;
                 dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
+
+                dashSprites.UpdateDashImage(dashCounter);
             }
         };
         dash.Enable();
@@ -92,6 +94,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        dashSprites = GameObject.Find("DashSprites").GetComponent<DashSprites>();
+
         TransitionToState(IdleState);
     }
 
@@ -152,6 +156,8 @@ public class PlayerController : MonoBehaviour
         }
         if (currentDashCooldownTime >= dashCooldown)
         {
+            dashSprites.UpdateDashImage(dashCounter);
+
             dashCounter -= dashCounter > 0 ? 1 : 0;
             currentDashCooldownTime = MAX_DASH_TIME + 1;
         }

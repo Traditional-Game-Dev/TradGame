@@ -70,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
                 currentDashTime = 0;
                 currentDashCooldownTime = 0;
                 dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
+
+
             }
         };
         dash.Enable();
