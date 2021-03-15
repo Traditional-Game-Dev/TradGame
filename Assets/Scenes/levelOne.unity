@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 64.77353, g: 77.85638, b: 96.57941, a: 1}
+  m_IndirectSpecularColor: {r: 65.1841, g: 77.6769, b: 96.534615, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -397,7 +397,6 @@ GameObject:
   - component: {fileID: 142765631}
   - component: {fileID: 142765629}
   - component: {fileID: 142765626}
-  - component: {fileID: 142765632}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
@@ -428,7 +427,6 @@ MonoBehaviour:
   headOffset: 0
   hitboxOffset: 32
   circleDivide: 1250
-  bulletPool: {fileID: 142765632}
   bulletObject: {fileID: 1693783851390844515, guid: acec094922fd7524eac6de1c7c7ff671,
     type: 3}
   bulletDamage: 10
@@ -622,19 +620,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &142765632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142765625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8caade0499fdfa41a1e9ab4f3a2d222, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObjects: []
 --- !u!1 &214100033
 GameObject:
   m_ObjectHideFlags: 0

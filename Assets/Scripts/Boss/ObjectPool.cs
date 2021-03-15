@@ -1,16 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool
 {
     public List<GameObject> pooledObjects;
-    public static ObjectPool SharedInstance;
-
-    void Awake()
-    {
-        SharedInstance = this;
-    }
 
     public void CreatePool(GameObject objectToPool, int ammountToPool)
     {
@@ -18,9 +11,17 @@ public class ObjectPool : MonoBehaviour
         GameObject temp;
         for(int i = 0; i < ammountToPool; i++)
         {
-            temp = Instantiate(objectToPool);
+            temp = GameObject.Instantiate(objectToPool) as GameObject;
             temp.SetActive(false);
             pooledObjects.Add(temp);
+        }
+    }
+
+    public void DestroyPool()
+    {
+        for(int i = 0; i < pooledObjects.Count-1; i++)
+        {
+            GameObject.Destroy(pooledObjects[i]);
         }
     }
 
@@ -49,14 +50,6 @@ public class ObjectPool : MonoBehaviour
         for(int i = 0; i < pooledObjects.Count-1; i++)
         {
             pooledObjects[i].SetActive(false);
-        }
-    }
-
-    public void DestroyPool()
-    {
-        for(int i = 0; i < pooledObjects.Count-1; i++)
-        {
-            Destroy(pooledObjects[i]);
         }
     }
 }

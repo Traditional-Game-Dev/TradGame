@@ -23,13 +23,14 @@ public class BossController : MonoBehaviour
     public float circleDivide;
 
     [Header("Bullet Hell Attack:")]
-    public ObjectPool bulletPool;
     public GameObject bulletObject;
     [Range(1, 100)] public int bulletDamage;
     public int bulletCount;
     [Range(0.0f, 360.0f)] public float bulletStartDegree;
     [Range(0.0f, 360.0f)] public float bulletEndDegree;
     [Range(50.0f, 75.0f)] public float bulletSpeed;
+    [System.NonSerialized] public ObjectPool bulletPool = new ObjectPool();
+
 
     [Header("Poison Cloud Attack:")]
     [Range(1, 100)] public int poisonDamage;
