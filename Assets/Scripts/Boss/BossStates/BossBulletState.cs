@@ -49,9 +49,8 @@ public class BossBulletState : BossBaseState
         {
             bullet.GetComponent<BulletScript>().damageDealt = bulletDamage;
             bullet.GetComponent<BulletScript>().movementSpeed = bulletSpeed;
-            Vector3 pos = boss.transform.position;
-            pos.y = 1;
-            bullet.transform.position = pos;
+            bullet.transform.position = new Vector3(boss.transform.position.x+1.0f, 9.75f, boss.transform.position.z-1.0f);
+            bullet.GetComponent<BulletScript>().startPos = bullet.transform.position;
             bullet.transform.rotation = Quaternion.Euler(0.0f, Random.Range(bulletStartDegree, bulletEndDegree), 0.0f);
             bullet.SetActive(true);
         }
