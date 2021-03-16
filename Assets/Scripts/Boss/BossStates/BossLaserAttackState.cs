@@ -7,6 +7,7 @@ public class BossLaserAttackState : BossBaseState
     private GameObject player;
     private LineRenderer lineRenderer;
     private ParticleSystem laserImpact;
+    private GameObject laserLight;
 
     private float radius;
     private float circleSpeed;
@@ -35,9 +36,11 @@ public class BossLaserAttackState : BossBaseState
         headOffset = boss.headOffset;
         damageDealt = boss.laserDamage;
         bossAttackTime = boss.bossAttackTime;
+        laserLight = boss.laserLight;
 
         lineRenderer.enabled = true;
         laserImpact.Play();
+        laserLight.SetActive(true);
         lineRenderer.SetPosition(0, new Vector3(boss.transform.position.x - headOffset, 10, boss.transform.position.z));
     }
 
@@ -49,6 +52,7 @@ public class BossLaserAttackState : BossBaseState
             //firingLaser = false;
             lineRenderer.enabled = false;
             laserImpact.Stop();
+            laserLight.SetActive(false);
             timerDuringAttacks -= bossAttackTime;
 
             //boss.TransitionToState(boss.IdleState);
@@ -69,6 +73,7 @@ public class BossLaserAttackState : BossBaseState
 
             lineRenderer.SetPosition(1, lineEndPosition);
             laserImpact.transform.position = lineEndPosition;
+            laserLight.transform.position = Vector3.MoveTowards(lineEndPosition, boss.transform.position, Vector3.Distance(lineEndPosition, boss.transform.position)/4);
 
             Vector3 relativePos = lineEndPosition - boss.transform.position;
             // the second argument, upwards, defaults to Vector3.up

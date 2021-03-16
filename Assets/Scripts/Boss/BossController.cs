@@ -13,6 +13,7 @@ public class BossController : MonoBehaviour
     [Header("Laser Attack:")]
     public LineRenderer lineRenderer;
     public ParticleSystem laserImpact;
+    public GameObject laserLight;
     [Range(10, 50)] public float circleSpeed;
     [Range(1, 100)] public int laserDamage;
     [Tooltip("Player center aim adjustment")]
