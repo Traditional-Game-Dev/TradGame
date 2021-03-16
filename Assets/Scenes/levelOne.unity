@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 65.1841, g: 77.6769, b: 96.534615, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -431,8 +431,8 @@ MonoBehaviour:
     type: 3}
   bulletDamage: 10
   bulletCount: 500
-  bulletStartDegree: 135
-  bulletEndDegree: 225
+  bulletStartDegree: 170
+  bulletEndDegree: 190
   bulletSpeed: 65.28
   poisonDamage: 0
   poisonRadius: 0

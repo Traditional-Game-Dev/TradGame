@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossBulletState : BossBaseState
 {
-
     private float bossAttackTime;
     private float bulletStartDegree;
     private float bulletEndDegree;
@@ -12,7 +11,6 @@ public class BossBulletState : BossBaseState
     private ObjectPool bulletPool;
     private int bulletCount;
     private float bulletSpeed;
-
     private float timerDuringAttacks = 0.0f;
 
     public override void EnterState(BossController boss)
@@ -36,6 +34,7 @@ public class BossBulletState : BossBaseState
             timerDuringAttacks -= bossAttackTime;
             boss.TransitionToState(boss.IdleState);
         }
+
 
         for(int i = 0; i < bulletCount/((1.0f/Time.smoothDeltaTime)*bossAttackTime); i++)
         {

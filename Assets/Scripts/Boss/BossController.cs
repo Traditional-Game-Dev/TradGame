@@ -25,7 +25,7 @@ public class BossController : MonoBehaviour
     [Header("Bullet Hell Attack:")]
     public GameObject bulletObject;
     [Range(1, 100)] public int bulletDamage;
-    public int bulletCount;
+    [Range(1, 500)] public int bulletCount;
     [Range(0.0f, 360.0f)] public float bulletStartDegree;
     [Range(0.0f, 360.0f)] public float bulletEndDegree;
     [Range(50.0f, 75.0f)] public float bulletSpeed;
@@ -56,7 +56,7 @@ public class BossController : MonoBehaviour
         laserImpact.Stop();
         lineRenderer.enabled = false;
         //TODO: Find Ratio of BulletCount to PoolSize (Optimization Task)
-        bulletPool.CreatePool(bulletObject, bulletCount/4);
+        bulletPool.CreatePool(bulletObject, bulletCount/2);
 
         TransitionToState(IdleState);
     }

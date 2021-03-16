@@ -31,7 +31,7 @@ public class ObjectPool
     /// </summary>
     public void DestroyPool()
     {
-        for(int i = 0; i < pooledObjects.Count-1; i++)
+        for(int i = 0; i < pooledObjects.Count; i++)
         {
             GameObject.Destroy(pooledObjects[i]);
         }
@@ -48,7 +48,7 @@ public class ObjectPool
     /// </returns>
     public GameObject GetPooledObject()
     {
-        for(int i = 0; i < pooledObjects.Count-1; i++)
+        for(int i = 0; i < pooledObjects.Count; i++)
         {
             if(!pooledObjects[i].activeInHierarchy)
             {
@@ -80,7 +80,7 @@ public class ObjectPool
     /// </remarks>
     public void DeactivateAllPooled()
     {
-        for(int i = 0; i < pooledObjects.Count-1; i++)
+        for(int i = 0; i < pooledObjects.Count; i++)
         {
             pooledObjects[i].SetActive(false);
         }
