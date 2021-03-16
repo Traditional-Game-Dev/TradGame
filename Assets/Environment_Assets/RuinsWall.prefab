@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6228234619655292296}
   - component: {fileID: 8181867527505768770}
   - component: {fileID: 7370774707520028674}
+  - component: {fileID: 254358711527460971}
   m_Layer: 0
   m_Name: RuinsWall
   m_TagString: Untagged
@@ -92,4 +93,17 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.47, y: 11.259386, z: 0.49999997}
+  m_Center: {x: 0.0009968205, y: -4.7580976, z: 0.00000001490116}
+--- !u!65 &254358711527460971
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677275458704461975}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 11.259386, z: 1.5}
   m_Center: {x: 0.0009968205, y: -4.7580976, z: 0.00000001490116}

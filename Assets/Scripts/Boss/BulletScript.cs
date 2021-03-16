@@ -24,13 +24,14 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)    
     {
-        if(other.gameObject.name == "Player")
-        {
-            other.gameObject.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
-        }
         if(other.gameObject.name != "Boss" && !other.gameObject.name.Contains("Bullet"))
         {
+            movementSpeed = 0;
             gameObject.GetComponentInChildren<Light>().enabled = false;
+            if(other.gameObject.name == "Player")
+            {
+                other.gameObject.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
+            }
             gameObject.SetActive(false);
         }
     }
