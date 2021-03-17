@@ -195,7 +195,7 @@ MonoBehaviour:
     m_Value: 1
   colorMode:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0
   color:
     m_OverrideState: 0
     m_Value: {r: 7.3772106, g: 7.3772106, b: 7.3772106, a: 1}
@@ -227,26 +227,26 @@ MonoBehaviour:
     min: 0
   baseHeight:
     m_OverrideState: 1
-    m_Value: 5.17
+    m_Value: 9
   maximumHeight:
     m_OverrideState: 1
     m_Value: 33.7
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 0.5960751, g: 0.8962264, b: 0.8962264, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 30
+    m_Value: 80
     min: 1
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
   anisotropy:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: -1
     min: -1
     max: 1
   globalLightProbeDimmer:
@@ -300,8 +300,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 4
   skyAmbientMode:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   fogType:
     m_OverrideState: 1
     m_Value: 3
