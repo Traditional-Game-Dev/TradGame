@@ -14,6 +14,9 @@ public class ObjectPool
     /// <summary>
     /// Create an ObjectPool of type <paramref name="objectToPool"/> and size <paramref name="ammountToPool"/>
     /// </summary>
+    /// <remarks>
+    /// Only call in Start() anywhere else will cause immense lag
+    /// </remarks>
     public void CreatePool(GameObject objectToPool, int ammountToPool)
     {
         pooledObjects = new List<GameObject>();
