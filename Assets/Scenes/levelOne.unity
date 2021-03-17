@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 65.24959, g: 77.62832, b: 96.51844, a: 1}
+  m_IndirectSpecularColor: {r: 64.83336, g: 77.92971, b: 96.6836, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -531,8 +531,9 @@ MonoBehaviour:
   bulletSpeed: 75
   poisonObject: {fileID: 1791321562027408554, guid: 1f23e243680748d4b8e6b63ee59dd286,
     type: 3}
-  poisonDamage: 0
-  poisonRadius: 0
+  poisonDamage: 5
+  poisonRadius: 100
+  emissionDuration: 5
 --- !u!136 &142765627
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -32,11 +32,11 @@ public class BossController : MonoBehaviour
     [Range(50.0f, 75.0f)] public float bulletSpeed;
     [System.NonSerialized] public ObjectPool bulletPool = new ObjectPool();
 
-
     [Header("Poison Cloud Attack:")]
     public GameObject poisonObject;
     [Range(1, 100)] public int poisonDamage;
-    public int poisonRadius;
+    [Range(50, 500)] public int poisonRadius;
+    [Range(1, 10)] public float emissionDuration;
 
     [System.NonSerialized] public bool planningPhase = true;
 

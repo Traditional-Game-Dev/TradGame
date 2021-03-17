@@ -3,22 +3,26 @@ using UnityEngine;
 
 public class PoisonProjectile : MonoBehaviour
 {
-    private float firingAngle = 45.0f;
-    private float gravity = 29.4f;
-
-    private float emissionDuration = 5.0f;
-    private float damageInterval = 0.2f;
-    private float damageRange = 100.0f;
-    private int damageAmount = 1;
-
     public Transform projectileTransform;
     private GameObject target;
     private Transform targetTransform;
 
-    public void Begin(GameObject target)
+    private float firingAngle = 45.0f;
+    private float gravity = 29.4f;
+    private float damageInterval = 0.2f;
+
+    private float emissionDuration;
+    private float damageRadius;
+    private int damageAmount;
+
+    public void Begin(GameObject target, float emissionDuration, float damageRadius, int damageAmount)
     {
         this.target = target;
-        this.targetTransform = target.transform;
+        targetTransform = target.transform;
+
+        this.emissionDuration = emissionDuration;
+        this.damageRadius = damageRadius;
+        this.damageAmount = damageAmount;
 
         StartCoroutine(SimulateProjectile());
     }
@@ -43,6 +47,7 @@ public class PoisonProjectile : MonoBehaviour
 
         float elapsedTime = 0;
 
+        // time to fly
         while (elapsedTime < flightDuration)
         {
             projectileTransform.Translate(0, (vY - (gravity * elapsedTime)) * Time.smoothDeltaTime, vX * Time.smoothDeltaTime);
@@ -50,6 +55,7 @@ public class PoisonProjectile : MonoBehaviour
             yield return null;
         }
 
+        // finished flight, time to play some particles and possibly damage the target (player)
         projectileTransform.gameObject.GetComponentInChildren<ParticleSystem>().Play();
 
         elapsedTime = 0;
@@ -59,7 +65,7 @@ public class PoisonProjectile : MonoBehaviour
         {
             elapsedTime += Time.smoothDeltaTime;
 
-            if ((projectileTransform.position - targetTransform.position).sqrMagnitude < damageRange)
+            if ((projectileTransform.position - targetTransform.position).sqrMagnitude < damageRadius)
             {
                 if (currDamageInterval <= elapsedTime)
                 {
@@ -72,6 +78,7 @@ public class PoisonProjectile : MonoBehaviour
             yield return null;
         }
 
+        // wrap it up
         projectileTransform.gameObject.GetComponentInChildren<ParticleSystem>().Stop();
         GameObject.Destroy(projectileTransform.gameObject);
     }

@@ -6,10 +6,15 @@ public class BossPoisonState : BossBaseState
 {
     private GameObject player;
     private GameObject poisonObject;
+    private GameObject poisonBomb;
+
     private float bossAttackTime;
     private float timerDuringAttacks = 0.0f;
 
-    private GameObject poisonBomb;
+    private float emissionDuration;
+    private float poisonRadius;
+    private int poisonDamage;
+
 
     public override void EnterState(BossController boss)
     {
@@ -17,6 +22,10 @@ public class BossPoisonState : BossBaseState
 
         poisonObject = boss.poisonObject;
         bossAttackTime = boss.bossAttackTime;
+        emissionDuration = boss.emissionDuration;
+        poisonRadius = boss.poisonRadius;
+        poisonDamage = boss.poisonDamage;
+
         player = boss.player;
 
         poisonObject.transform.position = boss.transform.position + new Vector3(0.0f, 5.5f, 0.0f);
@@ -38,6 +47,6 @@ public class BossPoisonState : BossBaseState
 
     private void PoisonAttack()
     {
-        poisonBomb.GetComponent<PoisonProjectile>().Begin(player);
+        poisonBomb.GetComponent<PoisonProjectile>().Begin(player, emissionDuration, poisonRadius, poisonDamage);
     }
 }
