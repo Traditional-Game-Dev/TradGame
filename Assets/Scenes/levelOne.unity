@@ -435,6 +435,8 @@ MonoBehaviour:
   bulletStartDegree: 116
   bulletEndDegree: 252
   bulletSpeed: 75
+  poisonObject: {fileID: 1791321562027408554, guid: 1f23e243680748d4b8e6b63ee59dd286,
+    type: 3}
   poisonDamage: 0
   poisonRadius: 0
 --- !u!136 &142765627

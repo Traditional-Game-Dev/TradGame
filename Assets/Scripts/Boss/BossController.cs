@@ -34,6 +34,7 @@ public class BossController : MonoBehaviour
 
 
     [Header("Poison Cloud Attack:")]
+    public GameObject poisonObject;
     [Range(1, 100)] public int poisonDamage;
     public int poisonRadius;
 
@@ -45,6 +46,7 @@ public class BossController : MonoBehaviour
     public readonly BossIdleState IdleState = new BossIdleState();
     public readonly BossLaserAttackState LaserAttackState = new BossLaserAttackState();
     public readonly BossBulletState BulletState = new BossBulletState();
+    public readonly BossPoisonState PoisonState = new BossPoisonState();
 
     public void TransitionToState(BossBaseState state)
     {
