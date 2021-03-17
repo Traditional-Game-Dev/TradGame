@@ -32,11 +32,12 @@ public class BossBulletState : BossBaseState
         if (timerDuringAttacks > bossAttackTime)
         {
             timerDuringAttacks -= bossAttackTime;
-            boss.TransitionToState(boss.IdleState);
+            //boss.TransitionToState(boss.IdleState);
+            boss.TransitionToState(boss.PoisonState);
         }
 
 
-        for(int i = 0; i < bulletCount/((1.0f/Time.smoothDeltaTime)*bossAttackTime); i++)
+        for (int i = 0; i < bulletCount/((1.0f/Time.smoothDeltaTime)*bossAttackTime); i++)
         {
             spawnBullet(boss);
         }

@@ -16,7 +16,7 @@ public class BossIdleState : BossBaseState
         if (attackRate > Random.Range(0.0f, 1.0f))
         {
             boss.TransitionToState(boss.LaserAttackState);
-            boss.TransitionToState(boss.BulletState);
+            //boss.TransitionToState(boss.BulletState);
             //boss.TransitionToState(boss.PoisonState);
         }
     }
