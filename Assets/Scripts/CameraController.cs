@@ -61,6 +61,11 @@ public class CameraController : MonoBehaviour
             {
                 ruinsWall.gameObject.SetActive(false);
             }
+            var teleporter = GameObject.Find("TeleporterBlueprint");
+            if (teleporter != null)
+            {
+                teleporter.gameObject.SetActive(false);
+            }
             GameObject.Find("Boss").GetComponent<BossController>().planningPhase = false;
         }
     }
