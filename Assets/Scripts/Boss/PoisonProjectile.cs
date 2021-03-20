@@ -43,7 +43,7 @@ public class PoisonProjectile : MonoBehaviour
         float vX = Mathf.Sqrt(velocity) * Mathf.Cos(firingAngle * Mathf.Deg2Rad);
         float vY = Mathf.Sqrt(velocity) * Mathf.Sin(firingAngle * Mathf.Deg2Rad);
 
-        float flightDuration = targetDistance / vX;
+        float flightDuration = targetDistance / vX + 0.025f;
 
         // rotate projectile to face the target
         projectileTransform.rotation = Quaternion.LookRotation(targetTransform.position - projectileTransform.position);
