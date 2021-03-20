@@ -34,12 +34,14 @@ public class BossController : MonoBehaviour
     [Range(0.0f, 360.0f)] public float bulletEndDegree;
     [Range(50.0f, 75.0f)] public float bulletSpeed;
     [System.NonSerialized] public ObjectPool bulletPool = new ObjectPool();
+    public float timeForLoad;
 
     [Header("Poison Cloud Attack:")]
     public GameObject poisonObject;
     [Range(1, 100)] public int poisonDamage;
     [Range(50, 500)] public int poisonRadius;
     [Range(1, 10)] public float emissionDuration;
+    public float timeForAim;
 
     [System.NonSerialized] public bool planningPhase = true;
 
@@ -51,6 +53,8 @@ public class BossController : MonoBehaviour
     public readonly BossBulletState BulletState = new BossBulletState();
     public readonly BossPoisonState PoisonState = new BossPoisonState();
     public readonly BossLaserPreState LaserPreState = new BossLaserPreState();
+    public readonly BossPoisonPreState PoisonPreState = new BossPoisonPreState();
+    public readonly BossBulletHellPreAttack BulletPreState = new BossBulletHellPreAttack();
 
     public void TransitionToState(BossBaseState state)
     {
