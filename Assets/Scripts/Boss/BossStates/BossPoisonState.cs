@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class BossPoisonState : BossBaseState
 {
@@ -30,7 +31,7 @@ public class BossPoisonState : BossBaseState
 
         poisonObject.transform.position = boss.transform.position + new Vector3(0.0f, 5.5f, 0.0f);
         poisonBomb = GameObject.Instantiate(poisonObject);
-        poisonBomb.GetComponentInChildren<ParticleSystem>().Stop(); // bad
+        poisonBomb.GetComponentInChildren<VisualEffect>().Stop(); // bad
 
         PoisonAttack();
     }

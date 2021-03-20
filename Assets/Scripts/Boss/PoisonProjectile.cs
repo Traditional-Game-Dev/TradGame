@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PoisonProjectile : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PoisonProjectile : MonoBehaviour
     private float damageInterval = 0.2f;
 
     private float emissionDuration;
+    private float stoppingPoint;
     private float damageRadius;
     private int damageAmount;
 
@@ -21,6 +23,7 @@ public class PoisonProjectile : MonoBehaviour
         targetTransform = target.transform;
 
         this.emissionDuration = emissionDuration;
+        stoppingPoint = emissionDuration * 0.5f;
         this.damageRadius = damageRadius;
         this.damageAmount = damageAmount;
 
@@ -56,10 +59,11 @@ public class PoisonProjectile : MonoBehaviour
         }
 
         // finished flight, time to play some particles and possibly damage the target (player)
-        projectileTransform.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+        projectileTransform.gameObject.GetComponentInChildren<VisualEffect>().Play();
 
         elapsedTime = 0;
         float currDamageInterval = 0;
+        bool hasStopped = false;
 
         while (elapsedTime < emissionDuration)
         {
@@ -75,11 +79,26 @@ public class PoisonProjectile : MonoBehaviour
                 }
             }
 
+            if (elapsedTime > stoppingPoint)
+            {
+                projectileTransform.gameObject.transform.localScale *= 0.97f;
+                damageRadius *= 0.985f; // look into
+                if (!hasStopped)
+                {
+                    hasStopped = true;
+                    projectileTransform.gameObject.GetComponentInChildren<VisualEffect>().playRate = 2.0f;
+                    projectileTransform.gameObject.GetComponentInChildren<VisualEffect>().Stop();
+                }
+            }
+
             yield return null;
         }
 
         // wrap it up
-        projectileTransform.gameObject.GetComponentInChildren<ParticleSystem>().Stop();
+        //projectileTransform.gameObject.GetComponentInChildren<VisualEffect>().Stop();
+
+        //yield return new WaitForSeconds(5.0f);
+
         GameObject.Destroy(projectileTransform.gameObject);
     }
 
