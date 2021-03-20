@@ -15,7 +15,9 @@ public class BossLaserPreState : BossBaseState
         player = boss.player;
         laserWarmUp = boss.laserWarmUp;
         laserWarmUp.Play();
+        laserWarmUp.GetComponentInParent<AudioSource>().Play();
         timeForWarmup = boss.timeForWarmup;
+        timeForWarmup = laserWarmUp.GetComponentInParent<AudioSource>().clip.length - 0.5f;
     }
 
     public override void Update(BossController boss)
