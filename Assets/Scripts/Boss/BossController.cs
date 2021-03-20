@@ -14,6 +14,7 @@ public class BossController : MonoBehaviour
     public LineRenderer lineRenderer;
     public ParticleSystem laserImpact;
     public GameObject laserLight;
+    public ParticleSystem laserWarmUp;
     [Range(10, 50)] public float circleSpeed;
     [Range(1, 100)] public int laserDamage;
     [Tooltip("Player center aim adjustment")]
@@ -22,6 +23,8 @@ public class BossController : MonoBehaviour
     public float hitboxOffset;
     [Tooltip("Number of points laser hits on the circle, do not change")]
     public float circleDivide;
+    [Tooltip("The length of time the warmup animation will play for before firing laser")]
+    public float timeForWarmup;
 
     [Header("Bullet Hell Attack:")]
     public GameObject bulletObject;
@@ -47,6 +50,7 @@ public class BossController : MonoBehaviour
     public readonly BossLaserAttackState LaserAttackState = new BossLaserAttackState();
     public readonly BossBulletState BulletState = new BossBulletState();
     public readonly BossPoisonState PoisonState = new BossPoisonState();
+    public readonly BossLaserPreState LaserPreState = new BossLaserPreState();
 
     public void TransitionToState(BossBaseState state)
     {
@@ -57,6 +61,7 @@ public class BossController : MonoBehaviour
     void Start()
     {
         laserImpact.Stop();
+        laserWarmUp.Stop();
         lineRenderer.enabled = false;
         //TODO: Find Ratio of BulletCount to PoolSize (Optimization Task)
         bulletPool.CreatePool(bulletObject, bulletCount/2);
