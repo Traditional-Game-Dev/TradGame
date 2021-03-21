@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
     public GameObject planningUI;
     public GameObject player;
     public GameObject timeManager;
+    public AudioClip tempMusicEnd;
 
     void Awake()
     {
@@ -20,6 +21,8 @@ public class CameraController : MonoBehaviour
             swapMode();
         };
         cameraSwap.Enable();
+        gameObject.GetComponent<AudioSource>().Pause();
+
     }
 
     public void swapMode()
@@ -35,6 +38,8 @@ public class CameraController : MonoBehaviour
             player.SetActive(false);
             planningUI.GetComponent<spawnObject>().cashMoney = 10;
             GameObject.Find("Boss").GetComponent<BossController>().planningPhase = true;
+            gameObject.GetComponent<AudioSource>().Stop();
+            gameObject.GetComponent<AudioSource>().PlayOneShot(tempMusicEnd);
         }
         else
         {
@@ -67,6 +72,7 @@ public class CameraController : MonoBehaviour
                 teleporter.gameObject.SetActive(false);
             }
             GameObject.Find("Boss").GetComponent<BossController>().planningPhase = false;
+            gameObject.GetComponent<AudioSource>().Play();
         }
     }
 }
