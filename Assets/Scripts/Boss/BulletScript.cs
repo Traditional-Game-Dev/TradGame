@@ -24,7 +24,7 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)    
     {
-        if(other.gameObject.name != "Boss" && !other.gameObject.name.Contains("Bullet"))
+        if(other.gameObject.name != "Boss" && !other.gameObject.name.Contains("Bullet") && !other.gameObject.name.Contains("reflector"))
         {
             movementSpeed = 0;
             gameObject.GetComponentInChildren<Light>().enabled = false;

@@ -91,8 +91,9 @@ GameObject:
   - component: {fileID: 7569575665297154285}
   - component: {fileID: 3400576147269504238}
   - component: {fileID: 798822163661112789}
+  - component: {fileID: -6311120265151592983}
   m_Layer: 0
-  m_Name: reflect_Raw
+  m_Name: reflector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,6 +142,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.07, z: 0.05}
   m_Center: {x: 0, y: 0.03, z: 0}
+--- !u!114 &-6311120265151592983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081726086069500503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b519c352d74fc4bafb6584e5b29f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7964107466197269596
 GameObject:
   m_ObjectHideFlags: 0
