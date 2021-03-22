@@ -94,11 +94,6 @@ public class PoisonProjectile : MonoBehaviour
             yield return null;
         }
 
-        // wrap it up
-        //projectileTransform.gameObject.GetComponentInChildren<VisualEffect>().Stop();
-
-        //yield return new WaitForSeconds(5.0f);
-
         GameObject.Destroy(projectileTransform.gameObject);
     }
 
