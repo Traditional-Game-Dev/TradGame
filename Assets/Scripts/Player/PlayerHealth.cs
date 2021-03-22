@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public Text livesUI;
     [System.NonSerialized] public int currentHP;
     [System.NonSerialized] public int currentLives;
+    public GameManager manager;
 
     private PlayerController playerController;
     private float MaxDashTime;
