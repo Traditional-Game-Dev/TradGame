@@ -41,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
                 currentLives--;
                 currentHP = totalHp;
                 Camera.main.GetComponent<CameraController>().swapMode();
+                manager.ResetTeleporters();
             }
         }
 
@@ -54,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void damagePlayer(int totalDamage)
     {
-        if (playerController.GetCurrentDashTime() >= MaxDashTime)
+        if (playerController.GetCurrentDashTime() >= MaxDashTime && !manager.PlayerInvin())
         {
             currentHP -= totalDamage;
         }

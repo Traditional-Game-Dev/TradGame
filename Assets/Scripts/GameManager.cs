@@ -5,7 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private bool justTeleported = false;
+    private bool playerIsIvin = false;
 
+    #region Player;
+
+    public bool PlayerInvin()
+    {
+        return playerIsIvin;
+    }
+
+    public void SetPlayerInvin(bool status)
+    {
+        playerIsIvin = status;
+    }
+
+    #endregion
 
     #region Teleporter;
     public bool GetTeleportStatus()
