@@ -11,7 +11,9 @@ public class Teleporter : MonoBehaviour
     private float baseEmissionRate;
     private float baseEmissionSpeed;
 
+    public Material teleportingPlayerMat;
     public GameManager manager;
+    public int waitIntervals;
 
     void Start()
     {
@@ -35,16 +37,17 @@ public class Teleporter : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            StartCoroutine(EndTeleport(other.gameObject));
-        }
-    }
+    //void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.tag.Equals("Player"))
+    //    {
+    //        StartCoroutine(EndTeleport(other.gameObject));
+    //    }
+    //}
 
     IEnumerator TryTeleport(GameObject player)
     {
+        Material originalPlayerMat = player.GetComponentInChildren<SkinnedMeshRenderer>().material;
         Vector3 startPlayerPosition = player.transform.position;
 
         var emission = particles.emission;
@@ -52,8 +55,9 @@ public class Teleporter : MonoBehaviour
         var main = particles.main;
         float currSpeed = main.simulationSpeed;
 
+        int halftime = waitIntervals / 2;
         // wait for some time..
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < waitIntervals; i++)
         {
             yield return new WaitForSeconds(0.25f);
 
@@ -62,10 +66,17 @@ public class Teleporter : MonoBehaviour
 
             emission.rateOverTime = currEmissionRate;
             main.simulationSpeed = currSpeed;
+
+            if (i == halftime)
+            {
+                manager.SetPlayerInvin(true);
+
+                player.GetComponentInChildren<SkinnedMeshRenderer>().material = teleportingPlayerMat;
+            }
         }
 
         // .. and then check if player position is still similar
-        if (player.activeSelf && (startPlayerPosition.magnitude - player.transform.position.magnitude) < 1.0f)
+        if (player.activeSelf && (startPlayerPosition.magnitude - player.transform.position.magnitude) < 2.0f)
         {
             manager.SetTeleportStatus(true);
 
@@ -75,17 +86,23 @@ public class Teleporter : MonoBehaviour
                                                     otherTeleporterTransform.position.z);
         }
 
+        yield return new WaitForSeconds(0.25f);
+        player.GetComponentInChildren<SkinnedMeshRenderer>().material = originalPlayerMat;
+        manager.SetPlayerInvin(false);
+
+        StartCoroutine(EndTeleport());
+
         yield return null;
     }
 
-    IEnumerator EndTeleport(GameObject player)
+    IEnumerator EndTeleport()
     {
         var emission = particles.emission;
         float currEmissionRate = emission.rateOverTime.constantMax;
         var main = particles.main;
         float currSpeed = main.simulationSpeed;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < waitIntervals; i++)
         {
             yield return new WaitForSeconds(0.25f);
 
@@ -100,7 +117,7 @@ public class Teleporter : MonoBehaviour
 
     public void ResetState()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
 
         var emission = particles.emission;
         emission.rateOverTime = baseEmissionRate;
