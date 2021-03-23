@@ -7,6 +7,30 @@ public class BulletScript : MonoBehaviour
     [System.NonSerialized] public int damageDealt = 0;
     [System.NonSerialized] public float movementSpeed = 50;
     [System.NonSerialized] public Vector3 startPos;
+    MeshRenderer objectRenderer;
+
+    void Awake()
+    {
+        //Init All Colors to Red
+        objectRenderer = gameObject.GetComponent<MeshRenderer>();
+        objectRenderer.material.SetColor("_Color", Color.red);
+        objectRenderer.material.SetColor("_EmissiveColor", Color.red);
+        objectRenderer.material.SetFloat("_EmissionIntensity", 100);
+        gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_Color", Color.red);
+        gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_EmissiveColor", Color.red);
+        gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetFloat("_EmissionIntensity", 25);
+
+    }
+
+    void OnDisable()
+    {
+        //Reset Color (In Case of Reflect)
+        objectRenderer.material.SetColor("_Color", Color.red);
+        objectRenderer.material.SetColor("_EmissiveColor", Color.red);
+        gameObject.GetComponentInChildren<Light>().color = Color.red;
+        gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_Color", Color.red);
+        gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_EmissiveColor", Color.red);
+    }
 
     void Update()
     {
