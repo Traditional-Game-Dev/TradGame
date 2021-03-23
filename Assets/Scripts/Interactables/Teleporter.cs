@@ -71,12 +71,14 @@ public class Teleporter : MonoBehaviour
             {
                 manager.SetPlayerInvin(true);
 
+                manager.EnableSlowMotion(5.0f); // remove constant
+
                 player.GetComponentInChildren<SkinnedMeshRenderer>().material = teleportingPlayerMat;
             }
         }
 
         // .. and then check if player position is still similar
-        if (player.activeSelf && (startPlayerPosition.magnitude - player.transform.position.magnitude) < 2.0f)
+        if (player.activeInHierarchy && (startPlayerPosition.magnitude - player.transform.position.magnitude) < 2.0f)
         {
             manager.SetTeleportStatus(true);
 
@@ -86,11 +88,19 @@ public class Teleporter : MonoBehaviour
                                                     otherTeleporterTransform.position.z);
         }
 
+        // time to clean up
         yield return new WaitForSeconds(0.25f);
+        StartCoroutine(EndTeleport());
+
+        // don't try to reassign material if player gameobject is not active
+        while (!player.activeInHierarchy)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
         player.GetComponentInChildren<SkinnedMeshRenderer>().material = originalPlayerMat;
         manager.SetPlayerInvin(false);
 
-        StartCoroutine(EndTeleport());
 
         yield return null;
     }

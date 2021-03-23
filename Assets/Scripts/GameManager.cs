@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public TimeManager timeManager;
+
     private bool justTeleported = false;
     private bool playerIsIvin = false;
+
+    #region SlowMotion
+
+    public void EnableSlowMotion(float length)
+    {
+        timeManager.DoSlowMotion(length);
+    }
+
+    #endregion
 
     #region Player;
 
