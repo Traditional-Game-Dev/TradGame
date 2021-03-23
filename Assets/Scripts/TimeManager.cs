@@ -9,6 +9,8 @@ public class TimeManager : MonoBehaviour
     private float defaultFixedDelta;
     private float slowdownLength = 1.0f;
 
+    private CameraController camScript;
+
     void Start()
     {
         defaultFixedDelta = Time.fixedDeltaTime;

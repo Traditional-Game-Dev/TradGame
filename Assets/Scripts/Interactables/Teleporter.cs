@@ -71,7 +71,7 @@ public class Teleporter : MonoBehaviour
             {
                 manager.SetPlayerInvin(true);
 
-                manager.EnableSlowMotion(5.0f); // remove constant
+                //manager.EnableSlowMotion(5.0f); // remove constant
 
                 player.GetComponentInChildren<SkinnedMeshRenderer>().material = teleportingPlayerMat;
             }
