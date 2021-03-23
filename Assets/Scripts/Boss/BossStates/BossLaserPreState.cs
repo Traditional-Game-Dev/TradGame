@@ -7,7 +7,7 @@ public class BossLaserPreState : BossBaseState
     private GameObject player;
     private ParticleSystem laserWarmUp;
     private float timerDuringAttacks;
-    public float timeForWarmup;
+    private float timeForWarmup;
 
     public override void EnterState(BossController boss)
     {
