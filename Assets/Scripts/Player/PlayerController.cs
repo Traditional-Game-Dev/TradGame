@@ -65,7 +65,10 @@ public class PlayerController : MonoBehaviour
         movement = gameplayActionMap.FindAction("Movement");
         movement.performed += ctx =>
         {
-            dir = ctx.ReadValue<Vector2>();
+            if (!manager.playerDisabled)
+            {
+                dir = ctx.ReadValue<Vector2>();
+            }
         };
         movement.canceled += ctx =>
         {

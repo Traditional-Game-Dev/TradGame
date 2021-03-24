@@ -10,6 +10,10 @@ public class CameraController : MonoBehaviour
     public GameManager manager;
     public AudioClip tempMusicEnd;
 
+    // List<AudioSource> made bgMusic unhappy, but should still figure out a better solution
+    private AudioSource bgMusic;
+    private AudioSource laserWarmup;
+
     void Awake()
     {
         var cameraSwap = new InputAction(binding: "<Keyboard>/q");
@@ -18,7 +22,16 @@ public class CameraController : MonoBehaviour
             swapMode();
         };
         cameraSwap.Enable();
-        gameObject.GetComponent<AudioSource>().Pause();
+
+        bgMusic = gameObject.GetComponent<AudioSource>();
+        bgMusic.Pause();
+        laserWarmup = GameObject.Find("Laser Warm Up").GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        bgMusic.pitch = Time.timeScale;
+        laserWarmup.pitch = Time.timeScale;
     }
 
     public void swapMode()

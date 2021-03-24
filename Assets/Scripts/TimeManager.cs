@@ -5,12 +5,10 @@ using UnityEngine.Audio;
 
 public class TimeManager : MonoBehaviour
 {
-    public float slowMo = 0.05f;
-    
-    private float defaultFixedDelta;
-    private float slowdownLength = 1.0f;
+    public float slowMo;
 
-    public AudioMixer mixer;
+    private float slowdownLength = 1.0f;
+    private float defaultFixedDelta;
 
     void Start()
     {
@@ -19,11 +17,11 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
-        Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        Time.timeScale += (1.0f / slowdownLength) * Time.unscaledDeltaTime;
+        Time.timeScale = Mathf.Clamp(Time.timeScale, 0.0f, 1.0f);
 
         Time.fixedDeltaTime += (defaultFixedDelta / slowdownLength) * Time.unscaledDeltaTime;
-        Time.fixedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0f, defaultFixedDelta);
+        Time.fixedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0.0f, defaultFixedDelta);
     }
 
     public void DoSlowMotion(float length)
@@ -32,12 +30,5 @@ public class TimeManager : MonoBehaviour
 
         Time.timeScale = slowMo;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-
-        // --- wip
-        //AudioMixerGroup pitchBlendGroup = (AudioMixerGroup)Resources.Load("PrimaryMixer");
-        //mixer.outputAudioMixerGroup = pitchBlendGroup;
-
-        //mixer.pitch = 0.5f;
-        //pitchBlendGroup.audioMixer.SetFloat("PitchBlend", 1.0f / 0.5f);
     }
 }

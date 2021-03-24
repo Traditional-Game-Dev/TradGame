@@ -76,13 +76,15 @@ public class GameManager : MonoBehaviour
 
     public bool playerIvin { get; set; } = false;
 
+    public bool playerDisabled { get; set; } = false;
+
     #endregion
 
     #region Teleporters;
 
     private bool justTeleported = false;
-    private Color justTeleportedColor = new Color(0.0f, 63.0f, 127.0f, 1.0f);
-    private Color baseColor = new Color(255.0f, 255.0f, 255.0f, 1.0f);
+    private Color teleCooldownColor = new Color(0.0f, 63.0f, 127.0f, 1.0f);
+    private Color teleBaseColor = new Color(255.0f, 255.0f, 255.0f, 1.0f);
 
     public bool JustTeleported()
     {
@@ -110,14 +112,14 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Teleporter"))
         {
-            go.GetComponent<Teleporter>().UpdateParticleColor(justTeleportedColor);
+            go.GetComponent<Teleporter>().UpdateParticleColor(teleCooldownColor);
         }
 
         yield return new WaitForSeconds(7.0f);
 
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Teleporter"))
         {
-            go.GetComponent<Teleporter>().UpdateParticleColor(baseColor);
+            go.GetComponent<Teleporter>().UpdateParticleColor(teleBaseColor);
         }
 
         justTeleported = false;

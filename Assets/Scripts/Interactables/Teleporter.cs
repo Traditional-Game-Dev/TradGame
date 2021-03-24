@@ -75,8 +75,7 @@ public class Teleporter : MonoBehaviour
             if (i == halftime)
             {
                 manager.playerIvin = true;
-
-                //manager.EnableSlowMotion(5.0f); // remove constant
+                manager.playerDisabled = true;
 
                 playerMesh.material = teleportingPlayerMat;
             }
@@ -94,6 +93,8 @@ public class Teleporter : MonoBehaviour
             Vector3 endPosition = new Vector3(otherTeleporterTransform.position.x, 
                                               player.transform.position.y, 
                                               otherTeleporterTransform.position.z);
+
+            manager.EnableSlowMotion(transferDuration + 5.0f);
 
             // linear interp the line between the player and other teleporter,
             // uses 'ease in/out lerp' formula for smooth camera transition
@@ -126,6 +127,7 @@ public class Teleporter : MonoBehaviour
         }
 
         playerMesh.material = originalPlayerMat;
+        manager.playerDisabled = false;
         manager.playerIvin = false;
     }
 
@@ -161,7 +163,6 @@ public class Teleporter : MonoBehaviour
 
     public void UpdateParticleColor(Color color)
     {
-        Debug.Log($"changing color to {color}");
         var main = particles.main;
         main.startColor = new MinMaxGradient(color);
     }
