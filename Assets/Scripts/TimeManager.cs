@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class TimeManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class TimeManager : MonoBehaviour
     
     private float defaultFixedDelta;
     private float slowdownLength = 1.0f;
+
+    public AudioMixer mixer;
 
     void Start()
     {
@@ -29,5 +32,12 @@ public class TimeManager : MonoBehaviour
 
         Time.timeScale = slowMo;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+        // --- wip
+        //AudioMixerGroup pitchBlendGroup = (AudioMixerGroup)Resources.Load("PrimaryMixer");
+        //mixer.outputAudioMixerGroup = pitchBlendGroup;
+
+        //mixer.pitch = 0.5f;
+        //pitchBlendGroup.audioMixer.SetFloat("PitchBlend", 1.0f / 0.5f);
     }
 }

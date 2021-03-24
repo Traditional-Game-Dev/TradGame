@@ -31,7 +31,7 @@ public class Teleporter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player") && (manager.GetTeleportStatus() == false))
+        if (other.gameObject.tag.Equals("Player") && (!manager.JustTeleported()))
         {
             StartCoroutine(TryTeleport(other.gameObject));
         }
@@ -69,7 +69,7 @@ public class Teleporter : MonoBehaviour
 
             if (i == halftime)
             {
-                manager.SetPlayerInvin(true);
+                manager.playerIvin = true;
 
                 //manager.EnableSlowMotion(5.0f); // remove constant
 
@@ -80,7 +80,7 @@ public class Teleporter : MonoBehaviour
         // .. and then check if player position is still similar
         if (player.activeInHierarchy && (startPlayerPosition.magnitude - player.transform.position.magnitude) < 2.0f)
         {
-            manager.SetTeleportStatus(true);
+            manager.Teleported();
 
             // teleport
             player.transform.position = new Vector3(otherTeleporterTransform.position.x, 
@@ -99,8 +99,7 @@ public class Teleporter : MonoBehaviour
         }
 
         player.GetComponentInChildren<SkinnedMeshRenderer>().material = originalPlayerMat;
-        manager.SetPlayerInvin(false);
-
+        manager.playerIvin = false;
 
         yield return null;
     }
@@ -112,11 +111,11 @@ public class Teleporter : MonoBehaviour
         var main = particles.main;
         float currSpeed = main.simulationSpeed;
 
-        for (int i = 0; i < waitIntervals; i++)
+        // only reduce emission if we're above the base state
+        while (currEmissionRate > baseEmissionRate || currSpeed > baseEmissionSpeed)
         {
             yield return new WaitForSeconds(0.25f);
 
-            // only reduce emission if we're above the base state
             currEmissionRate -= currEmissionRate > baseEmissionRate ? 25.0f : 0.0f;
             currSpeed -= currSpeed > baseEmissionSpeed ? 0.2f : 0.0f;
 

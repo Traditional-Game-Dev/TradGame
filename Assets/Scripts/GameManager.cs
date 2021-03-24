@@ -4,12 +4,66 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public TimeManager timeManager;
+    #region GeneralImports
 
-    private bool justTeleported = false;
-    private bool playerIsIvin = false;
+    public GameObject player;
+
+    #endregion
+
+    #region UI
+
+    public GameObject gameplayUI;
+    public GameObject planningUI;
+
+    public void SwapToGameplay()
+    {
+        gameplayUI.SetActive(true);
+        planningUI.SetActive(false);
+
+        player.SetActive(true);
+        player.transform.position = new Vector3(0f, 1f, -50f);
+
+        var rock = GameObject.Find("Rock1Blueprint");
+        if (rock != null)
+        {
+            rock.gameObject.SetActive(false);
+        }
+        var wall = GameObject.Find("WallBlueprint");
+        if (wall != null)
+        {
+            wall.gameObject.SetActive(false);
+        }
+        var ruinsWall = GameObject.Find("RuinsWallBlueprint");
+        if (ruinsWall != null)
+        {
+            ruinsWall.gameObject.SetActive(false);
+        }
+        var teleporter = GameObject.Find("TeleporterBlueprint");
+        if (teleporter != null)
+        {
+            teleporter.gameObject.SetActive(false);
+        }
+
+        GameObject.Find("Boss").GetComponent<BossController>().planningPhase = false;
+    }
+
+    public void SwapToPlanning()
+    {
+        gameplayUI.SetActive(false);
+        planningUI.SetActive(true);
+        planningUI.GetComponent<spawnObject>().cashMoney = 10;
+
+        player.SetActive(false);
+
+        GameObject.Find("Boss").GetComponent<BossController>().planningPhase = true;
+    }
+
+
+    #endregion
 
     #region SlowMotion
+
+    public TimeManager timeManager;
 
     public void EnableSlowMotion(float length)
     {
@@ -20,27 +74,22 @@ public class GameManager : MonoBehaviour
 
     #region Player;
 
-    public bool PlayerInvin()
-    {
-        return playerIsIvin;
-    }
-
-    public void SetPlayerInvin(bool status)
-    {
-        playerIsIvin = status;
-    }
+    public bool playerIvin { get; set; } = false;
 
     #endregion
 
-    #region Teleporter;
-    public bool GetTeleportStatus()
+    #region Teleporters;
+
+    private bool justTeleported = false;
+
+    public bool JustTeleported()
     {
         return justTeleported;
     }
 
-    public void SetTeleportStatus(bool status)
+    public void Teleported()
     {
-        justTeleported = status;
+        justTeleported = true;
 
         StartCoroutine(TeleporterCooldown());
     }

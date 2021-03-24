@@ -10,11 +10,11 @@ public class BossPoisonState : BossBaseState
     private GameObject poisonBomb;
 
     private float bossAttackTime;
-    private float timerDuringAttacks = 0.0f;
-
     private float emissionDuration;
     private float poisonRadius;
     private int poisonDamage;
+
+    private float timerDuringAttacks = 0.0f;
 
 
     public override void EnterState(BossController boss)

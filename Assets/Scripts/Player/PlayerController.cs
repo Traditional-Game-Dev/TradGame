@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     public Camera cam;
     public CharacterController controller;
     public ParticleSystem attackParticles;
-    public TimeManager timeManager;
     public Animator anim;
+    public GameManager manager;
     [Header("Movement Settings:")]
     public float baseSpeed;
     [Header("Dash Settings:")]
@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     private DashSprites dashSprites;
     private float moveSpeed;
     private Vector3 moveDirection;
-    private Vector2 dir = new Vector2(0f, 0f);
     private Vector3 direction;
+    private Vector2 dir = new Vector2(0f, 0f);
     private float turnSmoothVelocity;
 
     private float turnSmoothTime = 0.1f; 
@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
                 currentDashTime = 0;
                 currentDashCooldownTime = 0;
                 dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
+                manager.playerIvin = true;
 
                 dashSprites.UpdateDashImage(dashCounter);
             }
@@ -142,6 +143,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     moveSpeed = baseSpeed;
+                    manager.playerIvin = false;
                 }
 
                 currentDashCooldownTime += dashStoppingSpeed;
@@ -170,15 +172,5 @@ public class PlayerController : MonoBehaviour
     public float GetDirectionMag()
     {
         return direction.magnitude;
-    }
-
-    public float GetCurrentDashTime()
-    {
-        return currentDashTime;
-    }
-
-    public float GetMaxDashTime()
-    {
-        return MAX_DASH_TIME;
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 64.87587, g: 77.8959, b: 96.643135, a: 1}
+  m_IndirectSpecularColor: {r: 64.87315, g: 78.0118, b: 96.75526, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2211,8 +2211,8 @@ MonoBehaviour:
   cam: {fileID: 963194227}
   controller: {fileID: 452722199}
   attackParticles: {fileID: 452722203}
-  timeManager: {fileID: 0}
   anim: {fileID: 452722205}
+  manager: {fileID: 816283669}
   baseSpeed: 12
   dashCooldown: 20
   dashMultiplier: 18
@@ -8497,6 +8497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca42824f694b00e4e9a8be3f30c07a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 452722196}
+  gameplayUI: {fileID: 1327584419}
+  planningUI: {fileID: 377297241}
   timeManager: {fileID: 1262566578}
 --- !u!4 &816283670
 Transform:
@@ -9393,10 +9396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thirdPersonCamera: {fileID: 656378123}
   topDownCamera: {fileID: 1485139458}
-  gameplayUI: {fileID: 1327584419}
-  planningUI: {fileID: 377297241}
-  player: {fileID: 452722196}
-  timeManager: {fileID: 1262566577}
+  manager: {fileID: 816283669}
   tempMusicEnd: {fileID: 8300000, guid: 35c7873932e5d2f4e994d44d6a712662, type: 3}
 --- !u!82 &963194232
 AudioSource:
