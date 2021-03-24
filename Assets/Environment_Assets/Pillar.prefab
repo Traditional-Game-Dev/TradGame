@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6280681094213480065}
   - component: {fileID: 3357421013697518885}
   - component: {fileID: 8692207311782167180}
+  - component: {fileID: 6999320062448679078}
   m_Layer: 0
-  m_Name: Pillar_Raw
+  m_Name: Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,3 +110,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0165, y: 0.0006, z: 0.0165}
   m_Center: {x: 0, y: 0.0052, z: 0}
+--- !u!65 &6999320062448679078
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488069757103279956}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.015768679, y: 0.010944517, z: 0.01576694}
+  m_Center: {x: 0, y: -0.000068252906, z: 0}
