@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 64.87315, g: 78.0118, b: 96.75526, a: 1}
+  m_IndirectSpecularColor: {r: 64.84303, g: 77.90859, b: 96.66053, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7305,7 +7305,6 @@ MonoBehaviour:
   teleportingPlayerMat: {fileID: 2100000, guid: 6f1419bd480cca146b1e1d7b94b1b3df,
     type: 2}
   manager: {fileID: 816283669}
-  waitIntervals: 10
 --- !u!1 &582900301
 GameObject:
   m_ObjectHideFlags: 0
@@ -11629,6 +11628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowMo: 0.1
+  mixer: {fileID: 0}
 --- !u!4 &1262566579
 Transform:
   m_ObjectHideFlags: 0
@@ -13808,7 +13808,6 @@ MonoBehaviour:
   teleportingPlayerMat: {fileID: 2100000, guid: 6f1419bd480cca146b1e1d7b94b1b3df,
     type: 2}
   manager: {fileID: 816283669}
-  waitIntervals: 10
 --- !u!1 &1911240944
 GameObject:
   m_ObjectHideFlags: 0

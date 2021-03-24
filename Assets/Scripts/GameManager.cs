@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
     #region Teleporters;
 
     private bool justTeleported = false;
+    private Color justTeleportedColor = new Color(0.0f, 63.0f, 127.0f, 1.0f);
+    private Color baseColor = new Color(255.0f, 255.0f, 255.0f, 1.0f);
 
     public bool JustTeleported()
     {
@@ -106,7 +108,17 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator TeleporterCooldown()
     {
-        yield return new WaitForSeconds(5.0f);
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Teleporter"))
+        {
+            go.GetComponent<Teleporter>().UpdateParticleColor(justTeleportedColor);
+        }
+
+        yield return new WaitForSeconds(7.0f);
+
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Teleporter"))
+        {
+            go.GetComponent<Teleporter>().UpdateParticleColor(baseColor);
+        }
 
         justTeleported = false;
     }

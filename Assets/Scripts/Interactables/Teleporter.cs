@@ -6,14 +6,17 @@ using static UnityEngine.ParticleSystem;
 
 public class Teleporter : MonoBehaviour
 {
+    public Material teleportingPlayerMat;
+    public GameManager manager;
+
     private ParticleSystem particles;
     private Transform otherTeleporterTransform;
     private float baseEmissionRate;
     private float baseEmissionSpeed;
 
-    public Material teleportingPlayerMat;
-    public GameManager manager;
-    public int waitIntervals;
+    private int numIntervals = 10;
+    private float intervalLength = 0.25f;
+    private float transferDuration = 3.0f;
 
     void Start()
     {
@@ -45,9 +48,11 @@ public class Teleporter : MonoBehaviour
     //    }
     //}
 
-    IEnumerator TryTeleport(GameObject player)
+    private IEnumerator TryTeleport(GameObject player)
     {
-        Material originalPlayerMat = player.GetComponentInChildren<SkinnedMeshRenderer>().material;
+        SkinnedMeshRenderer playerMesh = player.GetComponentInChildren<SkinnedMeshRenderer>();
+        Material originalPlayerMat = playerMesh.material;
+
         Vector3 startPlayerPosition = player.transform.position;
 
         var emission = particles.emission;
@@ -55,11 +60,11 @@ public class Teleporter : MonoBehaviour
         var main = particles.main;
         float currSpeed = main.simulationSpeed;
 
-        int halftime = waitIntervals / 2;
+        int halftime = numIntervals / 2;
         // wait for some time..
-        for (int i = 0; i < waitIntervals; i++)
+        for (int i = 0; i < numIntervals; i++)
         {
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(intervalLength);
 
             currEmissionRate += 25.0f;
             currSpeed += 0.2f;
@@ -73,7 +78,7 @@ public class Teleporter : MonoBehaviour
 
                 //manager.EnableSlowMotion(5.0f); // remove constant
 
-                player.GetComponentInChildren<SkinnedMeshRenderer>().material = teleportingPlayerMat;
+                playerMesh.material = teleportingPlayerMat;
             }
         }
 
@@ -82,14 +87,36 @@ public class Teleporter : MonoBehaviour
         {
             manager.Teleported();
 
-            // teleport
-            player.transform.position = new Vector3(otherTeleporterTransform.position.x, 
-                                                    player.transform.position.y, 
-                                                    otherTeleporterTransform.position.z);
+            playerMesh.enabled = false;
+
+            Vector3 startPosition = player.transform.position;
+
+            Vector3 endPosition = new Vector3(otherTeleporterTransform.position.x, 
+                                              player.transform.position.y, 
+                                              otherTeleporterTransform.position.z);
+
+            // linear interp the line between the player and other teleporter,
+            // uses 'ease in/out lerp' formula for smooth camera transition
+            float elapsedTime = 0.0f;
+            while (elapsedTime < transferDuration)
+            {
+                float t = elapsedTime / transferDuration;
+                t = t * t * (3.0f - 2.0f * t);
+
+                player.transform.position = Vector3.Lerp(startPosition, endPosition, t);
+
+                elapsedTime += Time.fixedDeltaTime;
+
+                yield return null;
+            }
+
+            player.transform.position = endPosition;
+
+            playerMesh.enabled = true;
         }
 
         // time to clean up
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(intervalLength);
         StartCoroutine(EndTeleport());
 
         // don't try to reassign material if player gameobject is not active
@@ -98,13 +125,11 @@ public class Teleporter : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        player.GetComponentInChildren<SkinnedMeshRenderer>().material = originalPlayerMat;
+        playerMesh.material = originalPlayerMat;
         manager.playerIvin = false;
-
-        yield return null;
     }
 
-    IEnumerator EndTeleport()
+    private IEnumerator EndTeleport()
     {
         var emission = particles.emission;
         float currEmissionRate = emission.rateOverTime.constantMax;
@@ -114,7 +139,7 @@ public class Teleporter : MonoBehaviour
         // only reduce emission if we're above the base state
         while (currEmissionRate > baseEmissionRate || currSpeed > baseEmissionSpeed)
         {
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(intervalLength);
 
             currEmissionRate -= currEmissionRate > baseEmissionRate ? 25.0f : 0.0f;
             currSpeed -= currSpeed > baseEmissionSpeed ? 0.2f : 0.0f;
@@ -132,5 +157,12 @@ public class Teleporter : MonoBehaviour
         emission.rateOverTime = baseEmissionRate;
         var main = particles.main;
         main.simulationSpeed = baseEmissionSpeed;
+    }
+
+    public void UpdateParticleColor(Color color)
+    {
+        Debug.Log($"changing color to {color}");
+        var main = particles.main;
+        main.startColor = new MinMaxGradient(color);
     }
 }
