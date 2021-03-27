@@ -34,13 +34,9 @@ public class PlayerController : MonoBehaviour
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
     private float currentDashCooldownTime = 0f;
-    //private float attackCooldown = 25f; // future use
-    private float attackParticlesCooldown = 0.5f;
-    private float currentAttackParticlesCooldown = 0f;
 
     private InputAction movement;
     private InputAction dash;
-    private InputAction attack;
 
     private PlayerBaseState currentState;
     public PlayerBaseState CurrentState { get => currentState; }
@@ -59,8 +55,6 @@ public class PlayerController : MonoBehaviour
         camTransform = cam.transform;
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
-
-        attackParticles.Stop();
 
         movement = gameplayActionMap.FindAction("Movement");
         movement.performed += ctx =>
@@ -91,13 +85,6 @@ public class PlayerController : MonoBehaviour
             }
         };
         dash.Enable();
-
-        attack = gameplayActionMap.FindAction("Attack");
-        attack.performed += ctx =>
-        {
-            attackParticles.Play();
-            currentAttackParticlesCooldown = 0;
-        };
     }
 
     void Start()
@@ -114,18 +101,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // particles are active
-        if (attackParticles.isEmitting)
-        {
-            currentAttackParticlesCooldown += dashStoppingSpeed; // this makes sense, trust me
-
-            if (currentAttackParticlesCooldown > attackParticlesCooldown)
-            {
-                attackParticles.Stop();
-                currentAttackParticlesCooldown = 0;
-            }
-        }
-
         direction = new Vector3(dir.x, 0f, dir.y).normalized;
 
         if (direction.magnitude >= 0.1f)
