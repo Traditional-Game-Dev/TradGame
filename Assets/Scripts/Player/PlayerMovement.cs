@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private Transform camTransform;
     public Camera cam;
     public CharacterController controller;
-    public ParticleSystem attackParticles;
     public TimeManager timeManager;
 
     private float moveSpeed;
@@ -28,13 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public float dashMultiplier;
     public int dashCounter;
 
-    //private float attackCooldown = 25f; // future use
-    private float attackParticlesCooldown = 0.5f;
-    private float currentAttackParticlesCooldown = 0f;
-
     private InputAction movement;
     private InputAction dash;
-    private InputAction attack;
     public InputActionAsset playerControls;
 
     private Animator anim;
@@ -47,8 +41,6 @@ public class PlayerMovement : MonoBehaviour
         camTransform = cam.transform;
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
-
-        attackParticles.Stop();
 
         movement = gameplayActionMap.FindAction("Movement");
         movement.performed += ctx =>
@@ -75,29 +67,10 @@ public class PlayerMovement : MonoBehaviour
             }
         };
         dash.Enable();
-
-        attack = gameplayActionMap.FindAction("Attack");
-        attack.performed += ctx =>
-        {
-            attackParticles.Play();
-            currentAttackParticlesCooldown = 0;
-        };
     }
 
     void FixedUpdate()
     {
-        // particles are active
-        if (attackParticles.isEmitting)
-        {
-            currentAttackParticlesCooldown += dashStoppingSpeed; // this makes sense, trust me
-
-            if (currentAttackParticlesCooldown > attackParticlesCooldown)
-            {
-                attackParticles.Stop();
-                currentAttackParticlesCooldown = 0;
-            }
-        }
-
         Vector3 direction = new Vector3(dir.x, 0f, dir.y).normalized;
 
         if (direction.magnitude >= 0.1f)
@@ -141,20 +114,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
         anim.SetFloat("Movement", direction.magnitude);
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public float GetCurrentDashTime()
-    {
-        return currentDashTime;
-    }
-
-    public float GetMaxDashTime()
-    {
-        return MAX_DASH_TIME;
     }
 }

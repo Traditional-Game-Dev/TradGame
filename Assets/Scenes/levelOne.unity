@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 64.822685, g: 77.99175, b: 96.704605, a: 1}
+  m_IndirectSpecularColor: {r: 65.24379, g: 77.625206, b: 96.51203, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2561,6 +2561,7 @@ GameObject:
   - component: {fileID: 452722202}
   - component: {fileID: 452722205}
   - component: {fileID: 452722198}
+  - component: {fileID: 452722206}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7414,6 +7415,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &452722206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452722196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f744c9c763a3894e83206237f7f7733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackParticles: {fileID: 452722203}
+  playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
+    type: 3}
 --- !u!1001 &469262542
 PrefabInstance:
   m_ObjectHideFlags: 0
