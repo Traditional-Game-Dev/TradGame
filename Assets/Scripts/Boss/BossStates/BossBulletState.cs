@@ -32,8 +32,7 @@ public class BossBulletState : BossBaseState
         if (timerDuringAttacks > bossAttackTime)
         {
             timerDuringAttacks -= bossAttackTime;
-            //boss.TransitionToState(boss.IdleState);
-            boss.TransitionToState(boss.PoisonPreState);
+            boss.TransitionToState(boss.IdleState);
         }
 
 

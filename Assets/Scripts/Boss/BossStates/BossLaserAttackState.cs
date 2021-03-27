@@ -55,8 +55,7 @@ public class BossLaserAttackState : BossBaseState
             laserLight.SetActive(false);
             timerDuringAttacks -= bossAttackTime;
 
-            //boss.TransitionToState(boss.IdleState);
-            boss.TransitionToState(boss.BulletPreState);
+            boss.TransitionToState(boss.IdleState);
         }
 
         float dist = Vector3.Distance(player.transform.position, boss.transform.position);

@@ -9,6 +9,7 @@ public class BossController : MonoBehaviour
     public Animator anim;
     public float bossAttackTime;
     public float bossWaitTime;
+    [System.NonSerialized] public string prevAttack = "first";
 
     [Header("Laser Attack:")]
     public LineRenderer lineRenderer;
@@ -30,8 +31,9 @@ public class BossController : MonoBehaviour
     public GameObject bulletObject;
     [Range(1, 100)] public int bulletDamage;
     [Range(1, 500)] public int bulletCount;
-    [Range(0.0f, 360.0f)] public float bulletStartDegree;
-    [Range(0.0f, 360.0f)] public float bulletEndDegree;
+    [System.NonSerialized] public float bulletStartDegree;
+    [System.NonSerialized] public float bulletEndDegree;
+    [Range(0, 360)]public float width;
     [Range(50.0f, 75.0f)] public float bulletSpeed;
     [System.NonSerialized] public ObjectPool bulletPool = new ObjectPool();
     public float timeForLoad;

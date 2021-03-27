@@ -7,6 +7,7 @@ public class PoisonProjectile : MonoBehaviour
     public Transform projectileTransform;
     private GameObject target;
     private Transform targetTransform;
+    private Vector2 offset;
 
     private float firingAngle = 45.0f;
     private float gravity = 29.4f;
@@ -21,6 +22,22 @@ public class PoisonProjectile : MonoBehaviour
     {
         this.target = target;
         targetTransform = target.transform;
+        offset = new Vector2(0, 0);
+
+
+        this.emissionDuration = emissionDuration;
+        stoppingPoint = emissionDuration * 0.5f;
+        this.damageRadius = damageRadius;
+        this.damageAmount = damageAmount;
+
+        StartCoroutine(SimulateProjectile());
+    }
+
+    public void Begin(GameObject target, Vector2 offset, float emissionDuration, float damageRadius, int damageAmount)
+    {
+        this.target = target;
+        targetTransform = target.transform;
+        this.offset = offset;
 
         this.emissionDuration = emissionDuration;
         stoppingPoint = emissionDuration * 0.5f;
@@ -34,7 +51,9 @@ public class PoisonProjectile : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        float targetDistance = Vector3.Distance(projectileTransform.position, targetTransform.position);
+        Vector3 targetPosition = new Vector3(targetTransform.position.x + offset.x, targetTransform.position.y, targetTransform.position.z + offset.y);
+
+        float targetDistance = Vector3.Distance(projectileTransform.position, targetPosition);
 
         // calcualte the velocity needed to throw the object to the target
         float velocity = targetDistance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
@@ -46,7 +65,7 @@ public class PoisonProjectile : MonoBehaviour
         float flightDuration = targetDistance / vX + 0.025f;
 
         // rotate projectile to face the target
-        projectileTransform.rotation = Quaternion.LookRotation(targetTransform.position - projectileTransform.position);
+        projectileTransform.rotation = Quaternion.LookRotation(targetPosition - projectileTransform.position);
 
         float elapsedTime = 0;
 
