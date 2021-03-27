@@ -8,11 +8,13 @@ public class BossBulletHellPreAttack : BossBaseState
     private float timerDuringAttacks;
     public float timeForLoading;
 
+
     public override void EnterState(BossController boss)
     {
         timerDuringAttacks = 0.0f;
         player = boss.player;
         timeForLoading = boss.timeForLoad;
+        boss.anim.Play("BulletAnim");
         //TODO: Transition Animation to pre poison ball animation here
     }
 
