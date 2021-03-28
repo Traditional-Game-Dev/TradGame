@@ -6,13 +6,9 @@ using UnityEngine.VFX;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public ParticleSystem attackParticles;
     public VisualEffect electricity;
 
-    //private float particleStoppingSpeed = 0.1f;
     //private float attackCooldown = 25f; // future use
-    //private float attackParticlesCooldown = 0.5f;
-    //private float currentAttackParticlesCooldown = 0f;
 
     public InputActionAsset playerControls;
     private InputAction attack;
@@ -21,14 +17,12 @@ public class PlayerAttack : MonoBehaviour
     {
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
-        attackParticles.Stop();
-
         electricity.gameObject.SetActive(true);
+        electricity.Stop();
 
         attack = gameplayActionMap.FindAction("Attack");
         attack.performed += ctx =>
         {
-            //currentAttackParticlesCooldown = 0;
             electricity.Play();
         };
     }
@@ -47,10 +41,6 @@ public class PlayerAttack : MonoBehaviour
                                                                        playerTransform.rotation.y,
                                                                        electricity.transform.rotation.z,
                                                                        playerTransform.rotation.w);
-
-            //electricity.gameObject.transform.rotation = Quaternion.Euler(electricity.transform.rotation.x,
-            //                                                             playerTransform.rotation.y - 180,
-            //                                                             electricity.transform.rotation.z);
         }
     }
 }
