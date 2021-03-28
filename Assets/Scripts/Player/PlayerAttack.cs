@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public VisualEffect electricity;
 
     //private float attackCooldown = 25f; // future use
+    private float heightOffset = 0.5f;
 
     public InputActionAsset playerControls;
     private InputAction attack;
@@ -34,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
             Transform playerTransform = gameObject.transform;
 
             electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
-                                                                                        playerTransform.position.y,
+                                                                                        playerTransform.position.y + heightOffset,
                                                                                         playerTransform.position.z);
 
             electricity.gameObject.transform.rotation = new Quaternion(electricity.transform.rotation.x,
