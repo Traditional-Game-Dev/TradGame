@@ -22,7 +22,20 @@ public class BossPoisonPreState : BossBaseState
         timerDuringAttacks += Time.deltaTime;
         if(timerDuringAttacks >= timeForAim){
             //TODO: Transition Animation back to Idle here
-            boss.TransitionToState(boss.PoisonState);
+            switch(boss.poisonAttackType)
+            {
+                case "normal":
+                    boss.TransitionToState(boss.PoisonState);
+                break;
+
+                case "defense":
+                    boss.TransitionToState(boss.PoisonDefenseState);
+                break;
+
+                case "far":
+                    boss.TransitionToState(boss.PoisonFarState);
+                break;
+            }
         }
     }
 }

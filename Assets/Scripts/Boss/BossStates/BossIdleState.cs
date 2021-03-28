@@ -28,6 +28,7 @@ public class BossIdleState : BossBaseState
             else if(distance < 15)
             {
                 boss.prevAttack = "poison";
+                boss.poisonAttackType = "defense";
                 boss.TransitionToState(boss.PoisonPreState);
             }
             //Sorta Close to boss, shoots laser or poison
@@ -44,6 +45,7 @@ public class BossIdleState : BossBaseState
                         else
                         {
                             boss.prevAttack = "poison";
+                            boss.poisonAttackType = "normal";
                             boss.TransitionToState(boss.PoisonPreState);
                         }
                     break;
@@ -55,6 +57,7 @@ public class BossIdleState : BossBaseState
 
                     case "laser":
                         boss.prevAttack = "poison";
+                        boss.poisonAttackType = "normal";
                         boss.TransitionToState(boss.PoisonPreState);
                     break;
                 }
@@ -76,6 +79,7 @@ public class BossIdleState : BossBaseState
                         else
                         {
                             boss.prevAttack = "poison";
+                            boss.poisonAttackType = "normal";
                             boss.TransitionToState(boss.PoisonPreState);
                         }
                     break;
@@ -106,6 +110,7 @@ public class BossIdleState : BossBaseState
                         else
                         {
                             boss.prevAttack = "poison";
+                            boss.poisonAttackType = "normal";
                             boss.TransitionToState(boss.PoisonPreState);
                         }
                     break;
@@ -129,6 +134,7 @@ public class BossIdleState : BossBaseState
                         else
                         {
                             boss.prevAttack = "poison";
+                            boss.poisonAttackType = "far";
                             boss.TransitionToState(boss.PoisonPreState);
                         }
                     break;
@@ -141,6 +147,7 @@ public class BossIdleState : BossBaseState
 
                     case "bullets":
                         boss.prevAttack = "poison";
+                        boss.poisonAttackType = "far";
                         boss.TransitionToState(boss.PoisonPreState);
                     break;
                 }
