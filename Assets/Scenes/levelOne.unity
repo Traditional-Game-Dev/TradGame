@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 65.24324, g: 77.63497, b: 96.52259, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2643,7 +2643,8 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 1127596275}
   boss: {fileID: 142765625}
-  range: 7
+  damagedBossMat: {fileID: 2100000, guid: 238d04b390715af479f6bf363461ed66, type: 2}
+  range: 10
   damageInflicted: 5
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
@@ -2695,7 +2696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f744c9c763a3894e83206237f7f7733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  electricity: {fileID: 0}
+  electricity: {fileID: 515342718}
   comboTimeWindow: 1
   maxCombo: 3
   comboCounter: 0

@@ -10,9 +10,13 @@ public class BossHealth : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public GameObject boss;
+    public Material damagedBossMat;
     public int range;
     public int damageInflicted;
     public InputActionAsset playerControls;
+
+    private SkinnedMeshRenderer bossMeshRenderer;
+
     private InputAction attack;
 
     // Start is called before the first frame update
@@ -20,6 +24,8 @@ public class BossHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        bossMeshRenderer = boss.GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     void Awake()
@@ -40,9 +46,21 @@ public class BossHealth : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
 
-        if(currentHealth <= 0)
+        StartCoroutine(BossDamageColor());
+
+        if (currentHealth <= 0)
         {
             SceneManager.LoadScene("winScreen");
         }
+    }
+
+    IEnumerator BossDamageColor()
+    {
+        Material originalBossMat = bossMeshRenderer.material;
+        bossMeshRenderer.material = damagedBossMat;
+
+        yield return new WaitForSeconds(0.25f);
+
+        bossMeshRenderer.material = originalBossMat;
     }
 }

@@ -37,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
+    // *add delay interval once animations are in place
     void ComboAttack()
     {
         comboCounter++;
