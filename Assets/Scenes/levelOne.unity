@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 64.93071, g: 77.85757, b: 96.617744, a: 1}
+  m_IndirectSpecularColor: {r: 65.24324, g: 77.63497, b: 96.52259, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2695,7 +2695,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f744c9c763a3894e83206237f7f7733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  electricity: {fileID: 515342718}
+  electricity: {fileID: 0}
+  comboTimeWindow: 1
+  maxCombo: 3
+  comboCounter: 0
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
 --- !u!1001 &469262542
