@@ -26,6 +26,7 @@ public class BossLaserAttackState : BossBaseState
     public override void EnterState(BossController boss)
     {
         // new animation played here
+        boss.anim.Play("LaserAnim");
 
         player = boss.player;
         lineRenderer = boss.lineRenderer;
