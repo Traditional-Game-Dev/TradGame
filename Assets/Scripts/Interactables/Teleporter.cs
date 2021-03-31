@@ -16,7 +16,7 @@ public class Teleporter : MonoBehaviour
 
     private int numIntervals = 10;
     private float intervalLength = 0.25f;
-    private float transferDuration = 3.0f;
+    private float transferDuration = 4.0f;
 
     void Start()
     {
@@ -94,7 +94,7 @@ public class Teleporter : MonoBehaviour
                                               player.transform.position.y, 
                                               otherTeleporterTransform.position.z);
 
-            manager.EnableSlowMotion(transferDuration + 5.0f);
+            manager.EnableSlowMotion(transferDuration);
 
             // linear interp the line between the player and other teleporter,
             // uses 'ease in/out lerp' formula for smooth camera transition
