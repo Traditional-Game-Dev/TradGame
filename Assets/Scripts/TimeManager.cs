@@ -7,7 +7,6 @@ public class TimeManager : MonoBehaviour
 {
     public float slowMo;
 
-    private float slowdownLength = 1.0f;
     private float defaultFixedDelta;
 
     void Start()
@@ -17,18 +16,72 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        Time.timeScale += (1.0f / slowdownLength) * Time.unscaledDeltaTime;
-        Time.timeScale = Mathf.Clamp(Time.timeScale, 0.0f, 1.0f);
 
-        Time.fixedDeltaTime += (defaultFixedDelta / slowdownLength) * Time.unscaledDeltaTime;
-        Time.fixedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0.0f, defaultFixedDelta);
     }
 
     public void DoSlowMotion(float length)
     {
-        slowdownLength = length;
+        StartCoroutine(StartSlowMotion(length));
+    }
 
-        Time.timeScale = slowMo;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+    IEnumerator StartSlowMotion(float length)
+    {
+        float transitionTime = length / 4;
+
+        float elapsedTime = 0;
+        while (Time.timeScale > slowMo)
+        {
+            Time.timeScale -= (1.0f / transitionTime) * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0.0f, 1.0f);
+
+            Time.fixedDeltaTime -= (defaultFixedDelta / transitionTime) * Time.unscaledDeltaTime;
+            Time.fixedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0.0f, defaultFixedDelta);
+
+            elapsedTime += Time.fixedDeltaTime;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        StartCoroutine(FullSlowMotion(length));
+
+        yield return null;
+    }
+
+    IEnumerator FullSlowMotion(float length)
+    {
+        float transitionTime = length / 2;
+
+        float elapsedTime = 0;
+        while (elapsedTime < transitionTime)
+        {
+            elapsedTime += Time.fixedDeltaTime;
+
+            yield return null;
+        }
+
+        StartCoroutine(EndSlowMotion(length));
+
+        yield return null;
+    }
+
+    IEnumerator EndSlowMotion(float length)
+    {
+        float transitionTime = length / 4;
+
+        float elapsedTime = 0;
+        while (Time.timeScale < 1.0f)
+        {
+            Time.timeScale += (1.0f / transitionTime) * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0.0f, 1.0f);
+
+            Time.fixedDeltaTime += (defaultFixedDelta / transitionTime) * Time.unscaledDeltaTime;
+            Time.fixedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0.0f, defaultFixedDelta);
+
+            elapsedTime += Time.fixedDeltaTime;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return null;
     }
 }
