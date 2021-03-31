@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         gameplayUI.SetActive(false);
         planningUI.SetActive(true);
-        planningUI.GetComponent<spawnObject>().cashMoney = 10;
+        planningUI.GetComponent<spawnObject>().mana = planningUI.GetComponent<spawnObject>().planningMana;
 
         player.SetActive(false);
 

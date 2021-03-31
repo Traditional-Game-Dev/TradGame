@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 public class BlueprintScript : MonoBehaviour
 {
     RaycastHit hit;
-    Vector3 createLocation;
     public GameObject prefab;
     public InputActionAsset playerControls;
+    public Material blueprintMat;
+    public Material blueprintError;
     private InputAction place;
     private InputAction rotate;
 
@@ -46,18 +47,34 @@ public class BlueprintScript : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
+        //Place At Ground
         if(Physics.Raycast(ray, out hit, 50000.0f))
         {   
             Vector3 tempLocation = hit.point;
             tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y;
             transform.position = tempLocation;
+
+            //Object Recoloration
+            if(Vector3.Distance(tempLocation, GameObject.Find("Boss").transform.position) < 25)
+            {
+                if(gameObject.GetComponent<MeshRenderer>().material.color != blueprintError.color)
+                {
+                    gameObject.GetComponent<MeshRenderer>().material = blueprintError;
+                }
+            }
+            else if(gameObject.GetComponent<MeshRenderer>().material.color != blueprintMat.color)
+            {
+                gameObject.GetComponent<MeshRenderer>().material = blueprintMat;
+            }
         }
 
+        //Object Deselection
         if(deselect.triggered)
         {
             gameObject.SetActive(false);
         }
 
+        //Object Rotation
         if(rotate.triggered)
         {
             if(rotate.ReadValue<float>() > 0)
@@ -70,14 +87,14 @@ public class BlueprintScript : MonoBehaviour
             }
         }
 
-        int cashAfterPurchase = planningUI.GetComponent<spawnObject>().cashMoney - cost[gameObject];
+        int cashAfterPurchase = planningUI.GetComponent<spawnObject>().mana - cost[gameObject];
 
-        if(place.triggered && cashAfterPurchase >= 0)
+        if(place.triggered && cashAfterPurchase >= 0 && gameObject.GetComponent<MeshRenderer>().material.color != blueprintError.color)
         {
             if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
                 Instantiate(prefab, transform.position, transform.rotation);
-                planningUI.GetComponent<spawnObject>().cashMoney = cashAfterPurchase;
+                planningUI.GetComponent<spawnObject>().mana = cashAfterPurchase;
             }
         }
     }

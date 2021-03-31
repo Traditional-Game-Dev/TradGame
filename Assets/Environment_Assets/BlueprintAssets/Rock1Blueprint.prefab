@@ -95,3 +95,5 @@ MonoBehaviour:
   prefab: {fileID: 1485442318257172256, guid: e2a4799973e5c344fb16eed5a105ca86, type: 3}
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
+  blueprintMat: {fileID: 2100000, guid: 439dead40a1081243b6a358a30274d13, type: 2}
+  blueprintError: {fileID: 2100000, guid: 9d04dc51d1e51e2448ff1b67155c4638, type: 2}

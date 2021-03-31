@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class spawnObject : MonoBehaviour
 {
-    public int cashMoney;
+    public int planningMana;
+    [System.NonSerialized] public int mana;
     public GameObject ruinsWall;
     public int ruinsWallCost;
     public GameObject wall;
@@ -21,6 +22,7 @@ public class spawnObject : MonoBehaviour
         GameObject.Find("SpawnRock").GetComponentInChildren<Text>().text = $"Create Rock - ${rockCost}";
         GameObject.Find("SpawnRuins").GetComponentInChildren<Text>().text = $"Create Wide Wall - ${ruinsWallCost}";
         GameObject.Find("SpawnTeleporter").GetComponentInChildren<Text>().text = $"Create Teleporter - ${teleporterCost}";
+        mana = planningMana;
     }
 
     public Dictionary<GameObject, int> getCosts()
@@ -68,12 +70,12 @@ public class spawnObject : MonoBehaviour
 
     void Update()
     {
-        GameObject.Find("MoneyCount").GetComponent<Text>().text = cashMoney.ToString();
+        GameObject.Find("MoneyCount").GetComponent<Text>().text = mana.ToString();
 
-        if(cashMoney <= 0)
+        if(mana <= 0)
         {
             Camera.main.GetComponent<CameraController>().swapMode();
-            cashMoney++;
+            mana++;
         }
     }
 }
