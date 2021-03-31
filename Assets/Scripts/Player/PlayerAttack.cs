@@ -12,6 +12,8 @@ public class PlayerAttack : MonoBehaviour
     public int comboCounter = 0;
     //public float comboCooldown = 25f; // future use
 
+    Transform playerTransform;
+    private bool isRed = true;
     private float heightOffset = 0.5f;
     private float handOffset = 0.5f;
 
@@ -30,11 +32,37 @@ public class PlayerAttack : MonoBehaviour
         {
             ComboAttack();
         };
+
+        playerTransform = gameObject.transform;
     }
 
     void FixedUpdate()
     {
+        float newHandOffset = isRed ? -handOffset : handOffset;
 
+        if (electricity.isActiveAndEnabled)
+        {
+            // set emission position (calculate offset for the right or left hand)
+            if (playerTransform.localEulerAngles.y <= 315.0f && playerTransform.localEulerAngles.y >= 225.0f)
+            {
+                electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
+                                                                                           playerTransform.position.y + heightOffset,
+                                                                                           playerTransform.position.z + newHandOffset);
+            }
+            else if (playerTransform.localEulerAngles.y >= 45.0f && playerTransform.localEulerAngles.y <= 135.0f)
+            {
+                electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
+                                                                                           playerTransform.position.y + heightOffset,
+                                                                                           playerTransform.position.z - newHandOffset);
+            }
+            else
+            {
+                electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x - newHandOffset,
+                                                                                           playerTransform.position.y + heightOffset,
+                                                                                           playerTransform.position.z);
+
+            }
+        }
     }
 
     // *add delay interval once animations are in place
@@ -67,8 +95,7 @@ public class PlayerAttack : MonoBehaviour
 
     void PrepareLightning(bool isRed)
     {
-        Transform playerTransform = gameObject.transform;
-
+        this.isRed = isRed; 
         float newHandOffset = isRed ? -handOffset : handOffset;
 
         // set emission position (calculate offset for the right or left hand)
