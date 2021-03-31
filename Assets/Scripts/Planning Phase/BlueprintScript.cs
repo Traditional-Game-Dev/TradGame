@@ -70,14 +70,14 @@ public class BlueprintScript : MonoBehaviour
             }
         }
 
-        int cashAfterPurchase = planningUI.GetComponent<spawnObject>().cashMoney - cost[gameObject];
+        int cashAfterPurchase = planningUI.GetComponent<spawnObject>().mana - cost[gameObject];
 
         if(place.triggered && cashAfterPurchase >= 0)
         {
             if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
                 Instantiate(prefab, transform.position, transform.rotation);
-                planningUI.GetComponent<spawnObject>().cashMoney = cashAfterPurchase;
+                planningUI.GetComponent<spawnObject>().mana = cashAfterPurchase;
             }
         }
     }
