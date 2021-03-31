@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2338378949262151407
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 2
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -20,9 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: poison
+  m_Name: Goop
   m_Shader: {fileID: 4800000, guid: c4edd00ff2db5b24391a4fcb1762e459, type: 3}
-  m_ShaderKeywords: _BLENDMODE_ALPHA _NORMALMAP_TANGENT_SPACE _SURFACE_TYPE_TRANSPARENT
+  m_ShaderKeywords: _BLENDMODE_ALPHA _ENABLE_FOG_ON_TRANSPARENT _NORMALMAP_TANGENT_SPACE
+    _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -30,8 +18,8 @@ Material:
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - DistortionVectors
   - MOTIONVECTORS
+  - DistortionVectors
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -170,11 +158,11 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 10
     - _EmissiveColorMode: 1
-    - _EmissiveExposureWeight: 0.25
-    - _EmissiveIntensity: 50
+    - _EmissiveExposureWeight: 0.598
+    - _EmissiveIntensity: 19.890001
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
-    - _EnableFogOnTransparent: 0
+    - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _HeightAmplitude: 0.02
@@ -248,12 +236,12 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 10.980233, g: 49.60784, b: 0, a: 50}
+    - _Color: {r: 19.890001, g: 0, b: 2.0902448, a: 19.890001}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 10.980233, g: 49.60784, b: 0, a: 50}
-    - _EmissiveColorLDR: {r: 0.21959308, g: 0.9921568, b: 0, a: 1}
+    - _EmissiveColor: {r: 19.890001, g: 0, b: 2.0902448, a: 19.890001}
+    - _EmissiveColorLDR: {r: 1, g: 0, b: 0.1050841, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
@@ -262,5 +250,18 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _UnlitColor: {r: 0.21958801, g: 0.990566, b: 0, a: 1}
+    - _UnlitColor: {r: 0.972549, g: 0.35517007, b: 0, a: 1}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &7653851376237703363
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
