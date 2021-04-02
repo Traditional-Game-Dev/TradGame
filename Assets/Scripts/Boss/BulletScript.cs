@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour
     [System.NonSerialized] public float movementSpeed = 50;
     [System.NonSerialized] public Vector3 startPos;
     MeshRenderer objectRenderer;
+    private GameManager manager;
 
     void Awake()
     {
@@ -19,6 +20,7 @@ public class BulletScript : MonoBehaviour
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_Color", Color.red);
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_EmissiveColor", Color.red);
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetFloat("_EmissionIntensity", 25);
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
     }
 
@@ -52,7 +54,7 @@ public class BulletScript : MonoBehaviour
         {
             movementSpeed = 0;
             gameObject.GetComponentInChildren<Light>().enabled = false;
-            if(other.gameObject.name == "Player")
+            if(other.gameObject.name == "Player" && !manager.playerIvin)
             {
                 other.gameObject.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
             }
