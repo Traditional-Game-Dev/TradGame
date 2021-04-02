@@ -13,7 +13,8 @@ public class BossPoisonPreState : BossBaseState
         timerDuringAttacks = 0.0f;
         player = boss.player;
         timeForAim = boss.timeForAim;
-        boss.anim.Play("PoisonAnim");
+        //boss.anim.Play("PoisonAnim");
+        boss.anim.SetBool("playPoisonAnim", true);
         //TODO: Transition Animation to pre poison ball animation here
     }
 

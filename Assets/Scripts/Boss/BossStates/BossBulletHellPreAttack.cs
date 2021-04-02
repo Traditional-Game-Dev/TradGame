@@ -14,7 +14,7 @@ public class BossBulletHellPreAttack : BossBaseState
         timerDuringAttacks = 0.0f;
         player = boss.player;
         timeForLoading = boss.timeForLoad;
-        boss.anim.Play("BulletAnim");
+        boss.anim.SetBool("playBulletAnim", true);
         //TODO: Transition Animation to pre poison ball animation here
     }
 
@@ -23,6 +23,7 @@ public class BossBulletHellPreAttack : BossBaseState
         timerDuringAttacks += Time.deltaTime;
         if(timerDuringAttacks >= timeForLoading){
             //TODO: Transition Animation back to Idle here
+            boss.anim.SetBool("playBulletAnim", false);
             boss.TransitionToState(boss.BulletState);
         }
     }
