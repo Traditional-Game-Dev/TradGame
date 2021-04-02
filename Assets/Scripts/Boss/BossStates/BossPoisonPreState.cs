@@ -14,7 +14,6 @@ public class BossPoisonPreState : BossBaseState
         player = boss.player;
         timeForAim = boss.timeForAim;
         //boss.anim.Play("PoisonAnim");
-        boss.anim.SetBool("playPoisonAnim", true);
         //TODO: Transition Animation to pre poison ball animation here
     }
 
@@ -23,6 +22,7 @@ public class BossPoisonPreState : BossBaseState
         timerDuringAttacks += Time.deltaTime;
         if(timerDuringAttacks >= timeForAim){
             //TODO: Transition Animation back to Idle here
+            boss.anim.SetBool("playPoisonAnim", true);
             switch(boss.poisonAttackType)
             {
                 case "normal":

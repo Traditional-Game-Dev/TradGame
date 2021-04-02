@@ -48,6 +48,12 @@ public class BossPoisonFarState : BossBaseState
     public override void Update(BossController boss)
     {
         timerDuringAttacks += Time.deltaTime;
+        if (timerDuringAttacks > 0.75f && timerDuringAttacks < 1.5f){
+            boss.anim.speed = 0f;
+        }
+        else{
+            boss.anim.speed = 1f;
+        }
         if (timerDuringAttacks > bossAttackTime)
         {
             timerDuringAttacks -= bossAttackTime;

@@ -24,7 +24,6 @@ public class BossPoisonDefenseState : BossBaseState
     public override void EnterState(BossController boss)
     {
         //TODO: New Anim Plays Here
-
         poisonObject = boss.poisonObject;
         bossAttackTime = boss.bossAttackTime;
         emissionDuration = boss.emissionDuration;
@@ -50,7 +49,14 @@ public class BossPoisonDefenseState : BossBaseState
 
     public override void Update(BossController boss)
     {
+        //boss.anim.speed = 0f;
         timerDuringAttacks += Time.deltaTime;
+        if (timerDuringAttacks > 0.75f && timerDuringAttacks < 1.5f){
+            boss.anim.speed = 0f;
+        }
+        else{
+            boss.anim.speed = 1f;
+        }
         if (timerDuringAttacks > bossAttackTime)
         {
             timerDuringAttacks -= bossAttackTime;
