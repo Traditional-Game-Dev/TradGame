@@ -8,7 +8,10 @@ public class BossIdleState : BossBaseState
 
     public override void EnterState(BossController boss)
     {
-        boss.anim.Play("Idle");
+        //boss.anim.Play("Idle");
+        boss.anim.SetBool("playLaserAnim", false);
+        boss.anim.SetBool("playBulletAnim", false);
+        boss.anim.SetBool("playPoisonAnim", false);
     }
 
     public override void Update(BossController boss)
