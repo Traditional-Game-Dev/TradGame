@@ -7,7 +7,7 @@ using static UnityEngine.ParticleSystem;
 public class Teleporter : MonoBehaviour
 {
     public Material teleportingPlayerMat;
-    public GameManager manager;
+    private GameManager manager;
 
     private ParticleSystem particles;
     private Transform otherTeleporterTransform;
@@ -20,6 +20,7 @@ public class Teleporter : MonoBehaviour
 
     void Start()
     {
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         particles = this.GetComponentInChildren<ParticleSystem>();
         baseEmissionRate = particles.emission.rateOverTime.constantMax;
         baseEmissionSpeed = particles.main.simulationSpeed;
