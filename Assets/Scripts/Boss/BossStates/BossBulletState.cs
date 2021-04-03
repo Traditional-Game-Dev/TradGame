@@ -29,9 +29,16 @@ public class BossBulletState : BossBaseState
     public override void Update(BossController boss)
     {
         timerDuringAttacks += Time.deltaTime;
+        if (timerDuringAttacks < 3f){
+            boss.anim.speed = 2f;
+        }
+        else {
+            boss.anim.speed = 0f;
+        }
         if (timerDuringAttacks > bossAttackTime)
         {
             timerDuringAttacks -= bossAttackTime;
+            boss.anim.speed = 1f;
             boss.TransitionToState(boss.IdleState);
         }
 
