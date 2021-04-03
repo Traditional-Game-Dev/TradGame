@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 65.24379, g: 77.625206, b: 96.51203, a: 1}
+  m_IndirectSpecularColor: {r: 64.92418, g: 77.86535, b: 96.62556, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4186,6 +4186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 452722196}
+  electric: {fileID: 515342716}
   gameplayUI: {fileID: 1327584419}
   planningUI: {fileID: 377297241}
   timeManager: {fileID: 1262566578}
@@ -7441,7 +7442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8cd2fe2acb55bb4aa306af1d2314660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowMo: 0.3
+  slowMo: 0.5
 --- !u!4 &1262566579
 Transform:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class Teleporter : MonoBehaviour
         baseEmissionRate = particles.emission.rateOverTime.constantMax;
         baseEmissionSpeed = particles.main.simulationSpeed;
 
-        otherTeleporterTransform = GameObject.FindGameObjectsWithTag("Teleporter").Where(x => x != this.gameObject).First().transform;
+        //otherTeleporterTransform = GameObject.FindGameObjectsWithTag("Teleporter").Where(x => x != this.gameObject).First().transform;
     }
 
     void Update()
@@ -166,5 +166,10 @@ public class Teleporter : MonoBehaviour
     {
         var main = particles.main;
         main.startColor = new MinMaxGradient(color);
+    }
+
+    public void LinkToOtherTeleporter(Transform otherTransform)
+    {
+        otherTeleporterTransform = otherTransform;
     }
 }

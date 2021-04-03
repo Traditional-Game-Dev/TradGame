@@ -24,7 +24,6 @@ public class PlayerAttack : MonoBehaviour
     {
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
-        electricity.gameObject.SetActive(true);
         electricity.Stop();
 
         attack = gameplayActionMap.FindAction("Attack");
