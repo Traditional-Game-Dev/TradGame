@@ -73,7 +73,7 @@ public class Teleporter : MonoBehaviour
             emission.rateOverTime = currEmissionRate;
             main.simulationSpeed = currSpeed;
 
-            if (i == halftime)
+            if (i == halftime && (startPlayerPosition.magnitude - player.transform.position.magnitude) < 2.0f)
             {
                 manager.playerIvin = true;
                 manager.playerDisabled = true;
