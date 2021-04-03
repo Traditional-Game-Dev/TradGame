@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
             teleporterOne.GetComponent<Teleporter>().LinkToOtherTeleporter(teleporterTwo);
             teleporterTwo.GetComponent<Teleporter>().LinkToOtherTeleporter(teleporterOne);
         } 
-        catch (InvalidOperationException e)
+        catch (InvalidOperationException)
         {
             return;
         }
