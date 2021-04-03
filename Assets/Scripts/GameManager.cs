@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,6 +9,7 @@ public class GameManager : MonoBehaviour
     #region GeneralImports
 
     public GameObject player;
+    public GameObject electric;
 
     #endregion
 
@@ -20,8 +23,11 @@ public class GameManager : MonoBehaviour
         gameplayUI.SetActive(true);
         planningUI.SetActive(false);
 
-        player.SetActive(true);
+        electric.SetActive(true);
+
         player.transform.position = new Vector3(0f, 1f, -50f);
+        player.SetActive(true);
+
 
         var rock = GameObject.Find("Rock1Blueprint");
         if (rock != null)
@@ -44,6 +50,8 @@ public class GameManager : MonoBehaviour
             teleporter.gameObject.SetActive(false);
         }
 
+        LinkTeleporters();
+
         GameObject.Find("Boss").GetComponent<BossController>().planningPhase = false;
     }
 
@@ -55,9 +63,28 @@ public class GameManager : MonoBehaviour
 
         player.SetActive(false);
 
+        electric.SetActive(false);
+
         GameObject.Find("Boss").GetComponent<BossController>().planningPhase = true;
     }
 
+    private void LinkTeleporters()
+    {
+        try
+        {
+            GameObject[] teleporters = GameObject.FindGameObjectsWithTag("Teleporter") ?? null;
+
+            Transform teleporterOne = teleporters.First().transform;
+            Transform teleporterTwo = teleporters.Last().transform;
+
+            teleporterOne.GetComponent<Teleporter>().LinkToOtherTeleporter(teleporterTwo);
+            teleporterTwo.GetComponent<Teleporter>().LinkToOtherTeleporter(teleporterOne);
+        } 
+        catch (InvalidOperationException e)
+        {
+            return;
+        }
+    }
 
     #endregion
 
