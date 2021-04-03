@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class TimeManager : MonoBehaviour
 {
     public float slowMo;
+    public AudioMixer mixer;
 
     private float defaultFixedDelta;
 
@@ -38,6 +39,8 @@ public class TimeManager : MonoBehaviour
             Time.fixedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0.0f, defaultFixedDelta);
 
             elapsedTime += Time.fixedDeltaTime;
+
+            mixer.SetFloat("PitchBend", Time.timeScale);
 
             yield return new WaitForFixedUpdate();
         }
@@ -78,6 +81,8 @@ public class TimeManager : MonoBehaviour
             Time.fixedDeltaTime = Mathf.Clamp(Time.fixedDeltaTime, 0.0f, defaultFixedDelta);
 
             elapsedTime += Time.fixedDeltaTime;
+
+            mixer.SetFloat("PitchBend", Time.timeScale);
 
             yield return new WaitForFixedUpdate();
         }
