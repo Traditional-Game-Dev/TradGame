@@ -12,7 +12,8 @@ public class PlayerAttack : MonoBehaviour
     public int comboCounter = 0;
     //public float comboCooldown = 25f; // future use
 
-    Transform playerTransform;
+    private GameManager manager;
+    private Transform playerTransform;
     private bool isRed = true;
     private float heightOffset = 0.5f;
     private float handOffset = 0.5f;
@@ -22,6 +23,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Awake()
     {
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
         electricity.Stop();
@@ -67,6 +70,11 @@ public class PlayerAttack : MonoBehaviour
     // *add delay interval once animations are in place
     void ComboAttack()
     {
+        if (manager.playerDisabled)
+        {
+            return;
+        }
+
         comboCounter++;
 
         switch (comboCounter)

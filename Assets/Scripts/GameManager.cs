@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class GameManager : MonoBehaviour
 {
     #region GeneralImports
 
     public GameObject player;
-    public GameObject electric;
+    public VisualEffect electric;
 
     #endregion
 
@@ -23,7 +24,8 @@ public class GameManager : MonoBehaviour
         gameplayUI.SetActive(true);
         planningUI.SetActive(false);
 
-        electric.SetActive(true);
+        electric.gameObject.SetActive(true);
+        electric.Stop();
 
         player.transform.position = new Vector3(0f, 1f, -50f);
         player.SetActive(true);
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
 
         player.SetActive(false);
 
-        electric.SetActive(false);
+        electric.gameObject.SetActive(false);
 
         GameObject.Find("Boss").GetComponent<BossController>().planningPhase = true;
     }

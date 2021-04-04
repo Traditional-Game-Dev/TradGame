@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public ParticleSystem attackParticles;
     public Animator anim;
-    public GameManager manager;
     [Header("Movement Settings:")]
     public float baseSpeed;
     [Header("Dash Settings:")]
@@ -20,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float dashMultiplier;
     public int dashCounter;
 
+    private GameManager manager;
     private Transform camTransform;
     private DashSprites dashSprites;
     private float moveSpeed;
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         camTransform = cam.transform;
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
