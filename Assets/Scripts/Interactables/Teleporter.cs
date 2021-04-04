@@ -14,9 +14,9 @@ public class Teleporter : MonoBehaviour
     private float baseEmissionRate;
     private float baseEmissionSpeed;
 
-    private int numIntervals = 10;
-    private float intervalLength = 0.25f;
-    private float transferDuration = 4.0f;
+    private readonly int numIntervals = 10;
+    private readonly float intervalLength = 0.25f;
+    private readonly float transferDuration = 4.0f;
 
     void Start()
     {
@@ -24,8 +24,6 @@ public class Teleporter : MonoBehaviour
         particles = this.GetComponentInChildren<ParticleSystem>();
         baseEmissionRate = particles.emission.rateOverTime.constantMax;
         baseEmissionSpeed = particles.main.simulationSpeed;
-
-        //otherTeleporterTransform = GameObject.FindGameObjectsWithTag("Teleporter").Where(x => x != this.gameObject).First().transform;
     }
 
     void Update()
@@ -73,17 +71,25 @@ public class Teleporter : MonoBehaviour
             emission.rateOverTime = currEmissionRate;
             main.simulationSpeed = currSpeed;
 
-            if (i == halftime && (startPlayerPosition.magnitude - player.transform.position.magnitude) < 2.0f)
+            if (i == halftime && player.activeInHierarchy && (startPlayerPosition - player.transform.position).magnitude < 3.0f)
             {
                 manager.playerIvin = true;
                 manager.playerDisabled = true;
 
                 playerMesh.material = teleportingPlayerMat;
             }
+            else if (i == halftime && (!player.activeInHierarchy || (startPlayerPosition - player.transform.position).magnitude >= 3.0f))
+            {
+                // reset teleporter
+                StartCoroutine(EndTeleport());
+
+                // stop the current coroutine
+                yield break;
+            }
         }
 
-        // .. and then check if player position is still similar
-        if (player.activeInHierarchy && (startPlayerPosition.magnitude - player.transform.position.magnitude) < 2.0f)
+        // .. and then do a sanity check (the player should be frozen and invincible at this point)
+        if (player.activeInHierarchy)
         {
             manager.Teleported();
 
@@ -130,6 +136,8 @@ public class Teleporter : MonoBehaviour
         playerMesh.material = originalPlayerMat;
         manager.playerDisabled = false;
         manager.playerIvin = false;
+
+        yield return null;
     }
 
     private IEnumerator EndTeleport()
@@ -150,6 +158,8 @@ public class Teleporter : MonoBehaviour
             emission.rateOverTime = currEmissionRate;
             main.simulationSpeed = currSpeed;
         }
+
+        yield return null;
     }
 
     public void ResetState()
