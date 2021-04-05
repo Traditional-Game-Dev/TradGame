@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public InputActionAsset playerControls;
     public Camera cam;
     public CharacterController controller;
-    public ParticleSystem attackParticles;
     public Animator anim;
     [Header("Movement Settings:")]
     public float baseSpeed;

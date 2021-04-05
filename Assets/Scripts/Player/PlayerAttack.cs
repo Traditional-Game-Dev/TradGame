@@ -6,14 +6,20 @@ using UnityEngine.VFX;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public VisualEffect electricity;
-    public float comboTimeWindow = 1.0f;
-    public int maxCombo = 3;
-    public int comboCounter = 0;
+    public VisualEffect lightning;
+    public GameObject fireball;
+    public float comboTimeWindow;
+    public float damageRange;
+    public float lightningDamage;
+    public float fireballDamage;
+    public float fireballDuration;
     //public float comboCooldown = 25f; // future use
 
     private GameManager manager;
     private Transform playerTransform;
+    private Transform bossTransform;
+    //private int maxCombo = 3;
+    private int comboCounter = 0;
     private bool isRed = true;
     private float heightOffset = 0.5f;
     private float handOffset = 0.5f;
@@ -24,16 +30,18 @@ public class PlayerAttack : MonoBehaviour
     void Awake()
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        bossTransform = GameObject.Find("Boss").transform;
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
-        electricity.Stop();
+        lightning.Stop();
 
         attack = gameplayActionMap.FindAction("Attack");
         attack.performed += ctx =>
         {
             ComboAttack();
         };
+        attack.Enable();
 
         playerTransform = gameObject.transform;
     }
@@ -42,26 +50,26 @@ public class PlayerAttack : MonoBehaviour
     {
         float newHandOffset = isRed ? -handOffset : handOffset;
 
-        if (electricity.isActiveAndEnabled)
+        if (lightning.isActiveAndEnabled)
         {
             // set emission position (calculate offset for the right or left hand)
             if (playerTransform.localEulerAngles.y <= 315.0f && playerTransform.localEulerAngles.y >= 225.0f)
             {
-                electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
-                                                                                           playerTransform.position.y + heightOffset,
-                                                                                           playerTransform.position.z + newHandOffset);
+                lightning.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
+                                                                                            playerTransform.position.y + heightOffset,
+                                                                                            playerTransform.position.z + newHandOffset);
             }
             else if (playerTransform.localEulerAngles.y >= 45.0f && playerTransform.localEulerAngles.y <= 135.0f)
             {
-                electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
-                                                                                           playerTransform.position.y + heightOffset,
-                                                                                           playerTransform.position.z - newHandOffset);
+                lightning.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
+                                                                                            playerTransform.position.y + heightOffset,
+                                                                                            playerTransform.position.z - newHandOffset);
             }
             else
             {
-                electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x - newHandOffset,
-                                                                                           playerTransform.position.y + heightOffset,
-                                                                                           playerTransform.position.z);
+                lightning.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x - newHandOffset,
+                                                                                            playerTransform.position.y + heightOffset,
+                                                                                            playerTransform.position.z);
 
             }
         }
@@ -80,24 +88,60 @@ public class PlayerAttack : MonoBehaviour
         switch (comboCounter)
         {
             case 1:
-                PrepareLightning(true);
+                PrepareLightning(isRed=true);
                 ShootRedLightning();
                 break;
             case 2:
-                PrepareLightning(false);
+                PrepareLightning(isRed=false);
                 ShootBlueLightning();
                 break;
-            //case 3:
-            //    ShootFireBall();
-            //    break;
-            //default:
-            //    break;
+            case 3:
+                PrepareFireball();
+                StartCoroutine(ShootFireball());
+                break;
+            default:
+                break;
         }
 
-        if (comboCounter > 1)
+        if (comboCounter > 2)
         {
             comboCounter = 0;
         }
+    }
+
+    void PrepareFireball()
+    {
+        fireball.transform.position = transform.forward + new Vector3(playerTransform.position.x,
+                                                                      playerTransform.position.y,
+                                                                      playerTransform.position.z);
+
+        fireball.transform.rotation = new Quaternion(fireball.transform.rotation.x,
+                                                     playerTransform.rotation.y,
+                                                     fireball.transform.rotation.z,
+                                                     playerTransform.rotation.w);
+    }
+
+    IEnumerator ShootFireball()
+    {
+        fireball.SetActive(true);
+
+        float elapsedTime = 0;
+        Vector3 startPosition = fireball.transform.position;
+        Vector3 targetPosition = fireball.transform.position + transform.forward * damageRange;
+
+        while (elapsedTime < fireballDuration)
+        {
+            fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballDuration);
+            elapsedTime += Time.fixedDeltaTime;
+
+            yield return null;
+        }
+
+        TryDamage(fireballDamage);
+
+        fireball.SetActive(false);
+
+        yield return null;
     }
 
     void PrepareLightning(bool isRed)
@@ -108,49 +152,56 @@ public class PlayerAttack : MonoBehaviour
         // set emission position (calculate offset for the right or left hand)
         if (playerTransform.localEulerAngles.y <= 315.0f && playerTransform.localEulerAngles.y >= 225.0f)
         {
-            electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
-                                                                                       playerTransform.position.y + heightOffset,
-                                                                                       playerTransform.position.z + newHandOffset);
+            lightning.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
+                                                                                        playerTransform.position.y + heightOffset,
+                                                                                        playerTransform.position.z + newHandOffset);
         }
         else if (playerTransform.localEulerAngles.y >= 45.0f && playerTransform.localEulerAngles.y <= 135.0f)
         {
-            electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
-                                                                                       playerTransform.position.y + heightOffset,
-                                                                                       playerTransform.position.z - newHandOffset);
+            lightning.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x,
+                                                                                        playerTransform.position.y + heightOffset,
+                                                                                        playerTransform.position.z - newHandOffset);
         }
         else
         {
-            electricity.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x - newHandOffset,
-                                                                                       playerTransform.position.y + heightOffset,
-                                                                                       playerTransform.position.z);
+            lightning.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x - newHandOffset,
+                                                                                        playerTransform.position.y + heightOffset,
+                                                                                        playerTransform.position.z);
 
         }
 
         // set emission rotation
-        electricity.gameObject.transform.rotation = new Quaternion(electricity.transform.rotation.x,
-                                                              playerTransform.rotation.y,
-                                                              electricity.transform.rotation.z,
-                                                              playerTransform.rotation.w);
+        lightning.gameObject.transform.rotation = new Quaternion(lightning.transform.rotation.x,
+                                                                   playerTransform.rotation.y,
+                                                                   lightning.transform.rotation.z,
+                                                                   playerTransform.rotation.w);
     }
 
     void ShootBlueLightning()
     {
-        electricity.SetVector4("BoltColor", new Vector4(0.356f, 0.772f, 0.984f, 1));
-        electricity.SetVector4("FlashColor", new Vector4(0.713f, 1.545f, 1.968f, 1));
+        lightning.SetVector4("BoltColor", new Vector4(0.356f, 0.772f, 0.984f, 1));
+        lightning.SetVector4("FlashColor", new Vector4(0.713f, 1.545f, 1.968f, 1));
 
-        electricity.Play();
+        lightning.Play();
+
+        TryDamage(lightningDamage);
     }
 
     void ShootRedLightning()
     {
-        electricity.SetVector4("BoltColor", new Vector4(0.984f, 0.356f, 0.356f, 1));
-        electricity.SetVector4("FlashColor", new Vector4(1.968f, 0.713f, 0.713f, 1));
+        lightning.SetVector4("BoltColor", new Vector4(0.984f, 0.356f, 0.356f, 1));
+        lightning.SetVector4("FlashColor", new Vector4(1.968f, 0.713f, 0.713f, 1));
 
-        electricity.Play();
+        lightning.Play();
+
+        TryDamage(lightningDamage);
     }
 
-    void ShootFireBall()
+    void TryDamage(float damage)
     {
-
+         if (Vector3.Distance(bossTransform.position, transform.position) < damageRange)
+        {
+            manager.HitBoss(damage);
+        }
     }
 }

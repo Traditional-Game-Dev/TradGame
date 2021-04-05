@@ -6,18 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class BossHealth : MonoBehaviour
 {
-    public int maxHealth;
-    public int currentHealth;
-    public HealthBar healthBar;
-    public GameObject boss;
     public Material damagedBossMat;
-    public int range;
-    public int damageInflicted;
-    public InputActionAsset playerControls;
+    public HealthBar healthBar;
+    public float maxHealth;
 
     private SkinnedMeshRenderer bossMeshRenderer;
+    private float currentHealth;
 
-    private InputAction attack;
 
     // Start is called before the first frame update
     void Start()
@@ -25,24 +20,15 @@ public class BossHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        bossMeshRenderer = boss.GetComponentInChildren<SkinnedMeshRenderer>();
+        bossMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     void Awake()
     {
-        var gameplayActionMap = playerControls.FindActionMap("Gameplay");
-        attack = gameplayActionMap.FindAction("Attack");
-        attack.performed += ctx =>
-        {
-            if (Vector3.Distance(boss.transform.position, transform.position) < range)
-            {
-                dealDamage(damageInflicted);
-            }
-        };
-        attack.Enable();
+
     }
 
-    void dealDamage(int damage){
+    public void ReceiveDamage(float damage){
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
 
