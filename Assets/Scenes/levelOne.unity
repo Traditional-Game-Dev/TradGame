@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 21.616547, g: 25.978184, b: 32.222954, a: 1}
+  m_IndirectSpecularColor: {r: 21.618164, g: 25.99242, b: 32.241936, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1630,12 +1630,12 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 200
+  m_Intensity: 2000
   m_EnableSpotReflector: 0
-  m_LuxAtDistance: 10
+  m_LuxAtDistance: 8
   m_InnerSpotPercent: 0
   m_LightDimmer: 1
-  m_VolumetricDimmer: 16
+  m_VolumetricDimmer: 3.5
   m_LightUnit: 2
   m_FadeDistance: 10000
   m_AffectDiffuse: 1
@@ -1733,8 +1733,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.43602607, b: 0, a: 1}
-  m_Intensity: 20000
-  m_Range: 10
+  m_Intensity: 128000
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -7050,7 +7050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1152165681
 MonoBehaviour:
   m_ObjectHideFlags: 0
