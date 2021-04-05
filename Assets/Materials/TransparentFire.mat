@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_FireSphereShader
+  m_Name: TransparentFire
   m_Shader: {fileID: -6465566751694194690, guid: fd1c680f13a6cf945884faf04d87b6d8,
     type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _BLENDMODE_ALPHA _SURFACE_TYPE_TRANSPARENT

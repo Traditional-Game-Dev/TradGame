@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Smoke2
+  m_Name: SmokeSphere2
   m_Shader: {fileID: -6465566751694194690, guid: f7f50665ba41e8a47b0180834c0fcb98,
     type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _BLENDMODE_ALPHA _DOUBLESIDED_ON _SURFACE_TYPE_TRANSPARENT
