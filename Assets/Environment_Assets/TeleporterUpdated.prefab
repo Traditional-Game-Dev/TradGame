@@ -63,7 +63,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportingPlayerMat: {fileID: 2100000, guid: 6f1419bd480cca146b1e1d7b94b1b3df,
     type: 2}
-  manager: {fileID: 0}
 --- !u!1 &731657657563196209
 GameObject:
   m_ObjectHideFlags: 0
@@ -5022,7 +5021,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.16470589, g: 0.69803923, b: 0.7176471, a: 1}
-  m_Intensity: 20000000
+  m_Intensity: 4000000
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5091,7 +5090,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 50000
+  m_Intensity: 10000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 20
   m_InnerSpotPercent: 0

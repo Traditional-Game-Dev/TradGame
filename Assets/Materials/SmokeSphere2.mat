@@ -23,10 +23,10 @@ Material:
   m_Name: SmokeSphere2
   m_Shader: {fileID: -6465566751694194690, guid: f7f50665ba41e8a47b0180834c0fcb98,
     type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _BLENDMODE_ALPHA _DOUBLESIDED_ON _SURFACE_TYPE_TRANSPARENT
+  m_ShaderKeywords: _ALPHATEST_ON _BLENDMODE_ALPHA _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
@@ -48,9 +48,9 @@ Material:
     - _AlphaDstBlend: 10
     - _AlphaSrcBlend: 1
     - _BlendMode: 0
-    - _CullMode: 0
-    - _CullModeForward: 0
-    - _DoubleSidedEnable: 1
+    - _CullMode: 2
+    - _CullModeForward: 2
+    - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
     - _EnableFogOnTransparent: 0
