@@ -7,7 +7,7 @@ public class PlayerIdleState : PlayerBaseState
 {
     public override void EnterState(PlayerController player)
     {
-        player.anim.Play("Idle");
+        player.anim.SetBool("Jogging", false);
     }
 
     public override void Update(PlayerController player)

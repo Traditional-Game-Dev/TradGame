@@ -7,12 +7,12 @@ public class PlayerMovingState : PlayerBaseState
 {
     public override void EnterState(PlayerController player)
     {
+        player.anim.SetBool("Jogging", true);
+        player.anim.speed = 7;
     }
 
     public override void Update(PlayerController player)
     {
-        player.anim.Play("Jog");
-
         if (player.GetDirectionMag() < 0.1)
         {
             player.TransitionToState(player.IdleState);
