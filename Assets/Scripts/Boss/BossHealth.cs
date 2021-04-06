@@ -42,7 +42,13 @@ public class BossHealth : MonoBehaviour
 
     IEnumerator BossDamageColor()
     {
-        Material originalBossMat = bossMeshRenderer.material;
+        Material originalBossMat = bossMeshRenderer.sharedMaterial;
+
+        if (originalBossMat == damagedBossMat)
+        {
+            yield break;
+        }
+
         bossMeshRenderer.material = damagedBossMat;
 
         yield return new WaitForSeconds(0.25f);

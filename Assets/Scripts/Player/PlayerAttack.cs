@@ -18,6 +18,8 @@ public class PlayerAttack : MonoBehaviour
     private GameManager manager;
     private Transform playerTransform;
     private Transform bossTransform;
+    private Light fireballLight;
+    private Collider lightningCollider;
     //private int maxCombo = 3;
     private int comboCounter = 0;
     private bool isRed = true;
@@ -31,6 +33,9 @@ public class PlayerAttack : MonoBehaviour
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         bossTransform = GameObject.Find("Boss").transform;
+
+        fireballLight = fireball.GetComponentInChildren<Light>();
+        lightningCollider = lightning.gameObject.GetComponent<Collider>();
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
@@ -88,11 +93,11 @@ public class PlayerAttack : MonoBehaviour
         switch (comboCounter)
         {
             case 1:
-                PrepareLightning(isRed=true);
+                PrepareLightning(isRed = true);
                 ShootRedLightning();
                 break;
             case 2:
-                PrepareLightning(isRed=false);
+                PrepareLightning(isRed = false);
                 ShootBlueLightning();
                 break;
             case 3:
@@ -125,19 +130,47 @@ public class PlayerAttack : MonoBehaviour
     {
         fireball.SetActive(true);
 
-        float elapsedTime = 0;
+        float elapsedTime = 0.0f;
         Vector3 startPosition = fireball.transform.position;
         Vector3 targetPosition = fireball.transform.position + transform.forward * damageRange;
 
         while (elapsedTime < fireballDuration)
         {
+            if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
+                Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
+            {
+                break;
+            }
+
             fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballDuration);
-            elapsedTime += Time.fixedDeltaTime;
+            elapsedTime += Time.smoothDeltaTime;
 
             yield return null;
         }
 
-        TryDamage(fireballDamage);
+        if (manager.justHitBoss)
+        {
+            float originalIntensity = fireballLight.intensity;
+
+            Vector3 originalScale = fireball.transform.localScale;
+
+            float explosionTime = 0.25f;
+            elapsedTime = 0.0f;
+            while (elapsedTime < explosionTime)
+            {
+                fireball.transform.localScale *= 1.10f;
+                fireballLight.intensity *= 1.10f;
+
+                elapsedTime += Time.fixedDeltaTime;
+
+                yield return null;
+            }
+
+            manager.DamageBoss(fireballDamage);
+
+            fireball.transform.localScale = originalScale;
+            fireballLight.intensity = originalIntensity;
+        }
 
         fireball.SetActive(false);
 
@@ -146,7 +179,7 @@ public class PlayerAttack : MonoBehaviour
 
     void PrepareLightning(bool isRed)
     {
-        this.isRed = isRed; 
+        this.isRed = isRed;
         float newHandOffset = isRed ? -handOffset : handOffset;
 
         // set emission position (calculate offset for the right or left hand)
@@ -184,7 +217,15 @@ public class PlayerAttack : MonoBehaviour
 
         lightning.Play();
 
-        TryDamage(lightningDamage);
+        if (lightningCollider.bounds.Contains(bossTransform.position))
+        {
+            manager.justHitBoss = true;
+        }
+
+        if (manager.justHitBoss)
+        {
+            manager.DamageBoss(lightningDamage);
+        }
     }
 
     void ShootRedLightning()
@@ -194,14 +235,15 @@ public class PlayerAttack : MonoBehaviour
 
         lightning.Play();
 
-        TryDamage(lightningDamage);
-    }
 
-    void TryDamage(float damage)
-    {
-         if (Vector3.Distance(bossTransform.position, transform.position) < damageRange)
+        if (lightningCollider.bounds.Contains(bossTransform.position))
         {
-            manager.HitBoss(damage);
+            manager.justHitBoss = true;
+        }
+
+        if (manager.justHitBoss)
+        {
+            manager.DamageBoss(lightningDamage);
         }
     }
 }

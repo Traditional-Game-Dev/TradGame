@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    void FixedUpdate()
+    private GameManager manager;
+
+    void Awake()
     {
-        
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Boss")
+        {
+            manager.justHitBoss = true;
+        }
     }
 }
