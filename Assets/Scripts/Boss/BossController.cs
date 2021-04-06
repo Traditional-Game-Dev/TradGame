@@ -26,6 +26,8 @@ public class BossController : MonoBehaviour
     public float circleDivide;
     [Tooltip("The length of time the warmup animation will play for before firing laser")]
     public float timeForWarmup;
+    [Tooltip("Use this to adjust how much the speed of the animation is reduced")]
+    public float slowDown;
 
     [Header("Bullet Hell Attack:")]
     public GameObject bulletObject;

@@ -29,6 +29,7 @@ public class BossLaserAttackState : BossBaseState
         //boss.anim.Play("LaserAnim");
         boss.anim.SetBool("playLaserAnim", true);
 
+        i = 950;
         player = boss.player;
         lineRenderer = boss.lineRenderer;
         laserImpact = boss.laserImpact;
@@ -43,7 +44,6 @@ public class BossLaserAttackState : BossBaseState
         lineRenderer.enabled = true;
         laserImpact.Play();
         laserLight.SetActive(true);
-        lineRenderer.SetPosition(0, new Vector3(boss.transform.position.x - headOffset, 10, boss.transform.position.z));
     }
 
     public override void Update(BossController boss)
@@ -56,8 +56,9 @@ public class BossLaserAttackState : BossBaseState
             laserImpact.Stop();
             laserLight.SetActive(false);
             timerDuringAttacks -= bossAttackTime;
-
+            boss.anim.speed = 1;
             boss.TransitionToState(boss.IdleState);
+            //lineRenderer.SetPosition(0, new Vector3(boss.transform.position.x - headOffset, 10, boss.transform.position.z));
         }
 
         float dist = Vector3.Distance(player.transform.position, boss.transform.position);
@@ -66,10 +67,16 @@ public class BossLaserAttackState : BossBaseState
         {
             updatedSpeed = (int)circleSpeed;
         }
+
+        boss.anim.speed = updatedSpeed / (0.02f / Time.fixedDeltaTime) / 5;
+
         for (int j = 0; j < updatedSpeed / (0.02f / Time.fixedDeltaTime); j++)
         {
             radius = Vector3.Distance(player.transform.position, boss.transform.position) + 5;
             float angle = i * Mathf.PI * 2f / circleDivide;
+
+            lineRenderer.SetPosition(0, new Vector3(Mathf.Cos(angle) + boss.transform.position.x + 1, 10, Mathf.Sin(angle) + boss.transform.position.z));
+
             Vector3 lineEndPosition = new Vector3(Mathf.Cos(angle) * radius + boss.transform.position.x, 0, Mathf.Sin(angle) * radius + boss.transform.position.z);
 
             lineRenderer.SetPosition(1, lineEndPosition);

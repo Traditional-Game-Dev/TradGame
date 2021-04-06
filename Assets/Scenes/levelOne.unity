@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 21.618164, g: 25.99242, b: 32.241936, a: 1}
+  m_IndirectSpecularColor: {r: 19.487532, g: 23.188314, b: 24.093235, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1019,6 +1019,7 @@ MonoBehaviour:
   hitboxOffset: 32
   circleDivide: 1250
   timeForWarmup: 5
+  slowDown: 15
   bulletObject: {fileID: 1693783851390844515, guid: acec094922fd7524eac6de1c7c7ff671,
     type: 3}
   bulletDamage: 10
