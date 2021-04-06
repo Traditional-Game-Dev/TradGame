@@ -18,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     private GameManager manager;
     private Transform playerTransform;
     private Transform bossTransform;
+    private Light fireballLight;
     //private int maxCombo = 3;
     private int comboCounter = 0;
     private bool isRed = true;
@@ -31,6 +32,8 @@ public class PlayerAttack : MonoBehaviour
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         bossTransform = GameObject.Find("Boss").transform;
+
+        fireballLight = fireball.GetComponentInChildren<Light>();
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
@@ -143,11 +146,9 @@ public class PlayerAttack : MonoBehaviour
             yield return null;
         }
 
-        if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
-            Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
+        if (manager.justHitBoss)
         {
-            Light light = fireball.GetComponentInChildren<Light>();
-            float originalIntensity = light.intensity;
+            float originalIntensity = fireballLight.intensity;
 
             Vector3 originalScale = fireball.transform.localScale;
 
@@ -156,17 +157,17 @@ public class PlayerAttack : MonoBehaviour
             while (elapsedTime < explosionTime)
             {
                 fireball.transform.localScale *= 1.10f;
-                light.intensity *= 1.10f;
+                fireballLight.intensity *= 1.10f;
 
                 elapsedTime += Time.fixedDeltaTime;
 
                 yield return null;
             }
 
-            manager.HitBoss(fireballDamage);
+            manager.DamageBoss(fireballDamage);
 
             fireball.transform.localScale = originalScale;
-            light.intensity = originalIntensity;
+            fireballLight.intensity = originalIntensity;
         }
 
         fireball.SetActive(false);
@@ -214,7 +215,10 @@ public class PlayerAttack : MonoBehaviour
 
         lightning.Play();
 
-        TryDamage(lightningDamage);
+        if (manager.justHitBoss)
+        {
+            manager.DamageBoss(lightningDamage);
+        }
     }
 
     void ShootRedLightning()
@@ -224,14 +228,9 @@ public class PlayerAttack : MonoBehaviour
 
         lightning.Play();
 
-        TryDamage(lightningDamage);
-    }
-
-    void TryDamage(float damage)
-    {
-        if (Vector3.Distance(bossTransform.position, transform.position) < damageRange)
+        if (manager.justHitBoss)
         {
-            manager.HitBoss(damage);
+            manager.DamageBoss(lightningDamage);
         }
     }
 }

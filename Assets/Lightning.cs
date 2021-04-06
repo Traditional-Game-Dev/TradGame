@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fireball : MonoBehaviour
+public class Lightning : MonoBehaviour
 {
     private GameManager manager;
 
-    void Awake()
+    private void Awake()
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Boss")
         {
+            Debug.Log("hit boss w/ light!");
+
             manager.justHitBoss = true;
         }
     }

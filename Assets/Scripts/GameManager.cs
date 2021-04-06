@@ -104,9 +104,13 @@ public class GameManager : MonoBehaviour
     #region Boss
 
     public GameObject boss;
+    public bool justHitBoss { get; set; } = false;
 
-    public void HitBoss(float damage) => 
+    public void DamageBoss(float damage)
+    {
         boss.GetComponent<BossHealth>().ReceiveDamage(damage);
+        justHitBoss = false;
+    }
 
     #endregion
 
