@@ -6,6 +6,6 @@ public class Fireball : MonoBehaviour
 {
     void FixedUpdate()
     {
-        
+
     }
 }

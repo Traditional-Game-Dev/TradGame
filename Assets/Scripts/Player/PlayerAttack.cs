@@ -88,11 +88,11 @@ public class PlayerAttack : MonoBehaviour
         switch (comboCounter)
         {
             case 1:
-                PrepareLightning(isRed=true);
+                PrepareLightning(isRed = true);
                 ShootRedLightning();
                 break;
             case 2:
-                PrepareLightning(isRed=false);
+                PrepareLightning(isRed = false);
                 ShootBlueLightning();
                 break;
             case 3:
@@ -125,19 +125,49 @@ public class PlayerAttack : MonoBehaviour
     {
         fireball.SetActive(true);
 
-        float elapsedTime = 0;
+        float elapsedTime = 0.0f;
         Vector3 startPosition = fireball.transform.position;
         Vector3 targetPosition = fireball.transform.position + transform.forward * damageRange;
 
         while (elapsedTime < fireballDuration)
         {
+            if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
+                Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
+            {
+                break;
+            }
+
             fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballDuration);
-            elapsedTime += Time.fixedDeltaTime;
+            elapsedTime += Time.smoothDeltaTime;
 
             yield return null;
         }
 
-        TryDamage(fireballDamage);
+        if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
+            Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
+        {
+            Light light = fireball.GetComponentInChildren<Light>();
+            float originalIntensity = light.intensity;
+
+            Vector3 originalScale = fireball.transform.localScale;
+
+            float explosionTime = 0.25f;
+            elapsedTime = 0.0f;
+            while (elapsedTime < explosionTime)
+            {
+                fireball.transform.localScale *= 1.10f;
+                light.intensity *= 1.10f;
+
+                elapsedTime += Time.fixedDeltaTime;
+
+                yield return null;
+            }
+
+            manager.HitBoss(fireballDamage);
+
+            fireball.transform.localScale = originalScale;
+            light.intensity = originalIntensity;
+        }
 
         fireball.SetActive(false);
 
@@ -146,7 +176,7 @@ public class PlayerAttack : MonoBehaviour
 
     void PrepareLightning(bool isRed)
     {
-        this.isRed = isRed; 
+        this.isRed = isRed;
         float newHandOffset = isRed ? -handOffset : handOffset;
 
         // set emission position (calculate offset for the right or left hand)
@@ -199,7 +229,7 @@ public class PlayerAttack : MonoBehaviour
 
     void TryDamage(float damage)
     {
-         if (Vector3.Distance(bossTransform.position, transform.position) < damageRange)
+        if (Vector3.Distance(bossTransform.position, transform.position) < damageRange)
         {
             manager.HitBoss(damage);
         }
