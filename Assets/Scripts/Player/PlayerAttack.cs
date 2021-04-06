@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
     private Transform playerTransform;
     private Transform bossTransform;
     private Light fireballLight;
+    private Collider lightningCollider;
     //private int maxCombo = 3;
     private int comboCounter = 0;
     private bool isRed = true;
@@ -34,6 +35,7 @@ public class PlayerAttack : MonoBehaviour
         bossTransform = GameObject.Find("Boss").transform;
 
         fireballLight = fireball.GetComponentInChildren<Light>();
+        lightningCollider = lightning.gameObject.GetComponent<Collider>();
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
@@ -215,6 +217,11 @@ public class PlayerAttack : MonoBehaviour
 
         lightning.Play();
 
+        if (lightningCollider.bounds.Contains(bossTransform.position))
+        {
+            manager.justHitBoss = true;
+        }
+
         if (manager.justHitBoss)
         {
             manager.DamageBoss(lightningDamage);
@@ -227,6 +234,12 @@ public class PlayerAttack : MonoBehaviour
         lightning.SetVector4("FlashColor", new Vector4(1.968f, 0.713f, 0.713f, 1));
 
         lightning.Play();
+
+
+        if (lightningCollider.bounds.Contains(bossTransform.position))
+        {
+            manager.justHitBoss = true;
+        }
 
         if (manager.justHitBoss)
         {

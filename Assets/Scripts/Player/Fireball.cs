@@ -11,6 +11,7 @@ public class Fireball : MonoBehaviour
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Boss")
