@@ -43,29 +43,44 @@ public class BlueprintScript : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        transform.position = new Vector3(0, 0, 0);
+    }
+
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Vector3 tempLocation;
 
-        //Place At Ground
-        if(Physics.Raycast(ray, out hit, 50000.0f))
+
+        //Place At Ground Mouse
+        if(Physics.Raycast(ray, out hit, 50000.0f) && Gamepad.current == null)
         {   
-            Vector3 tempLocation = hit.point;
+            tempLocation = hit.point;
             tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y;
             transform.position = tempLocation;
+        }
+        //Place At Ground Controller
+        else
+        {
+            tempLocation = new Vector3 ((Gamepad.current.leftStick.x.ReadValue() * Time.deltaTime * 30) + transform.position.x, -0.25f, (Gamepad.current.leftStick.y.ReadValue() * Time.deltaTime * 30) + transform.position.z);
+            tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y;
+            Debug.Log($"Pos: {transform.position} temp: {tempLocation}");
+            transform.position = tempLocation;
+        }
 
-            //Object Recoloration
-            if(Vector3.Distance(tempLocation, GameObject.Find("Boss").transform.position) < 25)
+        //Object Recoloration
+        if(Vector3.Distance(transform.position, GameObject.Find("Boss").transform.position) < 25)
+        {
+            if(gameObject.GetComponent<MeshRenderer>().material.color != blueprintError.color)
             {
-                if(gameObject.GetComponent<MeshRenderer>().material.color != blueprintError.color)
-                {
-                    gameObject.GetComponent<MeshRenderer>().material = blueprintError;
-                }
+                gameObject.GetComponent<MeshRenderer>().material = blueprintError;
             }
-            else if(gameObject.GetComponent<MeshRenderer>().material.color != blueprintMat.color)
-            {
-                gameObject.GetComponent<MeshRenderer>().material = blueprintMat;
-            }
+        }
+        else if(gameObject.GetComponent<MeshRenderer>().material.color != blueprintMat.color)
+        {
+            gameObject.GetComponent<MeshRenderer>().material = blueprintMat;
         }
 
         //Object Deselection

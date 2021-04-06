@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 21.623657, g: 25.975605, b: 32.22341, a: 1}
+  m_IndirectSpecularColor: {r: 21.756836, g: 25.850368, b: 32.13833, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2266,6 +2266,7 @@ GameObject:
   - component: {fileID: 377297243}
   - component: {fileID: 377297242}
   - component: {fileID: 377297246}
+  - component: {fileID: 377297247}
   m_Layer: 5
   m_Name: PlanningUI
   m_TagString: Untagged
@@ -2379,6 +2380,21 @@ MonoBehaviour:
   rockCost: 1
   teleporter: {fileID: 665281676}
   teleporterCost: 3
+--- !u!114 &377297247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377297241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0f404a1768588459923cb45ed35c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
+    type: 3}
+  initialSelection: {fileID: 1513388556}
 --- !u!1 &399057585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,17 +2485,17 @@ PrefabInstance:
     - target: {fileID: 3049974705246598764, guid: c9543ac44cd271b4fa4c80b6542b6ff6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8225174
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3049974705246598764, guid: c9543ac44cd271b4fa4c80b6542b6ff6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.161674
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3049974705246598764, guid: c9543ac44cd271b4fa4c80b6542b6ff6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -73.83569
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3049974705246598764, guid: c9543ac44cd271b4fa4c80b6542b6ff6,
         type: 3}
@@ -4225,7 +4241,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4247,6 +4263,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 377297246}
         m_MethodName: createWall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 377297247}
+        m_MethodName: deselectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6559,7 +6586,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6581,6 +6608,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 377297246}
         m_MethodName: createTeleporter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 377297247}
+        m_MethodName: deselectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7782,17 +7820,17 @@ PrefabInstance:
     - target: {fileID: 4009560157123106065, guid: 3fd2f778c4ea6b94a87b0894c8010455,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -49.023914
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4009560157123106065, guid: 3fd2f778c4ea6b94a87b0894c8010455,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.0349674
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4009560157123106065, guid: 3fd2f778c4ea6b94a87b0894c8010455,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -48.78944
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4009560157123106065, guid: 3fd2f778c4ea6b94a87b0894c8010455,
         type: 3}
@@ -9150,7 +9188,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.695, g: 0.695, b: 0.695, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -9172,6 +9210,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 377297246}
         m_MethodName: createRuinsWall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 377297247}
+        m_MethodName: deselectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10347,17 +10396,17 @@ PrefabInstance:
     - target: {fileID: 6362184898951849202, guid: 102e26276df577c4da783b0851066db4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.767876
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6362184898951849202, guid: 102e26276df577c4da783b0851066db4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2489986
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6362184898951849202, guid: 102e26276df577c4da783b0851066db4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -55.344913
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6362184898951849202, guid: 102e26276df577c4da783b0851066db4,
         type: 3}
@@ -10548,7 +10597,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -10570,6 +10619,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 377297246}
         m_MethodName: createRock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 377297247}
+        m_MethodName: deselectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10860,17 +10920,17 @@ PrefabInstance:
     - target: {fileID: 7351961299389538498, guid: c9190f88f90b4a348894b4ea9198e075,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.068466
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351961299389538498, guid: c9190f88f90b4a348894b4ea9198e075,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0572517
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351961299389538498, guid: c9190f88f90b4a348894b4ea9198e075,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -62.927933
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351961299389538498, guid: c9190f88f90b4a348894b4ea9198e075,
         type: 3}
