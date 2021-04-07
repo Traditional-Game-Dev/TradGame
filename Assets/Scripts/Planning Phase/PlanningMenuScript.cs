@@ -29,7 +29,10 @@ public class PlanningMenuScript : MonoBehaviour
         {
             GameObject.Find("BookToggle").GetComponent<Animator>().Play("Normal");
             EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(prevSelected);
+            if(Gamepad.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(prevSelected);
+            }
         }
     }
 
@@ -37,16 +40,16 @@ public class PlanningMenuScript : MonoBehaviour
     {
         prevSelected = initialSelection;
         EventSystem.current.SetSelectedGameObject(prevSelected);
-        if(Gamepad.current != null)
-        {
-            GameObject.Find("FakeButton").SetActive(false);
-            GameObject.Find("BookToggle").GetComponent<Image>().enabled = false;
-        }
-        else
-        {
-            GameObject.Find("FakeButton").SetActive(true);
-            GameObject.Find("BookToggle").GetComponent<Image>().enabled = true;
-        }
+        // if(Gamepad.current != null)
+        // {
+        //     GameObject.Find("FakeButton").SetActive(false);
+        //     GameObject.Find("BookToggle").GetComponent<Image>().enabled = false;
+        // }
+        // else
+        // {
+        //     GameObject.Find("FakeButton").SetActive(true);
+        //     GameObject.Find("BookToggle").GetComponent<Image>().enabled = true;
+        // }
     }
 
     public void deselectButton()
