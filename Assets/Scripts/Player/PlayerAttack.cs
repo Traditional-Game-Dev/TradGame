@@ -219,6 +219,8 @@ public class PlayerAttack : MonoBehaviour
 
     void ShootLightning(bool isRed)
     {
+        lightning.gameObject.SetActive(true);
+
         if (isRed)
         {
             lightning.SetVector4("BoltColor", new Vector4(0.984f, 0.356f, 0.356f, 1));
@@ -255,14 +257,14 @@ public class PlayerAttack : MonoBehaviour
 
         lightning.SetBool("HitBoss", false);
         lightning.SetFloat("ImpactOffsetZ", 6.0f);
+        lightning.gameObject.SetActive(false);
 
         canAttack = true;
     }
 
-    private void OnDrawGizmos()
-    {
-        Debug.Log("hello!");
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
-        Gizmos.DrawCube(lightning.GetComponent<BoxCollider>().center, lightning.GetComponent<BoxCollider>().size);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = new Color(1, 0, 0, 0.5f);
+    //    Gizmos.DrawCube(lightning.GetComponent<BoxCollider>().center, lightning.GetComponent<BoxCollider>().size);
+    //}
 }
