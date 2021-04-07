@@ -161,12 +161,12 @@ public class PlayerAttack : MonoBehaviour
 
             Vector3 originalScale = fireball.transform.localScale;
 
-            float explosionTime = 0.25f;
+            float explosionTime = 0.15f;
             elapsedTime = 0.0f;
             while (elapsedTime < explosionTime)
             {
-                fireball.transform.localScale *= 1.10f;
-                fireballLight.intensity *= 1.10f;
+                //fireball.transform.localScale *= 1.10f;
+                fireballLight.intensity *= 1.5f;
 
                 elapsedTime += Time.fixedDeltaTime;
 
@@ -230,13 +230,13 @@ public class PlayerAttack : MonoBehaviour
             lightning.SetVector4("FlashColor", new Vector4(0.713f, 1.545f, 1.968f, 1));
         }
 
-        if (lightningCollider.bounds.Contains(bossTransform.position))
+        if (lightningCollider.bounds.Contains(new Vector3(bossTransform.position.x, 0.0f, bossTransform.position.z)))
         {
             manager.justHitBoss = true;
             lightning.SetBool("HitBoss", true);
-            float dist = Vector2.Distance(new Vector2(bossTransform.position.x, bossTransform.position.z),
-                                            new Vector2(playerTransform.position.x, playerTransform.position.z));
-            lightning.SetFloat("ImpactOffsetZ", dist);
+            float dist = Vector3.Distance(new Vector3(bossTransform.position.x, 0.0f, bossTransform.position.z),
+                                            new Vector3(playerTransform.position.x, 0.0f, playerTransform.position.z));
+            lightning.SetFloat("ImpactOffsetZ", dist / 2); // weird, but works for now
         }
 
         lightning.Play();
@@ -257,5 +257,12 @@ public class PlayerAttack : MonoBehaviour
         lightning.SetFloat("ImpactOffsetZ", 6.0f);
 
         canAttack = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.Log("hello!");
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawCube(lightning.GetComponent<BoxCollider>().center, lightning.GetComponent<BoxCollider>().size);
     }
 }

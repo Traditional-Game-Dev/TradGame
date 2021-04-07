@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 21.627472, g: 26.002384, b: 32.262077, a: 1}
+  m_IndirectSpecularColor: {r: 21.632095, g: 25.967472, b: 32.217094, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1109,7 +1109,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.2, z: 0.75}
+  m_Size: {x: 1, y: 2.2, z: 0.5}
   m_Center: {x: 0.2, y: 0.1, z: 0}
 --- !u!23 &142765628
 MeshRenderer:
@@ -3226,8 +3226,8 @@ MonoBehaviour:
   lightningDamage: 5
   fireball: {fileID: 1768698463}
   fireballDamage: 10
-  fireballRange: 7
-  fireballLifetime: 0.35
+  fireballRange: 10
+  fireballLifetime: 0.45
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
 --- !u!1 &471199992
@@ -4677,7 +4677,10 @@ VisualEffect:
   m_ResetSeedOnPlay: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 6
+        m_Name: ImpactOffsetZ
+        m_Overridden: 0
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -4709,8 +4712,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733947137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 21.13, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 29
@@ -4726,8 +4729,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 10, z: 7.5}
-  m_Center: {x: 0, y: 5, z: 3.5}
+  m_Size: {x: 5.5, y: 10, z: 7.5}
+  m_Center: {x: 0, y: 0, z: 3.5}
 --- !u!1 &736970557
 GameObject:
   m_ObjectHideFlags: 0
