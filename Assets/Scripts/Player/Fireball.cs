@@ -19,20 +19,4 @@ public class Fireball : MonoBehaviour
             manager.justHitBoss = true;
         }
     }
-
-    //int frameCount = 0;
-    //int maxCount = 15;
-
-    //void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Boss")
-    //    {
-    //        frameCount++;
-    //        if (frameCount > maxCount)
-    //        {
-    //            manager.justHitBoss = true;
-    //            frameCount = 0;
-    //        }
-    //    }
-    //}
 }
