@@ -29,7 +29,7 @@ public class BossPoisonState : BossBaseState
 
         player = boss.player;
 
-        poisonObject.transform.position = boss.transform.position + new Vector3(1.9f, 5.8f, 0.0f);
+        poisonObject.transform.position = boss.transform.position + new Vector3(0.0f, 5.5f, 0.0f);
         poisonBomb = GameObject.Instantiate(poisonObject);
         poisonBomb.GetComponentInChildren<VisualEffect>().Stop(); // bad
 
