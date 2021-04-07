@@ -18,10 +18,12 @@ public class spawnObject : MonoBehaviour
 
     void Awake()
     {
-        GameObject.Find("SpawnWall").GetComponentInChildren<Text>().text = $"Create Wall - ${wallCost}";
-        GameObject.Find("SpawnRock").GetComponentInChildren<Text>().text = $"Create Rock - ${rockCost}";
-        GameObject.Find("SpawnRuins").GetComponentInChildren<Text>().text = $"Create Wide Wall - ${ruinsWallCost}";
-        GameObject.Find("SpawnTeleporter").GetComponentInChildren<Text>().text = $"Create Teleporter - ${teleporterCost}";
+        GameObject.Find("SpawnWall").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Wall\n{wallCost}";
+        GameObject.Find("SpawnRock").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Rock\n{rockCost}";
+        GameObject.Find("SpawnRuins").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Wide Wall\n{ruinsWallCost}";
+        GameObject.Find("SpawnTeleporter").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Teleporter\n{teleporterCost}";
+        GameObject.Find("ManaBarSlider").GetComponent<Slider>().maxValue = planningMana;
+
         mana = planningMana;
     }
 
@@ -70,7 +72,9 @@ public class spawnObject : MonoBehaviour
 
     void Update()
     {
-        GameObject.Find("MoneyCount").GetComponent<Text>().text = mana.ToString();
+        GameObject.Find("MoneyCount").GetComponent<Text>().text = $"{mana} / {planningMana}";
+        GameObject.Find("ManaBarSlider").GetComponent<Slider>().value = mana;
+
 
         if(mana <= 0)
         {

@@ -66,7 +66,6 @@ public class BlueprintScript : MonoBehaviour
         {
             tempLocation = new Vector3 ((Gamepad.current.leftStick.x.ReadValue() * Time.deltaTime * 30) + transform.position.x, -0.25f, (Gamepad.current.leftStick.y.ReadValue() * Time.deltaTime * 30) + transform.position.z);
             tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y;
-            Debug.Log($"Pos: {transform.position} temp: {tempLocation}");
             transform.position = tempLocation;
         }
 
