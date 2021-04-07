@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 21.756836, g: 25.850368, b: 32.13833, a: 1}
+  m_IndirectSpecularColor: {r: 21.623657, g: 25.975605, b: 32.223717, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4052,7 +4052,6 @@ GameObject:
   - component: {fileID: 733947139}
   - component: {fileID: 733947138}
   - component: {fileID: 733947142}
-  - component: {fileID: 733947141}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -4154,18 +4153,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &733947141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733947137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d21f3b28bdcf3da44bd8f88b11f01800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &733947142
 BoxCollider:
   m_ObjectHideFlags: 0
