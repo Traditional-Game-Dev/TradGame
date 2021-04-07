@@ -221,12 +221,13 @@ public class PlayerAttack : MonoBehaviour
         lightning.SetVector4("BoltColor", new Vector4(0.356f, 0.772f, 0.984f, 1));
         lightning.SetVector4("FlashColor", new Vector4(0.713f, 1.545f, 1.968f, 1));
 
-        lightning.Play();
-
         if (lightningCollider.bounds.Contains(bossTransform.position))
         {
             manager.justHitBoss = true;
+            lightning.SetBool("HitBoss", true);
         }
+
+        lightning.Play();
 
         if (manager.justHitBoss)
         {
@@ -239,13 +240,13 @@ public class PlayerAttack : MonoBehaviour
         lightning.SetVector4("BoltColor", new Vector4(0.984f, 0.356f, 0.356f, 1));
         lightning.SetVector4("FlashColor", new Vector4(1.968f, 0.713f, 0.713f, 1));
 
-        lightning.Play();
-
-
         if (lightningCollider.bounds.Contains(bossTransform.position))
         {
             manager.justHitBoss = true;
+            lightning.SetBool("HitBoss", true);
         }
+
+        lightning.Play();
 
         if (manager.justHitBoss)
         {
@@ -258,6 +259,8 @@ public class PlayerAttack : MonoBehaviour
         canAttack = false;
 
         yield return new WaitForSeconds(timeBetweenAttacks);
+
+        lightning.SetBool("HitBoss", false);
 
         canAttack = true;
     }
