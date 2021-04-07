@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int totalHp;
     public int totalLives;
     public Text healthUI;
-    public Text livesUI;
+    public GameObject livesUI;
     [System.NonSerialized] public int currentHP;
     [System.NonSerialized] public int currentLives;
     public GameManager manager;
@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHP = totalHp;
         currentLives = totalLives;
+        livesUI.GetComponent<LivesSprites>().UpdateLivesImage(currentLives + 1);
     }
 
     void Update()
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
             else
             {
                 currentLives--;
+                livesUI.GetComponent<LivesSprites>().UpdateLivesImage(currentLives + 1);
                 currentHP = totalHp;
                 Camera.main.GetComponent<CameraController>().swapMode();
                 manager.ResetTeleporters();
@@ -43,8 +45,19 @@ public class PlayerHealth : MonoBehaviour
         healthUI.text = $"HP: {currentHP}/{totalHp}";
 
         //TODO: Update Lives Counter (temp implementation done)
-        livesUI.text = $"Lives: {currentLives}/{totalLives}";
+        //livesUI.text = $"Lives: {currentLives}/{totalLives}";
+    }
 
+    void OnDisable()
+    {
+        currentHP = totalHp;
+        gameObject.transform.position = new Vector3(0f, 1f, -50f);
+
+    }
+
+    void OnEnable()
+    {
+        currentHP = totalHp;
     }
 
     public void damagePlayer(int totalDamage)
