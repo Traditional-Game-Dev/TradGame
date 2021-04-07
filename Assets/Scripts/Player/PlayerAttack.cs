@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject fireball;
     public float fireballDamage;
     public float fireballRange;
-    public float fireballSpeed;
+    public float fireballLifetime;
 
     private GameManager manager;
     private Transform playerTransform;
@@ -98,11 +98,11 @@ public class PlayerAttack : MonoBehaviour
         {
             case 1:
                 PrepareLightning(isRed = true);
-                ShootRedLightning();
+                ShootLightning(isRed = true);
                 break;
             case 2:
                 PrepareLightning(isRed = false);
-                ShootBlueLightning();
+                ShootLightning(isRed = false);
                 break;
             case 3:
                 PrepareFireball();
@@ -140,15 +140,16 @@ public class PlayerAttack : MonoBehaviour
         Vector3 startPosition = fireball.transform.position;
         Vector3 targetPosition = fireball.transform.position + transform.forward * fireballRange;
 
-        while (elapsedTime < fireballSpeed)
+        while (elapsedTime < fireballLifetime)
         {
-            if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
-                Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
+            //if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
+            //    Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
+            if (manager.justHitBoss)
             {
                 break;
             }
 
-            fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballSpeed);
+            fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballLifetime);
             elapsedTime += Time.smoothDeltaTime;
 
             yield return null;
@@ -216,36 +217,29 @@ public class PlayerAttack : MonoBehaviour
                                                                    playerTransform.rotation.w);
     }
 
-    void ShootBlueLightning()
+    void ShootLightning(bool isRed)
     {
-        lightning.SetVector4("BoltColor", new Vector4(0.356f, 0.772f, 0.984f, 1));
-        lightning.SetVector4("FlashColor", new Vector4(0.713f, 1.545f, 1.968f, 1));
-
-        lightning.Play();
+        if (isRed)
+        {
+            lightning.SetVector4("BoltColor", new Vector4(0.984f, 0.356f, 0.356f, 1));
+            lightning.SetVector4("FlashColor", new Vector4(1.968f, 0.713f, 0.713f, 1));
+        }
+        else
+        {
+            lightning.SetVector4("BoltColor", new Vector4(0.356f, 0.772f, 0.984f, 1));
+            lightning.SetVector4("FlashColor", new Vector4(0.713f, 1.545f, 1.968f, 1));
+        }
 
         if (lightningCollider.bounds.Contains(bossTransform.position))
         {
             manager.justHitBoss = true;
+            lightning.SetBool("HitBoss", true);
+            float dist = Vector2.Distance(new Vector2(bossTransform.position.x, bossTransform.position.z),
+                                            new Vector2(playerTransform.position.x, playerTransform.position.z));
+            lightning.SetFloat("ImpactOffsetZ", dist);
         }
-
-        if (manager.justHitBoss)
-        {
-            manager.DamageBoss(lightningDamage);
-        }
-    }
-
-    void ShootRedLightning()
-    {
-        lightning.SetVector4("BoltColor", new Vector4(0.984f, 0.356f, 0.356f, 1));
-        lightning.SetVector4("FlashColor", new Vector4(1.968f, 0.713f, 0.713f, 1));
 
         lightning.Play();
-
-
-        if (lightningCollider.bounds.Contains(bossTransform.position))
-        {
-            manager.justHitBoss = true;
-        }
 
         if (manager.justHitBoss)
         {
@@ -258,6 +252,9 @@ public class PlayerAttack : MonoBehaviour
         canAttack = false;
 
         yield return new WaitForSeconds(timeBetweenAttacks);
+
+        lightning.SetBool("HitBoss", false);
+        lightning.SetFloat("ImpactOffsetZ", 6.0f);
 
         canAttack = true;
     }
