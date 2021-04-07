@@ -58,4 +58,9 @@ public class PlanningMenuScript : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         GameObject.Find("BookToggle").GetComponent<Animator>().Play("Move to Bot");
     }
+
+    public void CameraStart()
+    {
+        Camera.main.GetComponent<CameraController>().swapMode();
+    }
 }

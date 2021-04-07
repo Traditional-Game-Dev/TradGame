@@ -46,10 +46,7 @@ public class PlayerAttack : MonoBehaviour
         lightning.Stop();
 
         attack = gameplayActionMap.FindAction("Attack");
-        attack.performed += ctx =>
-        {
-            ComboAttack();
-        };
+
         attack.Enable();
 
         playerTransform = gameObject.transform;
@@ -57,6 +54,11 @@ public class PlayerAttack : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(attack.triggered)
+        {
+            ComboAttack();
+        }
+
         float newHandOffset = isRed ? -handOffset : handOffset;
 
         if (lightning.isActiveAndEnabled)
