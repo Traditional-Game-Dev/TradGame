@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject fireball;
     public float fireballDamage;
     public float fireballRange;
-    public float fireballSpeed;
+    public float fireballLifetime;
 
     private GameManager manager;
     private Transform playerTransform;
@@ -140,7 +140,7 @@ public class PlayerAttack : MonoBehaviour
         Vector3 startPosition = fireball.transform.position;
         Vector3 targetPosition = fireball.transform.position + transform.forward * fireballRange;
 
-        while (elapsedTime < fireballSpeed)
+        while (elapsedTime < fireballLifetime)
         {
             //if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
             //    Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
@@ -149,7 +149,7 @@ public class PlayerAttack : MonoBehaviour
                 break;
             }
 
-            fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballSpeed);
+            fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballLifetime);
             elapsedTime += Time.smoothDeltaTime;
 
             yield return null;
