@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
         gameplayUI.SetActive(true);
         planningUI.SetActive(false);
 
+        //electric.gameObject.SetActive(true);
+        //electric.Stop();
+
         player.transform.position = new Vector3(0f, 1f, -50f);
         player.SetActive(true);
 
@@ -61,6 +64,8 @@ public class GameManager : MonoBehaviour
         planningUI.GetComponent<spawnObject>().mana = planningUI.GetComponent<spawnObject>().planningMana;
 
         player.SetActive(false);
+
+        //electric.gameObject.SetActive(false);
 
         GameObject.Find("Boss").GetComponent<BossController>().planningPhase = true;
     }
