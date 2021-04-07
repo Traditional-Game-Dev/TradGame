@@ -27,10 +27,7 @@ public class PlanningMenuScript : MonoBehaviour
     {
         if(deselect.triggered)
         {
-            if(Gamepad.current != null)
-            {
-                GameObject.Find("BookToggle").GetComponent<Animator>().Play("Normal");
-            }
+            GameObject.Find("BookToggle").GetComponent<Animator>().Play("Normal");
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(prevSelected);
         }
