@@ -6,25 +6,29 @@ using UnityEngine.VFX;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public VisualEffect lightning;
-    public GameObject fireball;
+    [Header("Combo:")]
+    public float timeBetweenAttacks;
     public float comboTimeWindow;
-    public float damageRange;
+    //public float comboCooldown = 25f; // possible future use
+    [Header("Lightning:")]
+    public VisualEffect lightning;
     public float lightningDamage;
+    [Header("Fireball:")]
+    public GameObject fireball;
     public float fireballDamage;
-    public float fireballDuration;
-    //public float comboCooldown = 25f; // future use
+    public float fireballRange;
+    public float fireballSpeed;
 
     private GameManager manager;
     private Transform playerTransform;
     private Transform bossTransform;
     private Light fireballLight;
     private Collider lightningCollider;
-    //private int maxCombo = 3;
     private int comboCounter = 0;
     private bool isRed = true;
     private float heightOffset = 0.5f;
     private float handOffset = 0.5f;
+    private bool canAttack = true;
 
     public InputActionAsset playerControls;
     private InputAction attack;
@@ -83,7 +87,7 @@ public class PlayerAttack : MonoBehaviour
     // *add delay interval once animations are in place
     void ComboAttack()
     {
-        if (manager.playerDisabled)
+        if (!canAttack || manager.playerDisabled)
         {
             return;
         }
@@ -112,6 +116,8 @@ public class PlayerAttack : MonoBehaviour
         {
             comboCounter = 0;
         }
+
+        StartCoroutine(RestInterval());
     }
 
     void PrepareFireball()
@@ -132,9 +138,9 @@ public class PlayerAttack : MonoBehaviour
 
         float elapsedTime = 0.0f;
         Vector3 startPosition = fireball.transform.position;
-        Vector3 targetPosition = fireball.transform.position + transform.forward * damageRange;
+        Vector3 targetPosition = fireball.transform.position + transform.forward * fireballRange;
 
-        while (elapsedTime < fireballDuration)
+        while (elapsedTime < fireballSpeed)
         {
             if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
                 Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
@@ -142,7 +148,7 @@ public class PlayerAttack : MonoBehaviour
                 break;
             }
 
-            fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballDuration);
+            fireball.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / fireballSpeed);
             elapsedTime += Time.smoothDeltaTime;
 
             yield return null;
@@ -245,5 +251,14 @@ public class PlayerAttack : MonoBehaviour
         {
             manager.DamageBoss(lightningDamage);
         }
+    }
+
+    IEnumerator RestInterval()
+    {
+        canAttack = false;
+
+        yield return new WaitForSeconds(timeBetweenAttacks);
+
+        canAttack = true;
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 21.623657, g: 25.975605, b: 32.223717, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2859,13 +2859,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f744c9c763a3894e83206237f7f7733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenAttacks: 0.5
+  comboTimeWindow: 2
   lightning: {fileID: 733947139}
-  fireball: {fileID: 1768698463}
-  comboTimeWindow: 1
-  damageRange: 10
   lightningDamage: 5
+  fireball: {fileID: 1768698463}
   fireballDamage: 10
-  fireballDuration: 0.4
+  fireballRange: 7
+  fireballSpeed: 25
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
 --- !u!1 &471199992
