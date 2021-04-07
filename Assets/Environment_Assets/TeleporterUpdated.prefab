@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportingPlayerMat: {fileID: 2100000, guid: 6f1419bd480cca146b1e1d7b94b1b3df,
     type: 2}
+  dissolveMat: {fileID: 2100000, guid: 4a89057a9ead5064cb4767d5737af0d7, type: 2}
 --- !u!1 &731657657563196209
 GameObject:
   m_ObjectHideFlags: 0

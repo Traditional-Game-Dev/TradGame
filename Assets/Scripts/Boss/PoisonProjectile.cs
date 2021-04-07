@@ -55,7 +55,7 @@ public class PoisonProjectile : MonoBehaviour
 
         float targetDistance = Vector3.Distance(projectileTransform.position, targetPosition);
 
-        // calcualte the velocity needed to throw the object to the target
+        // calculate the velocity needed to throw the object to the target
         float velocity = targetDistance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / gravity);
 
         // extract x and y components of velocity

@@ -7,15 +7,16 @@ using static UnityEngine.ParticleSystem;
 public class Teleporter : MonoBehaviour
 {
     public Material teleportingPlayerMat;
-    private GameManager manager;
+    public Material dissolveMat;
 
+    private GameManager manager;
     private ParticleSystem particles;
     private Transform otherTeleporterTransform;
     private float baseEmissionRate;
     private float baseEmissionSpeed;
 
-    private readonly int numIntervals = 10;
-    private readonly float intervalLength = 0.25f;
+    private readonly int numIntervals = 100; // was 10
+    private readonly float intervalLength = 0.025f; // was 0.25
     private readonly float transferDuration = 4.0f;
 
     void Start()
@@ -39,14 +40,6 @@ public class Teleporter : MonoBehaviour
         }
     }
 
-    //void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag.Equals("Player"))
-    //    {
-    //        StartCoroutine(EndTeleport(other.gameObject));
-    //    }
-    //}
-
     private IEnumerator TryTeleport(GameObject player)
     {
         SkinnedMeshRenderer playerMesh = player.GetComponentInChildren<SkinnedMeshRenderer>();
@@ -65,8 +58,8 @@ public class Teleporter : MonoBehaviour
         {
             yield return new WaitForSeconds(intervalLength);
 
-            currEmissionRate += 25.0f;
-            currSpeed += 0.2f;
+            currEmissionRate += 2.5f; // was 25
+            currSpeed += 0.025f; // was 0.2
 
             emission.rateOverTime = currEmissionRate;
             main.simulationSpeed = currSpeed;
@@ -76,7 +69,9 @@ public class Teleporter : MonoBehaviour
                 manager.playerIvin = true;
                 manager.playerDisabled = true;
 
-                playerMesh.material = teleportingPlayerMat;
+                //playerMesh.material = teleportingPlayerMat;
+                playerMesh.material = dissolveMat;
+                playerMesh.material.SetFloat("_Amount", -1.0f);
             }
             else if (i == halftime && (!player.activeInHierarchy || (startPlayerPosition - player.transform.position).magnitude >= 3.0f))
             {
@@ -85,6 +80,12 @@ public class Teleporter : MonoBehaviour
 
                 // stop the current coroutine
                 yield break;
+            }
+
+            if (i > halftime)
+            {
+                float nextAmount = playerMesh.material.GetFloat("_Amount") + 0.05f;
+                playerMesh.material.SetFloat("_Amount", nextAmount);
             }
         }
 
@@ -127,12 +128,27 @@ public class Teleporter : MonoBehaviour
         yield return new WaitForSeconds(intervalLength);
         StartCoroutine(EndTeleport());
 
-        // don't try to reassign material if player gameobject is not active
-        while (!player.activeInHierarchy)
+        if (player.activeInHierarchy)
         {
-            yield return new WaitForSeconds(0.1f);
-        }
+            // un-dissolve
+            for (int i = 0; i < halftime; i++) 
+            {
+                yield return new WaitForSeconds(intervalLength);
 
+                float nextAmount = playerMesh.material.GetFloat("_Amount") - 0.05f;
+                playerMesh.material.SetFloat("_Amount", nextAmount);
+            }
+        }
+        else
+        {
+            // hot swap to regular material
+            // don't try to reassign material if player gameobject is not active
+            while (!player.activeInHierarchy)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        
         playerMesh.material = originalPlayerMat;
         manager.playerDisabled = false;
         manager.playerIvin = false;
