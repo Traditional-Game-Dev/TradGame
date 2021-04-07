@@ -82,6 +82,14 @@ public class BlueprintScript : MonoBehaviour
             gameObject.GetComponent<MeshRenderer>().material = blueprintMat;
         }
 
+        if(gameObject.name == "TeleporterBlueprint" && GameObject.FindGameObjectsWithTag("Teleporter").Length >= 2)
+        {
+            if(gameObject.GetComponent<MeshRenderer>().material.color != blueprintError.color)
+            {
+                gameObject.GetComponent<MeshRenderer>().material = blueprintError;
+            }
+        }
+
         //Object Deselection
         if(deselect.triggered)
         {
