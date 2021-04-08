@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
     public float lightningDamage;
     [Header("Fireball:")]
     public GameObject fireball;
+    public VisualEffect fireballImpact;
     public float fireballDamage;
     public float fireballRange;
     public float fireballLifetime;
@@ -54,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(attack.triggered)
+        if (attack.triggered)
         {
             ComboAttack();
         }
@@ -144,8 +145,6 @@ public class PlayerAttack : MonoBehaviour
 
         while (elapsedTime < fireballLifetime)
         {
-            //if ((Mathf.Abs(fireball.transform.position.x - bossTransform.position.x) +
-            //    Mathf.Abs(fireball.transform.position.z - bossTransform.position.z)) < 1.5f)
             if (manager.justHitBoss)
             {
                 break;
@@ -163,12 +162,14 @@ public class PlayerAttack : MonoBehaviour
 
             Vector3 originalScale = fireball.transform.localScale;
 
+            fireballImpact.Play();
+
             float explosionTime = 0.15f;
             elapsedTime = 0.0f;
             while (elapsedTime < explosionTime)
             {
-                //fireball.transform.localScale *= 1.10f;
-                fireballLight.intensity *= 1.5f;
+                fireball.transform.localScale *= 1.05f;
+                fireballLight.intensity *= 1.10f;
 
                 elapsedTime += Time.fixedDeltaTime;
 
