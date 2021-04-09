@@ -138,6 +138,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator ShootFireball()
     {
         fireball.SetActive(true);
+        fireballImpact.Stop();
 
         float elapsedTime = 0.0f;
         Vector3 startPosition = fireball.transform.position;
