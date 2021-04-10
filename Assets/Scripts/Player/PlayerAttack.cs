@@ -105,7 +105,7 @@ public class PlayerAttack : MonoBehaviour
                 ShootLightning(isRed = true);
                 if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jog")){
                     anim.speed = 12;
-                    anim.SetTrigger("LeftHandTrigger");
+                    anim.SetTrigger("RightHandTrigger");
                 }
 
                 break;
@@ -114,7 +114,7 @@ public class PlayerAttack : MonoBehaviour
                 ShootLightning(isRed = false);
                 if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jog")){
                     anim.speed = 12;
-                    anim.SetTrigger("RightHandTrigger");
+                    anim.SetTrigger("LeftHandTrigger");
                 }
                 break;
             case 3:
