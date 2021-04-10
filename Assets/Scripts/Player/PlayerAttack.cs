@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
     public float fireballDamage;
     public float fireballRange;
     public float fireballLifetime;
+    public Animator anim;
 
     private GameManager manager;
     private Transform playerTransform;
@@ -102,14 +103,27 @@ public class PlayerAttack : MonoBehaviour
             case 1:
                 PrepareLightning(isRed = true);
                 ShootLightning(isRed = true);
+                if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jog")){
+                    anim.speed = 12;
+                    anim.SetTrigger("LeftHandTrigger");
+                }
+
                 break;
             case 2:
                 PrepareLightning(isRed = false);
                 ShootLightning(isRed = false);
+                if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jog")){
+                    anim.speed = 12;
+                    anim.SetTrigger("RightHandTrigger");
+                }
                 break;
             case 3:
                 PrepareFireball();
                 StartCoroutine(ShootFireball());
+                if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jog")){
+                    anim.speed = 12;
+                    anim.SetTrigger("BothHandsTrigger");
+                }
                 break;
             default:
                 break;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 21.627808, g: 25.969364, b: 32.217796, a: 1}
+  m_IndirectSpecularColor: {r: 21.65644, g: 25.913727, b: 32.16867, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4572,6 +4572,7 @@ MonoBehaviour:
   fireballDamage: 10
   fireballRange: 10
   fireballLifetime: 0.4
+  anim: {fileID: 452722205}
   playerControls: {fileID: -944628639613478452, guid: 2d613936c91c25d4890bbf241b5b7c3c,
     type: 3}
 --- !u!1001 &458106131
