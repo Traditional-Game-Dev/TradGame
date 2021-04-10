@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Goop
+  m_Name: HealthLight
   m_Shader: {fileID: 4800000, guid: c4edd00ff2db5b24391a4fcb1762e459, type: 3}
   m_ShaderKeywords: _BLENDMODE_ALPHA _ENABLE_FOG_ON_TRANSPARENT _NORMALMAP_TANGENT_SPACE
     _SURFACE_TYPE_TRANSPARENT
@@ -236,12 +236,12 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 19.890001, g: 0, b: 2.0902448, a: 19.890001}
+    - _Color: {r: 0, g: 19.890001, b: 11.526259, a: 19.890001}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 19.890001, g: 0, b: 2.0902448, a: 19.890001}
-    - _EmissiveColorLDR: {r: 1, g: 0, b: 0.10507376, a: 1}
+    - _EmissiveColor: {r: 0, g: 19.890001, b: 11.526259, a: 19.890001}
+    - _EmissiveColorLDR: {r: 0, g: 1, b: 0.5795002, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
@@ -250,7 +250,7 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
-    - _UnlitColor: {r: 0.972549, g: 0.35517007, b: 0, a: 1}
+    - _UnlitColor: {r: 0, g: 0.972549, b: 0.5702845, a: 1}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &7653851376237703363
 MonoBehaviour:
