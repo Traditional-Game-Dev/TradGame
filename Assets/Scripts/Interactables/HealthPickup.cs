@@ -44,6 +44,9 @@ public class HealthPickup : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
+        Vector3 originalScale = heartTransform.localScale;
+        heartTransform.localScale *= 0.1f;
+
         onCooldown = true;
         heartRenderer.enabled = false;
         spotLight.enabled = false;
@@ -53,6 +56,15 @@ public class HealthPickup : MonoBehaviour
         spotLight.enabled = true;
         heartRenderer.enabled = true;
         onCooldown = false;
+
+        while (heartTransform.localScale.magnitude < originalScale.magnitude)
+        {
+            heartTransform.localScale *= 1.05f;
+
+            yield return null;
+        }
+
+        heartTransform.localScale = originalScale;
 
         yield return null;
     }
