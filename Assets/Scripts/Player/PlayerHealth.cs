@@ -67,4 +67,9 @@ public class PlayerHealth : MonoBehaviour
             currentHP -= totalDamage;
         }
     }
+
+    public void healPlayer(int totalHeal)
+    {
+        currentHP += totalHeal;
+    }
 }

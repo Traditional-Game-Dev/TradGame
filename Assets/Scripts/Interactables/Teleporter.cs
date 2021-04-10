@@ -34,7 +34,7 @@ public class Teleporter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player") && (!manager.JustTeleported()))
+        if (other.CompareTag("Player") && (!manager.JustTeleported()))
         {
             StartCoroutine(TryTeleport(other.gameObject));
         }

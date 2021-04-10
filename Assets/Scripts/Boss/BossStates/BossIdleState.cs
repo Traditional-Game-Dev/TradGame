@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Boss.BossEnums;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,106 +18,106 @@ public class BossIdleState : BossBaseState
     public override void Update(BossController boss)
     {
         timerDuringAttacks += Time.deltaTime;
-        if(timerDuringAttacks > boss.bossWaitTime)
+        if (timerDuringAttacks > boss.bossWaitTime)
         {
             float distance = Vector3.Distance(boss.transform.position, boss.player.transform.position);
             //Always Shoot Laser First
-            if(boss.prevAttack == "first")
+            if (boss.prevAttack == BossAttacks.First)
             {
-                boss.prevAttack = "laser";
+                boss.prevAttack = BossAttacks.Laser;
                 boss.TransitionToState(boss.LaserPreState);
             }
             //Really Close to Boss
             //Always shoots poison, only attack that can get this close
-            else if(distance < 15)
+            else if (distance < 15)
             {
-                boss.prevAttack = "poison";
-                boss.poisonAttackType = "defense";
+                boss.prevAttack = BossAttacks.Poison;
+                boss.poisonType = PoisonType.Defense;
                 boss.TransitionToState(boss.PoisonPreState);
             }
             //Sorta Close to boss, shoots laser or poison
-            else if(distance < 25)
+            else if (distance < 25)
             {
-                switch(boss.prevAttack)
+                switch (boss.prevAttack)
                 {
-                    case "bullets":
-                        if((Random.value > 0.5f))
+                    case BossAttacks.Bullets:
+                        if ((Random.value > 0.5f))
                         {
-                            boss.prevAttack = "laser";
+                            boss.prevAttack = BossAttacks.Laser;
                             boss.TransitionToState(boss.LaserPreState);
                         }
                         else
                         {
-                            boss.prevAttack = "poison";
-                            boss.poisonAttackType = "normal";
+                            boss.prevAttack = BossAttacks.Poison;
+                            boss.poisonType = PoisonType.Normal;
                             boss.TransitionToState(boss.PoisonPreState);
                         }
-                    break;
+                        break;
 
-                    case "poison":
-                        boss.prevAttack = "laser";
+                    case BossAttacks.Poison:
+                        boss.prevAttack = BossAttacks.Laser;
                         boss.TransitionToState(boss.LaserPreState);
-                    break;
+                        break;
 
-                    case "laser":
-                        boss.prevAttack = "poison";
-                        boss.poisonAttackType = "normal";
+                    case BossAttacks.Laser:
+                        boss.prevAttack = BossAttacks.Poison;
+                        boss.poisonType = PoisonType.Normal;
                         boss.TransitionToState(boss.PoisonPreState);
-                    break;
+                        break;
                 }
             }
             //Midrange shoots all attacks
             //Bullets aim towards player in cone
-            else if(distance < 100)
+            else if (distance < 100)
             {
-                switch(boss.prevAttack)
+                switch (boss.prevAttack)
                 {
-                    case "bullets":
-                        if((Random.value > 0.5f))
+                    case BossAttacks.Bullets:
+                        if ((Random.value > 0.5f))
                         {
-                            boss.prevAttack = "laser";
+                            boss.prevAttack = BossAttacks.Laser;
                             fireBullets(boss.width, boss);
                             boss.TransitionToState(boss.BulletPreState);
 
                         }
                         else
                         {
-                            boss.prevAttack = "poison";
-                            boss.poisonAttackType = "normal";
+                            boss.prevAttack = BossAttacks.Poison;
+                            boss.poisonType = PoisonType.Normal;
                             boss.TransitionToState(boss.PoisonPreState);
                         }
-                    break;
+                        break;
 
-                    case "poison":
-                        if((Random.value > 0.5f))
+                    case BossAttacks.Poison:
+                        if ((Random.value > 0.5f))
                         {
-                            boss.prevAttack = "laser";
+                            boss.prevAttack = BossAttacks.Laser;
                             boss.TransitionToState(boss.LaserPreState);
                         }
                         else
                         {
-                            boss.prevAttack = "bullets";
+                            boss.prevAttack = BossAttacks.Bullets;
                             fireBullets(boss.width, boss);
                             boss.TransitionToState(boss.BulletPreState);
 
                         }
-                    break;
+                        break;
 
-                    case "laser":
-                        if((Random.value > 0.5f))
+                    case BossAttacks.Laser:
+                        if ((Random.value > 0.5f))
                         {
-                            boss.prevAttack = "bullets";
+                            boss.prevAttack = BossAttacks.Bullets;
                             fireBullets(boss.width, boss);
                             boss.TransitionToState(boss.BulletPreState);
 
                         }
                         else
                         {
-                            boss.prevAttack = "poison";
-                            boss.poisonAttackType = "normal";
+                            boss.prevAttack = BossAttacks.Poison;
+                            boss.poisonType = PoisonType.Normal;
                             boss.TransitionToState(boss.PoisonPreState);
                         }
-                    break;
+                        break;
                 }
             }
             //Far Range
@@ -124,53 +125,53 @@ public class BossIdleState : BossBaseState
             //TODO: POISON TRI SHOT
             else
             {
-                switch(boss.prevAttack)
+                switch (boss.prevAttack)
                 {
-                    case "laser":
-                        if((Random.value > 0.5f))
+                    case BossAttacks.Laser:
+                        if ((Random.value > 0.5f))
                         {
-                            boss.prevAttack = "bullets";
+                            boss.prevAttack = BossAttacks.Bullets;
                             fireBullets(165f, boss);
                             boss.TransitionToState(boss.BulletPreState);
 
                         }
                         else
                         {
-                            boss.prevAttack = "poison";
-                            boss.poisonAttackType = "far";
+                            boss.prevAttack = BossAttacks.Poison;
+                            boss.poisonType = PoisonType.Far;
                             boss.TransitionToState(boss.PoisonPreState);
                         }
-                    break;
+                        break;
 
-                    case "poison":
-                        boss.prevAttack = "bullets";
+                    case BossAttacks.Poison:
+                        boss.prevAttack = BossAttacks.Bullets;
                         fireBullets(165f, boss);
                         boss.TransitionToState(boss.BulletPreState);
-                    break;
+                        break;
 
-                    case "bullets":
-                        boss.prevAttack = "poison";
-                        boss.poisonAttackType = "far";
+                    case BossAttacks.Bullets:
+                        boss.prevAttack = BossAttacks.Poison;
+                        boss.poisonType = PoisonType.Far;
                         boss.TransitionToState(boss.PoisonPreState);
-                    break;
+                        break;
                 }
             }
-        }   
+        }
     }
 
     private void fireBullets(float width, BossController boss)
     {
-        if(width > 150)
+        if (width > 150)
         {
-            if(boss.player.transform.position.x < boss.transform.position.x)
+            if (boss.player.transform.position.x < boss.transform.position.x)
             {
-                boss.bulletStartDegree = 180 - (width/2);
-                boss.bulletEndDegree = 180 + (width/2);
+                boss.bulletStartDegree = 180 - (width / 2);
+                boss.bulletEndDegree = 180 + (width / 2);
             }
             else
             {
-                boss.bulletStartDegree = 0 - (width/2);
-                boss.bulletEndDegree = 0 + (width/2);
+                boss.bulletStartDegree = 0 - (width / 2);
+                boss.bulletEndDegree = 0 + (width / 2);
             }
         }
         else
@@ -179,8 +180,8 @@ public class BossIdleState : BossBaseState
             float angle = Mathf.Atan2(total.y, total.x) * Mathf.Rad2Deg;
             angle += 90;
             angle -= (angle - 180) * 2;
-            boss.bulletStartDegree = angle + (width/2);
-            boss.bulletEndDegree = angle - (width/2);
+            boss.bulletStartDegree = angle + (width / 2);
+            boss.bulletEndDegree = angle - (width / 2);
         }
     }
 }

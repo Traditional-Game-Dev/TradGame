@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Boss.BossEnums;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,17 +24,17 @@ public class BossPoisonPreState : BossBaseState
         if(timerDuringAttacks >= timeForAim){
             //TODO: Transition Animation back to Idle here
             boss.anim.SetBool("playPoisonAnim", true);
-            switch(boss.poisonAttackType)
+            switch(boss.poisonType)
             {
-                case "normal":
+                case PoisonType.Normal:
                     boss.TransitionToState(boss.PoisonState);
                 break;
 
-                case "defense":
+                case PoisonType.Defense:
                     boss.TransitionToState(boss.PoisonDefenseState);
                 break;
 
-                case "far":
+                case PoisonType.Far:
                     boss.TransitionToState(boss.PoisonFarState);
                 break;
             }

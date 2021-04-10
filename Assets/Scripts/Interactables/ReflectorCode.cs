@@ -17,7 +17,7 @@ public class ReflectorCode : MonoBehaviour
 
     void OnTriggerEnter(Collider other)    
     {
-        if(other.gameObject.name.Contains("Bullet"))
+        if(other.CompareTag("Bullet"))
         {
             Vector3 newDirection = Vector3.Reflect(other.transform.forward, reflectorForwardVector);
             other.gameObject.transform.rotation = Quaternion.LookRotation(newDirection);

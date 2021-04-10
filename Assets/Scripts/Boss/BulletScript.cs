@@ -50,11 +50,11 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)    
     {
-        if(other.gameObject.name != "Boss" && !other.gameObject.name.Contains("Bullet") && !other.gameObject.name.Contains("reflector"))
+        if(!other.isTrigger && other.CompareTag("Boss") && !other.CompareTag("Bullet") && !other.CompareTag("Reflector"))
         {
             movementSpeed = 0;
             gameObject.GetComponentInChildren<Light>().enabled = false;
-            if(other.gameObject.name == "Player" && !manager.playerIvin)
+            if(other.CompareTag("Player") && !manager.playerIvin)
             {
                 other.gameObject.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
             }

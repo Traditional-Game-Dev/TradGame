@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Boss.BossEnums;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class BossController : MonoBehaviour
     public Animator anim;
     public float bossAttackTime;
     public float bossWaitTime;
-    [System.NonSerialized] public string prevAttack = "first";
+    [System.NonSerialized] public BossAttacks prevAttack = BossAttacks.First;
 
     [Header("Laser Attack:")]
     public LineRenderer lineRenderer;
@@ -47,7 +48,7 @@ public class BossController : MonoBehaviour
     [Range(1, 10)] public float emissionDuration;
     public float timeForAim;
 
-    [System.NonSerialized] public string poisonAttackType = "normal";
+    [System.NonSerialized] public PoisonType poisonType = PoisonType.Normal;
 
     [System.NonSerialized] public bool planningPhase = true;
 

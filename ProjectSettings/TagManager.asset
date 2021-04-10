@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Teleporter
   - Boss
+  - Bullet
+  - Reflector
   layers:
   - Default
   - TransparentFX

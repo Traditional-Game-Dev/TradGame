@@ -27,15 +27,15 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player") && !onCooldown)
+        if (other.CompareTag("Player") && !onCooldown)
         {
             PlayerHealth healthScript = other.GetComponent<PlayerHealth>();
 
             if (healthScript.currentHP < 100)
             {
-                int healAmount = healthScript.currentHP > 90 ? healthScript.currentHP - 100 : -10;
+                int healAmount = healthScript.currentHP > 90 ? 100 - healthScript.currentHP : 10;
 
-                other.GetComponent<PlayerHealth>().damagePlayer(healAmount);
+                other.GetComponent<PlayerHealth>().healPlayer(healAmount);
 
                 StartCoroutine(Cooldown());
             }
