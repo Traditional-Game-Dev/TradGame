@@ -76,9 +76,7 @@ public class BossIdleState : BossBaseState
                         if ((Random.value > 0.5f))
                         {
                             boss.prevAttack = BossAttacks.Laser;
-                            fireBullets(boss.width, boss);
-                            boss.TransitionToState(boss.BulletPreState);
-
+                            boss.TransitionToState(boss.LaserPreState);
                         }
                         else
                         {
