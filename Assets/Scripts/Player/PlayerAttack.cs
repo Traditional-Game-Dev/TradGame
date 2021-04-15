@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("Combo:")]
     public float timeBetweenAttacks;
     public float comboTimeWindow;
-    //public float comboCooldown = 25f; // possible future use
+    public Animator anim;
     [Header("Lightning:")]
     public VisualEffect lightning;
     public float lightningDamage;
@@ -19,7 +19,6 @@ public class PlayerAttack : MonoBehaviour
     public float fireballDamage;
     public float fireballRange;
     public float fireballLifetime;
-    public Animator anim;
 
     private GameManager manager;
     private Transform playerTransform;
@@ -31,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
     private float heightOffset = 0.5f;
     private float handOffset = 0.5f;
     private bool canAttack = true;
+    private float animSpeedConstant = 6.0f;
 
     public InputActionAsset playerControls;
     private InputAction attack;
@@ -39,6 +39,8 @@ public class PlayerAttack : MonoBehaviour
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         bossTransform = GameObject.Find("Boss").transform;
+
+        anim.speed = timeBetweenAttacks * animSpeedConstant;
 
         fireballLight = fireball.GetComponentInChildren<Light>();
         lightningCollider = lightning.gameObject.GetComponent<Collider>();
@@ -104,7 +106,6 @@ public class PlayerAttack : MonoBehaviour
                 PrepareLightning(isRed = true);
                 ShootLightning(isRed = true);
                 if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jog")){
-                    anim.speed = 12;
                     anim.SetTrigger("RightHandTrigger");
                 }
 
@@ -113,7 +114,6 @@ public class PlayerAttack : MonoBehaviour
                 PrepareLightning(isRed = false);
                 ShootLightning(isRed = false);
                 if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jog")){
-                    anim.speed = 12;
                     anim.SetTrigger("LeftHandTrigger");
                 }
                 break;
@@ -121,7 +121,6 @@ public class PlayerAttack : MonoBehaviour
                 PrepareFireball();
                 StartCoroutine(ShootFireball());
                 if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Jog")){
-                    anim.speed = 12;
                     anim.SetTrigger("BothHandsTrigger");
                 }
                 break;

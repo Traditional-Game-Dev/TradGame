@@ -29,10 +29,12 @@ public class BossBulletState : BossBaseState
     public override void Update(BossController boss)
     {
         timerDuringAttacks += Time.deltaTime;
-        if (timerDuringAttacks < 3f){
+        if (timerDuringAttacks < 3f)
+        {
             boss.anim.speed = 2f;
         }
-        else {
+        else
+        {
             boss.anim.speed = 0f;
         }
         if (timerDuringAttacks > bossAttackTime)
@@ -43,7 +45,7 @@ public class BossBulletState : BossBaseState
         }
 
 
-        for (int i = 0; i < bulletCount/((1.0f/Time.smoothDeltaTime)*bossAttackTime); i++)
+        for (int i = 0; i < bulletCount / ((1.0f / Time.smoothDeltaTime) * bossAttackTime); i++)
         {
             spawnBullet(boss);
         }
@@ -52,11 +54,11 @@ public class BossBulletState : BossBaseState
     private void spawnBullet(BossController boss)
     {
         GameObject bullet = bulletPool.GetPooledObject();
-        if(bullet != null)
+        if (bullet != null)
         {
             bullet.GetComponent<BulletScript>().damageDealt = bulletDamage;
             bullet.GetComponent<BulletScript>().movementSpeed = bulletSpeed;
-            bullet.transform.position = new Vector3(boss.transform.position.x+1.0f, 9.75f, boss.transform.position.z-1.0f);
+            bullet.transform.position = new Vector3(boss.transform.position.x + 1.0f, 9.75f, boss.transform.position.z - 1.0f);
             bullet.transform.position = new Vector3(-1.73f, 7.23f, 54.24f);
             bullet.GetComponent<BulletScript>().startPos = bullet.transform.position;
             bullet.transform.rotation = Quaternion.Euler(0.0f, Random.Range(bulletStartDegree, bulletEndDegree), 0.0f);
