@@ -10,9 +10,9 @@ public class BossStompState : BossBaseState
     public override void EnterState(BossController boss)
     {
         Debug.Log("STOMP");
-
+        boss.anim.SetTrigger("playStompAnim");
         bossAttackTime = boss.bossAttackTime;
-
+        boss.anim.speed = 3;
     }
 
     public override void Update(BossController boss)
@@ -22,6 +22,7 @@ public class BossStompState : BossBaseState
         if (timerDuringAttacks > bossAttackTime)
         {
             timerDuringAttacks -= bossAttackTime;
+            boss.anim.speed = 1;
             boss.TransitionToState(boss.IdleState);
         }
     }

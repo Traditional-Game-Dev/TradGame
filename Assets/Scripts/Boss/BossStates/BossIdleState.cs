@@ -35,7 +35,7 @@ public class BossIdleState : BossBaseState
                 //boss.poisonType = PoisonType.Defense;
                 //boss.TransitionToState(boss.PoisonPreState);
 
-                boss.prevAttack = BossAttacks.Stomp;
+                boss.prevAttack = BossAttacks.Poison;
                 boss.TransitionToState(boss.StompPreState);
             }
             //Sorta Close to boss, shoots laser or poison
