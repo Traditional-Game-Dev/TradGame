@@ -11,7 +11,8 @@ namespace Assets.Scripts.Boss.BossEnums
         First,
         Laser,
         Bullets,
-        Poison
+        Poison,
+        Stomp
     }
 
     public enum PoisonType

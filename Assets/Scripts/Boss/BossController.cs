@@ -48,6 +48,9 @@ public class BossController : MonoBehaviour
     [Range(1, 10)] public float emissionDuration;
     public float timeForAim;
 
+    [Header("Stomp Attack:")]
+
+
     [System.NonSerialized] public PoisonType poisonType = PoisonType.Normal;
 
     [System.NonSerialized] public bool planningPhase = true;
@@ -64,6 +67,8 @@ public class BossController : MonoBehaviour
     public readonly BossBulletHellPreAttack BulletPreState = new BossBulletHellPreAttack();
     public readonly BossPoisonDefenseState PoisonDefenseState = new BossPoisonDefenseState();
     public readonly BossPoisonFarState PoisonFarState = new BossPoisonFarState();
+    public readonly BossStompPreState StompPreState = new BossStompPreState();
+    public readonly BossStompState StompState = new BossStompState();
 
     public void TransitionToState(BossBaseState state)
     {

@@ -31,9 +31,12 @@ public class BossIdleState : BossBaseState
             //Always shoots poison, only attack that can get this close
             else if (distance < 15)
             {
-                boss.prevAttack = BossAttacks.Poison;
-                boss.poisonType = PoisonType.Defense;
-                boss.TransitionToState(boss.PoisonPreState);
+                //boss.prevAttack = BossAttacks.Poison;
+                //boss.poisonType = PoisonType.Defense;
+                //boss.TransitionToState(boss.PoisonPreState);
+
+                boss.prevAttack = BossAttacks.Stomp;
+                boss.TransitionToState(boss.StompPreState);
             }
             //Sorta Close to boss, shoots laser or poison
             else if (distance < 25)
