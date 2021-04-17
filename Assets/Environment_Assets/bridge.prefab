@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1908556457806209154}
   - component: {fileID: 1507849172002526427}
   m_Layer: 0
-  m_Name: bridge_raw
+  m_Name: bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

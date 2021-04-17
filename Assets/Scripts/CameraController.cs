@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
 {
     public GameObject thirdPersonCamera;
     public GameObject topDownCamera;
+    public GameObject bridgeCamera;
     public GameManager manager;
     public AudioClip tempMusicEnd;
 
@@ -28,6 +29,12 @@ public class CameraController : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void BridgeCameraSwap()
+    {
+        thirdPersonCamera.SetActive(false);
+        bridgeCamera.SetActive(true);
     }
 
     public void swapMode()
