@@ -50,6 +50,7 @@ public class BossController : MonoBehaviour
 
     [Header("Stomp Attack:")]
     [Range(1, 100)] public float stompRadius;
+    public GameObject genericProjectile;
 
     [System.NonSerialized] public PoisonType poisonType = PoisonType.Normal;
 

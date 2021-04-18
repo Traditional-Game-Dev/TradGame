@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 21.637482, g: 26.013538, b: 32.28054, a: 1}
+  m_IndirectSpecularColor: {r: 21.401764, g: 25.836933, b: 30.383352, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2861,6 +2861,8 @@ MonoBehaviour:
   emissionDuration: 5
   timeForAim: 2
   stompRadius: 15
+  genericProjectile: {fileID: 6829279045378753638, guid: f19467aab68438b41aaeb77c708c2a18,
+    type: 3}
 --- !u!65 &142765627
 BoxCollider:
   m_ObjectHideFlags: 0

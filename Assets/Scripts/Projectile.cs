@@ -2,13 +2,18 @@
 using System.Collections;
 using UnityEngine;
 
-class Projectile
+public class Projectile : MonoBehaviour
 {
-    public IEnumerator SimulateProjectile(Transform targetTransform, Vector2 offset, Transform projectileTransform, float firingAngle, float gravity)
+    public void Begin(Transform projectileTransform, Vector3 targetPosition, Vector2 offset, float firingAngle, float gravity)
+    {
+        StartCoroutine(SimulateProjectile(projectileTransform, targetPosition, offset, firingAngle, gravity));
+    }
+
+    public IEnumerator SimulateProjectile(Transform projectileTransform, Vector3 targetPosition, Vector2 offset, float firingAngle, float gravity)
     {
         yield return new WaitForSeconds(1.5f);
 
-        Vector3 targetPosition = new Vector3(targetTransform.position.x + offset.x, targetTransform.position.y, targetTransform.position.z + offset.y);
+        Vector3 newTargetPosition = new Vector3(targetPosition.x + offset.x, targetPosition.y, targetPosition.z + offset.y);
 
         float targetDistance = Vector3.Distance(projectileTransform.position, targetPosition);
 
@@ -19,10 +24,11 @@ class Projectile
         float vX = Mathf.Sqrt(velocity) * Mathf.Cos(firingAngle * Mathf.Deg2Rad);
         float vY = Mathf.Sqrt(velocity) * Mathf.Sin(firingAngle * Mathf.Deg2Rad);
 
-        float flightDuration = targetDistance / vX + 0.025f;
+        //float flightDuration = targetDistance / vX + 0.025f;
+        float flightDuration = targetDistance / vX;
 
         // rotate projectile to face the target
-        projectileTransform.rotation = Quaternion.LookRotation(targetPosition - projectileTransform.position);
+        projectileTransform.rotation = Quaternion.LookRotation(newTargetPosition - projectileTransform.position);
 
         float elapsedTime = 0;
 
@@ -33,5 +39,7 @@ class Projectile
             elapsedTime += Time.smoothDeltaTime;
             yield return null;
         }
+
+        GameObject.Destroy(this);
     }
 }
