@@ -18,14 +18,13 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameplayUI;
     public GameObject planningUI;
-    public Vector3 spawnLocation;
 
     public void SwapToGameplay()
     {
         gameplayUI.SetActive(true);
         planningUI.SetActive(false);
 
-        player.transform.position = spawnLocation;
+        player.transform.position = playerSpawnLocation;
         player.SetActive(true);
 
 
@@ -111,6 +110,8 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Player;
+
+    public Vector3 playerSpawnLocation;
 
     public bool playerIvin { get; set; } = false;
 

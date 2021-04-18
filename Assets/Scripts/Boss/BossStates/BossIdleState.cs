@@ -28,7 +28,6 @@ public class BossIdleState : BossBaseState
                 boss.TransitionToState(boss.LaserPreState);
             }
             //Really Close to Boss
-            //Always shoots poison, only attack that can get this close
             else if (distance < 15)
             {
                 //boss.prevAttack = BossAttacks.Poison;

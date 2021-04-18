@@ -30,7 +30,7 @@ public class PoisonProjectile : MonoBehaviour
         this.damageRadius = damageRadius;
         this.damageAmount = damageAmount;
 
-        StartCoroutine(SimulateProjectile());
+        StartCoroutine(ThrowBomb());
     }
 
     public void Begin(GameObject target, Vector2 offset, float emissionDuration, float damageRadius, int damageAmount)
@@ -44,10 +44,10 @@ public class PoisonProjectile : MonoBehaviour
         this.damageRadius = damageRadius;
         this.damageAmount = damageAmount;
 
-        StartCoroutine(SimulateProjectile());
+        StartCoroutine(ThrowBomb());
     }
 
-    public IEnumerator SimulateProjectile()
+    public IEnumerator ThrowBomb()
     {
         yield return new WaitForSeconds(1.5f);
 

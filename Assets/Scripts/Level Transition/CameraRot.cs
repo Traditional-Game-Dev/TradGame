@@ -12,7 +12,7 @@ public class CameraRot : MonoBehaviour
             Camera.main.GetComponent<CameraController>().BridgeCameraSwap();
             Camera.main.GetComponent<CameraController>().topDownCamera.transform.position = new Vector3(0, 55, 530.3f);
             Camera.main.GetComponent<CameraController>().topDownCamera.transform.rotation = Quaternion.Euler(52.05f, 4.2f, 0);
-            manager.GetComponent<GameManager>().spawnLocation = new Vector3(0, 1, 540);
+            manager.GetComponent<GameManager>().playerSpawnLocation = new Vector3(0, 1, 540);
             
         }
     }

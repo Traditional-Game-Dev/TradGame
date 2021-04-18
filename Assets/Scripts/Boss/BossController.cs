@@ -49,7 +49,7 @@ public class BossController : MonoBehaviour
     public float timeForAim;
 
     [Header("Stomp Attack:")]
-
+    [Range(1, 100)] public float stompRadius;
 
     [System.NonSerialized] public PoisonType poisonType = PoisonType.Normal;
 
