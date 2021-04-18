@@ -175,6 +175,8 @@ public class Teleporter : MonoBehaviour
             main.simulationSpeed = currSpeed;
         }
 
+        ResetState();
+
         yield return null;
     }
 
