@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    private GameManager manager;
+
     public void Begin(Transform projectileTransform, Vector3 targetPosition, Vector2 offset, float firingAngle, float gravity)
     {
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         StartCoroutine(SimulateProjectile(projectileTransform, targetPosition, offset, firingAngle, gravity));
     }
 
     public IEnumerator SimulateProjectile(Transform projectileTransform, Vector3 targetPosition, Vector2 offset, float firingAngle, float gravity)
     {
-        yield return new WaitForSeconds(1.5f);
+        if (projectileTransform.gameObject.CompareTag("Player"))
+        {
+            manager.playerDisabled = true;
+        }
 
         Vector3 newTargetPosition = new Vector3(targetPosition.x + offset.x, targetPosition.y, targetPosition.z + offset.y);
 
@@ -38,6 +45,12 @@ public class Projectile : MonoBehaviour
             projectileTransform.Translate(0, (vY - (gravity * elapsedTime)) * Time.smoothDeltaTime, vX * Time.smoothDeltaTime);
             elapsedTime += Time.smoothDeltaTime;
             yield return null;
+        }
+        projectileTransform.position = targetPosition;
+
+        if (projectileTransform.gameObject.CompareTag("Player"))
+        {
+            manager.playerDisabled = false;
         }
 
         GameObject.Destroy(this);
