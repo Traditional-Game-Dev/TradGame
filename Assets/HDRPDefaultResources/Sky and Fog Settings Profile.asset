@@ -146,7 +146,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0}
   colorSaturation:
     m_OverrideState: 1
-    m_Value: 0.726
+    m_Value: 1
     min: 0
     max: 1
   alphaSaturation:
@@ -161,7 +161,7 @@ MonoBehaviour:
     max: 1
   horizonTint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.4009434, b: 0.63773215, a: 1}
+    m_Value: {r: 0, g: 0.73259544, b: 1, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
     showEyeDropper: 0
   horizonZenithShift:
     m_OverrideState: 1
-    m_Value: 0.846
+    m_Value: -0.47
     min: -1
     max: 1
 --- !u!114 &-3305224281371206947
