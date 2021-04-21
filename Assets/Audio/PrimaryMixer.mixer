@@ -122,8 +122,14 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: bfabfefb866c2ab4ebe52ea3f7c48ae2
+    name: MasterVolParam
   - guid: 7832f0a25d044304ca5d3396904a04f5
     name: PitchBend
+  - guid: efddd3e25d9abf443b6a97d7e9c4d509
+    name: MusicVolParam
+  - guid: 904601754e8ab594eade5ad297617df1
+    name: SFXVolParam
   m_AudioMixerGroupViews:
   - guids:
     - 2ce72016c0ad2f44b843766fdd4f45cc
@@ -185,7 +191,7 @@ AudioMixerSnapshotController:
     2fbc4381d2120554a927444c21996a20: -370
     4fb0e4c1d0506f843be8741a966979b5: 0
     7832f0a25d044304ca5d3396904a04f5: 1
-    efddd3e25d9abf443b6a97d7e9c4d509: -9.833286
+    efddd3e25d9abf443b6a97d7e9c4d509: -5.3230715
     b48a7ef2af7541741bdfc964a5fcc9a8: 60
     c981a8c3fd2eadd4f9af31c4e381633a: -1000
     dd4cecc33eab40b4d89cdeefe2cda2d3: 0

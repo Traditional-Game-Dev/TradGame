@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,41 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameplayUI;
     public GameObject planningUI;
+    public InputActionAsset playerControls;
+    private InputAction pauseButton;
+    [System.NonSerialized] public bool Paused = false;
+    private float tempTime;
+    public GameObject pauseMenuUI;
+
+    void Awake()
+    {
+        var gameplayActionMap = playerControls.FindActionMap("Gameplay");
+        pauseButton = gameplayActionMap.FindAction("Pause");
+        pauseButton.performed += ctx =>
+        {
+            TogglePause();
+        };
+        pauseButton.Enable();
+    }
+
+    void TogglePause()
+    {
+        if (Paused)
+        {
+            Paused = false;
+            Time.timeScale = tempTime;
+            AudioListener.pause = false;
+            pauseMenuUI.SetActive(false);
+        }
+        else
+        {
+            Paused = true;
+            tempTime = Time.timeScale;
+            Time.timeScale = 0;
+            AudioListener.pause = true;
+            pauseMenuUI.SetActive(true);
+        }
+    }
 
     public void SwapToGameplay()
     {
