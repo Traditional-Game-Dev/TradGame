@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized] public bool Paused = false;
     private float tempTime;
     public GameObject pauseMenuUI;
-    private int currLevel;
+    public int currLevel;
 
     void Awake()
     {

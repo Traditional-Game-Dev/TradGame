@@ -12,13 +12,24 @@ public class BossHealth : MonoBehaviour
 
     private SkinnedMeshRenderer bossMeshRenderer;
     private float currentHealth;
-
+    private GameManager gameManager;
+    private GameObject boss;
+    public GameObject rock1;
+    public GameObject rock2;
+    public GameObject rock3;
+    public GameObject wall;
+    public GameObject wallHitbox;
+    public LineRenderer lineRenderer;
+    private GameObject laserLight;
+    private ParticleSystem laserImpact;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        boss = GameObject.Find("Boss");
 
         bossMeshRenderer = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
     }
@@ -34,7 +45,23 @@ public class BossHealth : MonoBehaviour
 
         StartCoroutine(BossDamageColor());
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 66 && gameManager.currLevel == 1){
+            //boss.transform.position = new Vector3(boss.transform.position.x, boss.transform.position.y, 700);
+            gameManager.currLevel = 2;
+            rock1.SetActive(false);
+            rock2.SetActive(false);
+            rock3.SetActive(false);
+            wall.SetActive(false);
+            wallHitbox.SetActive(false);
+            lineRenderer.enabled = false;
+            laserImpact.Stop();
+            laserLight.SetActive(false);
+            boss.GetComponent<BossController>().anim.speed = 1;
+            boss.GetComponent<BossController>().TransitionToState(boss.GetComponent<BossController>().IdleState);
+            //boss.GetComponent<BossController>().planningPhase = true;
+            boss.SetActive(false);
+        }
+        else if (currentHealth <= 0 && gameManager.currLevel == 2)
         {
             SceneManager.LoadScene("winScreen");
         }
