@@ -47,7 +47,7 @@ MonoBehaviour:
     max: 8
   m_NearMaxBlur:
     m_OverrideState: 1
-    m_Value: 2.27
+    m_Value: 8
     min: 0
     max: 8
   m_FarSampleCount:
