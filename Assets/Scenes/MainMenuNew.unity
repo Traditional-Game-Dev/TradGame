@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4.584147, g: 13.273279, b: 14.7972975, a: 1}
+  m_IndirectSpecularColor: {r: 4.584147, g: 13.273157, b: 14.797053, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1032,6 +1032,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5aa4ae5060c4e14a93d2f3c7d9ffefb, type: 3}
+--- !u!1 &234467155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234467157}
+  - component: {fileID: 234467156}
+  m_Layer: 0
+  m_Name: AudioFade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &234467156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234467155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c520ef6b4a4277e469c63a929c96c777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 8d03af11f4eb2de46841663165eb34bd, type: 2}
+--- !u!4 &234467157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234467155}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 608.23755, y: -1454.6288, z: 338.66113}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 452318248}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &279781804
 GameObject:
   m_ObjectHideFlags: 3
@@ -1781,6 +1825,8 @@ PlayableDirector:
     value: {fileID: 1992095200}
   - key: {fileID: 8461396077576872282, guid: a884cfe8f9cfcc8459e2c1cfe586b517, type: 2}
     value: {fileID: 1295888786}
+  - key: {fileID: 6136057727889150685, guid: a884cfe8f9cfcc8459e2c1cfe586b517, type: 2}
+    value: {fileID: 234467155}
   m_ExposedReferences:
     m_References:
     - 330439fd657b34c42a8f3f1b9d143652: {fileID: 937538184}
@@ -1802,6 +1848,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1295888790}
+  - {fileID: 234467157}
   m_Father: {fileID: 1558346978}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
