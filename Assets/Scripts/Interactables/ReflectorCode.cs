@@ -5,7 +5,7 @@ using UnityEngine;
 public class ReflectorCode : MonoBehaviour
 {
     
-    Quaternion reflectorAngle;
+    /*Quaternion reflectorAngle;
     Vector3 reflectorForwardVector;
 
     public Color reflectColor;
@@ -31,6 +31,6 @@ public class ReflectorCode : MonoBehaviour
             tempRender.material.SetColor("_Color", reflectColor);
             tempRender.material.SetColor("_EmissiveColor", reflectColor);
 
-        }
-    }
+        } 
+    }*/
 }

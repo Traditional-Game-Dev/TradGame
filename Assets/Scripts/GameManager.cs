@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized] public bool Paused = false;
     private float tempTime;
     public GameObject pauseMenuUI;
+    private int currLevel;
 
     void Awake()
     {
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
             TogglePause();
         };
         pauseButton.Enable();
+        currLevel = 1;
     }
 
     void TogglePause()

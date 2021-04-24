@@ -10,6 +10,11 @@ public class BulletScript : MonoBehaviour
     MeshRenderer objectRenderer;
     private GameManager manager;
 
+    Quaternion reflectorAngle;
+    Vector3 reflectorForwardVector;
+
+    public Color reflectColor;
+
     void Awake()
     {
         //Init All Colors to Red
@@ -59,6 +64,22 @@ public class BulletScript : MonoBehaviour
                 other.gameObject.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
             }
             gameObject.SetActive(false);
+        }
+        else if(other.CompareTag("Reflector")){
+            reflectorAngle = other.transform.rotation;
+            reflectorForwardVector = reflectorAngle * Vector3.forward;
+
+            Vector3 newDirection = Vector3.Reflect(transform.forward, reflectorForwardVector);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+
+            //Change Color
+            Renderer tempRender = gameObject.GetComponent<MeshRenderer>();
+            tempRender.material.SetColor("_Color", reflectColor);
+            tempRender.material.SetColor("_EmissiveColor", reflectColor);
+            gameObject.GetComponentInChildren<Light>().color = reflectColor;
+            tempRender = gameObject.GetComponentInChildren<ParticleSystemRenderer>();
+            tempRender.material.SetColor("_Color", reflectColor);
+            tempRender.material.SetColor("_EmissiveColor", reflectColor);
         }
     }
 }
