@@ -38,7 +38,7 @@ public class BossController : MonoBehaviour
     [System.NonSerialized] public float bulletStartDegree;
     [System.NonSerialized] public float bulletEndDegree;
     [Range(0, 360)]public float width;
-    [Range(50.0f, 75.0f)] public float bulletSpeed;
+    [Range(0f, 75.0f)] public float bulletSpeed;
     [System.NonSerialized] public ObjectPool bulletPool = new ObjectPool();
     public float timeForLoad;
 

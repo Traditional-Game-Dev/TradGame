@@ -9,6 +9,7 @@ public class BulletScript : MonoBehaviour
     [System.NonSerialized] public Vector3 startPos;
     MeshRenderer objectRenderer;
     private GameManager manager;
+    private bool hitReflect;
 
     Quaternion reflectorAngle;
     Vector3 reflectorForwardVector;
@@ -26,7 +27,7 @@ public class BulletScript : MonoBehaviour
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_EmissiveColor", Color.red);
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetFloat("_EmissionIntensity", 25);
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        hitReflect = false;
     }
 
     void OnDisable()
@@ -37,6 +38,7 @@ public class BulletScript : MonoBehaviour
         gameObject.GetComponentInChildren<Light>().color = Color.red;
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_Color", Color.red);
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_EmissiveColor", Color.red);
+        hitReflect = false;
     }
 
     void Update()
@@ -65,12 +67,13 @@ public class BulletScript : MonoBehaviour
             }
             gameObject.SetActive(false);
         }
-        else if(other.CompareTag("Reflector")){
+        else if(other.CompareTag("Reflector") && hitReflect == false){
             reflectorAngle = other.transform.rotation;
             reflectorForwardVector = reflectorAngle * Vector3.forward;
 
             Vector3 newDirection = Vector3.Reflect(transform.forward, reflectorForwardVector);
             transform.rotation = Quaternion.LookRotation(newDirection);
+            Debug.Log(transform.rotation);
 
             //Change Color
             Renderer tempRender = gameObject.GetComponent<MeshRenderer>();
@@ -80,6 +83,7 @@ public class BulletScript : MonoBehaviour
             tempRender = gameObject.GetComponentInChildren<ParticleSystemRenderer>();
             tempRender.material.SetColor("_Color", reflectColor);
             tempRender.material.SetColor("_EmissiveColor", reflectColor);
+            hitReflect = true;
         }
     }
 }
