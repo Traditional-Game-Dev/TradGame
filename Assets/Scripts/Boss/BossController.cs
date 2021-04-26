@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class BossController : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class BossController : MonoBehaviour
 
     [Header("Stomp Attack:")]
     [Range(1, 100)] public float stompRadius;
+    public VisualEffect shockwave;
     public GameObject genericProjectile;
 
     [System.NonSerialized] public PoisonType poisonType = PoisonType.Normal;
