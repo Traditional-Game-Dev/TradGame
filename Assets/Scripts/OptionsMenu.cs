@@ -9,18 +9,22 @@ public class OptionsMenu : MonoBehaviour {
 
    public void setVolumeMusic (float vol)
     {
-
-        audioMixer.SetFloat("MusicVolParam", vol);
-
+        audioMixer.SetFloat("MusicVolParam", Mathf.Log10(vol) * 20);
     }
 
     public void setVolumeEffects(float vol)
     {
-
-        audioMixer.SetFloat("SFXVolParam", vol);
-
+        audioMixer.SetFloat("SFXVolParam", Mathf.Log10(vol) * 20);
     }
 
+    public void setVolumeAmbient(float vol)
+    {
+        audioMixer.SetFloat("AmbientVolParam", Mathf.Log10(vol) * 20);
+    }
 
+    public void setVolumeMaster(float vol)
+    {
+        audioMixer.SetFloat("MasterVolParam", Mathf.Log10(vol) * 20);
+    }
 }
    
