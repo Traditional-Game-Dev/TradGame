@@ -57,7 +57,7 @@ MonoBehaviour:
     max: 16
   m_FarMaxBlur:
     m_OverrideState: 1
-    m_Value: 9.09
+    m_Value: 5
     min: 0
     max: 16
   m_HighQualityFiltering:
