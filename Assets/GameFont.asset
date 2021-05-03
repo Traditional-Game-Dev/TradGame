@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: MONTSERRAT-EXTRABOLD SDF
+  m_Name: GameFont
   m_EditorClassIdentifier: 
   hashCode: 1925370136
   material: {fileID: 4920953202016349003}
