@@ -14,7 +14,7 @@ public class BossStompState : BossBaseState
     private float timerDuringAttacks;
     private bool triedStomp;
 
-    private float windUpTime = 1.0f;
+    private readonly float windUpTime = 1.0f;
 
 
     public override void EnterState(BossController boss)
