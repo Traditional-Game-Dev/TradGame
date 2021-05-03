@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.55631, g: 30.83117, b: 37.753475, a: 1}
+  m_IndirectSpecularColor: {r: 14.436623, g: 30.801613, b: 37.736355, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11984,7 +11984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 168487777}
   m_Layer: 0
-  m_Name: background island 1
+  m_Name: island decor (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11997,9 +11997,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168487776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -427.6215, y: -6.9818683, z: 280.05017}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.0718315, y: 9.44753, z: 4.9270544}
+  m_LocalScale: {x: 0.09541212, y: 0.09541212, z: 0.09541212}
   m_Children:
   - {fileID: 185510287}
   - {fileID: 1896048546}
@@ -12020,8 +12020,8 @@ Transform:
   - {fileID: 260214404}
   - {fileID: 773683549}
   - {fileID: 154266783}
-  m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_Father: {fileID: 608517848}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &175201730
 PrefabInstance:
@@ -37340,7 +37340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 882672713}
   m_Layer: 0
-  m_Name: Background Island 3
+  m_Name: Island decor (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37353,9 +37353,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882672712}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -421.79315, y: 21.225056, z: 791.5866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -13.402356, y: 11.058013, z: -34.40941}
+  m_LocalScale: {x: 0.11612504, y: 0.11612504, z: 0.11612504}
   m_Children:
   - {fileID: 1330508231}
   - {fileID: 552499058}
@@ -37376,8 +37376,8 @@ Transform:
   - {fileID: 965864518}
   - {fileID: 1697290351}
   - {fileID: 905037855}
-  m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_Father: {fileID: 599668330}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &883035310
 GameObject:
@@ -38781,7 +38781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 899293793}
   m_Layer: 0
-  m_Name: Background Island 2
+  m_Name: Island decor (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38794,9 +38794,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899293792}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -451.45212, y: -40.994896, z: 734.9907}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.2307167, y: 2.8488185, z: -2.9788206}
+  m_LocalScale: {x: 0.12946172, y: 0.12946172, z: 0.12946172}
   m_Children:
   - {fileID: 502700503}
   - {fileID: 1321865837}
@@ -38817,8 +38817,8 @@ Transform:
   - {fileID: 573788687}
   - {fileID: 25467303}
   - {fileID: 2125665466}
-  m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_Father: {fileID: 848981425}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &899639027
 PrefabInstance:
@@ -44828,7 +44828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065995781}
   m_Layer: 0
-  m_Name: Background Island 6
+  m_Name: Island decor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44841,9 +44841,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065995780}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 266.83972, y: -29.460241, z: 512.0905}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -21.717167, y: -2.0332859, z: 36.635365}
+  m_LocalScale: {x: 0.34114155, y: 0.34114155, z: 0.34114155}
   m_Children:
   - {fileID: 812387461}
   - {fileID: 1356486068}
@@ -44856,8 +44856,8 @@ Transform:
   - {fileID: 1890697172}
   - {fileID: 131312864}
   - {fileID: 178863379}
-  m_Father: {fileID: 0}
-  m_RootOrder: 44
+  m_Father: {fileID: 1359429231}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1068104385 stripped
 Transform:
@@ -60980,7 +60980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497083075}
   m_Layer: 0
-  m_Name: Background Island 5
+  m_Name: Island decor (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60993,9 +60993,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497083074}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -421.79315, y: 21.225056, z: 791.5866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -183.0412, y: 12.457178, z: -39.511024}
+  m_LocalScale: {x: 0.23671573, y: 0.23671573, z: 0.23671573}
   m_Children:
   - {fileID: 1060555970}
   - {fileID: 805964528}
@@ -61016,8 +61016,8 @@ Transform:
   - {fileID: 2104932203}
   - {fileID: 1558127593}
   - {fileID: 506927708}
-  m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_Father: {fileID: 1068104385}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498066425
 GameObject:
@@ -73728,7 +73728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880899073}
   m_Layer: 0
-  m_Name: Background Island 4
+  m_Name: Island decor (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73741,9 +73741,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880899072}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -421.79315, y: 21.225056, z: 791.5866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -256.2467, y: 12.37562, z: -6.6328607}
+  m_LocalScale: {x: 0.26099864, y: 0.1570011, z: 0.26099864}
   m_Children:
   - {fileID: 1103483166}
   - {fileID: 607648898}
@@ -73764,8 +73764,8 @@ Transform:
   - {fileID: 1628982793}
   - {fileID: 1752957541}
   - {fileID: 1281059399}
-  m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_Father: {fileID: 976430841}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1882389226
 GameObject:
