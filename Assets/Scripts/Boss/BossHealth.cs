@@ -23,6 +23,7 @@ public class BossHealth : MonoBehaviour
     public GameObject laserLight;
     public ParticleSystem laserImpact;
     public ParticleSystem laserWarmUp;
+    public GameObject cutscene;
 
     // Start is called before the first frame update
     void Start()
@@ -47,10 +48,11 @@ public class BossHealth : MonoBehaviour
         StartCoroutine(BossDamageColor());
 
         if (currentHealth <= 66 && gameManager.currLevel == 1){
+            cutscene.SetActive(true);
             gameManager.currLevel = 2;
-            rock1.SetActive(false);
-            rock2.SetActive(false);
-            rock3.SetActive(false);
+            //rock1.SetActive(false);
+            //rock2.SetActive(false);
+            //rock3.SetActive(false);
             wall.SetActive(false);
             wallHitbox.SetActive(false);
             lineRenderer.enabled = false;
