@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.014163, g: 26.553082, b: 27.106222, a: 1}
+  m_IndirectSpecularColor: {r: 14.521846, g: 30.771431, b: 37.68118, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11017,7 +11017,6 @@ MonoBehaviour:
   anim: {fileID: 142765629}
   bossAttackTime: 4
   bossWaitTime: 2
-  transitioningLevels: 0
   lineRenderer: {fileID: 142765631}
   laserImpact: {fileID: 400961135}
   laserLight: {fileID: 1152165680}
@@ -11042,7 +11041,7 @@ MonoBehaviour:
   poisonRadius: 100
   emissionDuration: 5
   timeForAim: 2
-  stompRadius: 15
+  stompRadius: 25
   shockwave: {fileID: 252797160}
   genericProjectile: {fileID: 6829279045378753638, guid: f19467aab68438b41aaeb77c708c2a18,
     type: 3}
@@ -11250,9 +11249,6 @@ MonoBehaviour:
   wall: {fileID: 1676891725}
   wallHitbox: {fileID: 1885294384}
   lineRenderer: {fileID: 142765631}
-  laserLight: {fileID: 1152165680}
-  laserImpact: {fileID: 400961135}
-  laserWarmUp: {fileID: 1411527124}
 --- !u!54 &142765633
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14453,7 +14449,7 @@ Transform:
   m_GameObject: {fileID: 252797158}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3, y: 0.5, z: 57.87}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 33
