@@ -63,7 +63,12 @@ public class GameManager : MonoBehaviour
         planningUI.SetActive(false);
 
         player.transform.position = playerSpawnLocation;
-        player.SetActive(true);
+        
+        
+        player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        playerIvin = false;
+        playerDisabled = false;
+
 
 
         var rock = GameObject.Find("Rock1Blueprint");
@@ -98,7 +103,10 @@ public class GameManager : MonoBehaviour
         planningUI.SetActive(true);
         planningUI.GetComponent<spawnObject>().mana = planningUI.GetComponent<spawnObject>().planningMana;
 
-        player.SetActive(false);
+        //player.SetActive(false);
+        player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        playerIvin = true;
+        playerDisabled = true;
 
         GameObject.Find("Boss").GetComponent<BossController>().planningPhase = true;
     }

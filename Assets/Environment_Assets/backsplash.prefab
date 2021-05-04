@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3896653468911871719}
   - component: {fileID: 125091687088662850}
   - component: {fileID: 2763131492654046600}
-  - component: {fileID: 4327201403016852849}
+  - component: {fileID: 6911068188064377705}
   m_Layer: 0
-  m_Name: glass2
+  m_Name: backsplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4327201403016852849
-BoxCollider:
+--- !u!64 &6911068188064377705
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,6 +90,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.012298715, y: 0.04647203, z: 0.0082413}
-  m_Center: {x: 0.0011493561, y: 0.028236015, z: 0.00070076616}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4068373912626513877, guid: 4c16cba6e6cf29846b353cc245f1ba28, type: 3}

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float dashCooldown;
     public float dashMultiplier;
     public int dashCounter;
+    public GameObject dashUI;
 
     private GameManager manager;
     private Transform camTransform;
@@ -101,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        dashSprites = GameObject.Find("DashSprites").GetComponent<DashSprites>();
+        dashSprites = dashUI.GetComponent<DashSprites>();
 
         TransitionToState(IdleState);
     }
