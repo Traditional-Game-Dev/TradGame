@@ -47,7 +47,7 @@ public class BossHealth : MonoBehaviour
 
         StartCoroutine(BossDamageColor());
 
-        if (currentHealth <= 66 && gameManager.currLevel == 1){
+        if (currentHealth <= 33 && gameManager.currLevel == 1){
             cutscene.SetActive(true);
             gameManager.currLevel = 2;
             //rock1.SetActive(false);
