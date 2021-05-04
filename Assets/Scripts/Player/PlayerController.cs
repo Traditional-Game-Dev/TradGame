@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings:")]
     public float baseSpeed;
     [Header("Dash Settings:")]
+    public GameObject dashAura;
     public float dashCooldown;
     public float dashMultiplier;
     public int dashCounter;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private GameManager manager;
     private Transform camTransform;
     private DashSprites dashSprites;
+    private List<ParticleSystem> dashParticles;
     private float moveSpeed;
     private Vector3 moveDirection;
     private Vector3 direction;
@@ -56,6 +58,11 @@ public class PlayerController : MonoBehaviour
 
         var gameplayActionMap = playerControls.FindActionMap("Gameplay");
 
+        foreach (ParticleSystem ps in dashAura.GetComponentsInChildren<ParticleSystem>())
+        {
+            ps.Stop();
+        }
+
         movement = gameplayActionMap.FindAction("Movement");
         movement.performed += ctx =>
         {
@@ -80,6 +87,11 @@ public class PlayerController : MonoBehaviour
                 currentDashCooldownTime = 0;
                 dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
                 manager.playerIvin = true;
+
+                foreach (ParticleSystem ps in dashAura.GetComponentsInChildren<ParticleSystem>())
+                {
+                    ps.Play();
+                }
 
                 dashSprites.UpdateDashImage(dashCounter);
             }
@@ -122,6 +134,11 @@ public class PlayerController : MonoBehaviour
                 {
                     moveSpeed = baseSpeed;
                     manager.playerIvin = false;
+
+                    foreach (ParticleSystem ps in dashAura.GetComponentsInChildren<ParticleSystem>())
+                    {
+                        ps.Stop();
+                    }
                 }
 
                 currentDashCooldownTime += dashStoppingSpeed;

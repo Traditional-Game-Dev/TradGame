@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.5411215, g: 30.770271, b: 37.671627, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5365,7 +5365,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6320754, g: 0, b: 0.6028797, a: 1}
+      maxColor: {r: 0.2028302, g: 0.89043814, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5427,8 +5427,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 60.5
-      minScalar: 61.5
+      scalar: 120.5
+      minScalar: 121.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5480,8 +5480,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 60.5
-      minScalar: 61.5
+      scalar: 120.5
+      minScalar: 121.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5533,8 +5533,8 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 59
-      minScalar: 60
+      scalar: 119
+      minScalar: 120
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -21826,7 +21826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &452722197
 Transform:
   m_ObjectHideFlags: 0
@@ -21861,6 +21861,7 @@ MonoBehaviour:
   controller: {fileID: 452722199}
   anim: {fileID: 452722205}
   baseSpeed: 12
+  dashAura: {fileID: 1089427599}
   dashCooldown: 20
   dashMultiplier: 18
   dashCounter: 0
@@ -25088,7 +25089,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555739396}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.729, z: 0.15}
+  m_LocalPosition: {x: 0, y: -0.73, z: 0.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1089427600}
@@ -25348,7 +25349,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6320754, g: 0, b: 0.6028797, a: 1}
+      maxColor: {r: 0.4292453, g: 0.9212753, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -25410,8 +25411,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 160.5
-      minScalar: 161.5
+      scalar: 260.5
+      minScalar: 261.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -25463,8 +25464,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 160.5
-      minScalar: 161.5
+      scalar: 260.5
+      minScalar: 261.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -25516,8 +25517,8 @@ ParticleSystem:
     startSizeZ:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 159
-      minScalar: 160
+      scalar: 259
+      minScalar: 260
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -35028,8 +35029,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.15
+      scalar: 0.35
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -35135,7 +35136,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0.92387056, a: 1}
+      maxColor: {r: 0.20392157, g: 0.8901961, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -35197,8 +35198,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.05
-      minScalar: 0.03
+      scalar: 0.2
+      minScalar: 0.15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -55045,7 +55046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1089427600
 Transform:
   m_ObjectHideFlags: 0
@@ -56989,7 +56990,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6320754, g: 0, b: 0.6028797, a: 1}
+      maxColor: {r: 0.4292453, g: 0.9212753, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
