@@ -85,7 +85,6 @@ public class PlayerAttack : MonoBehaviour
                 lightning.gameObject.transform.position = transform.forward + new Vector3(playerTransform.position.x - newHandOffset,
                                                                                             playerTransform.position.y + heightOffset,
                                                                                             playerTransform.position.z);
-
             }
         }
     }
