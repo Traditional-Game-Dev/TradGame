@@ -20,8 +20,9 @@ public class BossHealth : MonoBehaviour
     public GameObject wall;
     public GameObject wallHitbox;
     public LineRenderer lineRenderer;
-    private GameObject laserLight;
-    private ParticleSystem laserImpact;
+    public GameObject laserLight;
+    public ParticleSystem laserImpact;
+    public ParticleSystem laserWarmUp;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,6 @@ public class BossHealth : MonoBehaviour
         StartCoroutine(BossDamageColor());
 
         if (currentHealth <= 66 && gameManager.currLevel == 1){
-            //boss.transform.position = new Vector3(boss.transform.position.x, boss.transform.position.y, 700);
             gameManager.currLevel = 2;
             rock1.SetActive(false);
             rock2.SetActive(false);
@@ -55,11 +55,12 @@ public class BossHealth : MonoBehaviour
             wallHitbox.SetActive(false);
             lineRenderer.enabled = false;
             laserImpact.Stop();
-            laserLight.SetActive(false);
+            laserWarmUp.Stop();
+            laserLight.SetActive(false); 
             boss.GetComponent<BossController>().anim.speed = 1;
+            boss.GetComponent<BossController>().transitioningLevels = 1;
             boss.GetComponent<BossController>().TransitionToState(boss.GetComponent<BossController>().IdleState);
-            //boss.GetComponent<BossController>().planningPhase = true;
-            boss.SetActive(false);
+            boss.transform.position = new Vector3(27, boss.transform.position.y, 900);
         }
         else if (currentHealth <= 0 && gameManager.currLevel == 2)
         {

@@ -18,7 +18,7 @@ public class BossIdleState : BossBaseState
     public override void Update(BossController boss)
     {
         timerDuringAttacks += Time.deltaTime;
-        if (timerDuringAttacks > boss.bossWaitTime)
+        if (timerDuringAttacks > boss.bossWaitTime && boss.transitioningLevels == 0)
         {
             float distance = Vector3.Distance(boss.transform.position, boss.player.transform.position);
             //Always Shoot Laser First

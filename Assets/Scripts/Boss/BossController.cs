@@ -12,6 +12,7 @@ public class BossController : MonoBehaviour
     public float bossAttackTime;
     public float bossWaitTime;
     [System.NonSerialized] public BossAttacks prevAttack = BossAttacks.First;
+    public int transitioningLevels;
 
     [Header("Laser Attack:")]
     public LineRenderer lineRenderer;
@@ -86,6 +87,7 @@ public class BossController : MonoBehaviour
         lineRenderer.enabled = false;
         //TODO: Find Ratio of BulletCount to PoolSize (Optimization Task)
         bulletPool.CreatePool(bulletObject, bulletCount/2);
+        transitioningLevels = 0;
 
         TransitionToState(IdleState);
     }

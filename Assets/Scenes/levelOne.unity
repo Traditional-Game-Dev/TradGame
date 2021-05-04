@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.554374, g: 30.815102, b: 37.733395, a: 1}
+  m_IndirectSpecularColor: {r: 14.014163, g: 26.553082, b: 27.106222, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11017,6 +11017,7 @@ MonoBehaviour:
   anim: {fileID: 142765629}
   bossAttackTime: 4
   bossWaitTime: 2
+  transitioningLevels: 0
   lineRenderer: {fileID: 142765631}
   laserImpact: {fileID: 400961135}
   laserLight: {fileID: 1152165680}
@@ -11249,6 +11250,9 @@ MonoBehaviour:
   wall: {fileID: 1676891725}
   wallHitbox: {fileID: 1885294384}
   lineRenderer: {fileID: 142765631}
+  laserLight: {fileID: 1152165680}
+  laserImpact: {fileID: 400961135}
+  laserWarmUp: {fileID: 1411527124}
 --- !u!54 &142765633
 Rigidbody:
   m_ObjectHideFlags: 0
