@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.554374, g: 30.815102, b: 37.733395, a: 1}
+  m_IndirectSpecularColor: {r: 14.521846, g: 30.771431, b: 37.68118, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11041,7 +11041,7 @@ MonoBehaviour:
   poisonRadius: 100
   emissionDuration: 5
   timeForAim: 2
-  stompRadius: 15
+  stompRadius: 25
   shockwave: {fileID: 252797160}
   genericProjectile: {fileID: 6829279045378753638, guid: f19467aab68438b41aaeb77c708c2a18,
     type: 3}
@@ -14449,7 +14449,7 @@ Transform:
   m_GameObject: {fileID: 252797158}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3, y: 0.5, z: 57.87}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 33

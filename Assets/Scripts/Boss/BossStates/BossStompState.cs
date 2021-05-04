@@ -10,7 +10,6 @@ public class BossStompState : BossBaseState
     private float bossAttackTime;
     private float stompRadius;
 
-    
     private float timerDuringAttacks;
     private bool triedStomp;
 
@@ -24,11 +23,11 @@ public class BossStompState : BossBaseState
         GameObject projectile = GameObject.Instantiate(boss.genericProjectile);
         projectileScript = projectile.GetComponent<Projectile>();
 
-        timerDuringAttacks = 0.0f;
-        triedStomp = false;
-
         stompRadius = boss.stompRadius;
         shockwave = boss.shockwave;
+
+        timerDuringAttacks = 0.0f;
+        triedStomp = false;
 
         boss.anim.SetTrigger("playStompAnim");
         bossAttackTime = boss.bossAttackTime;
