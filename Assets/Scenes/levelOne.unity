@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.401029, g: 30.810951, b: 37.753506, a: 1}
+  m_IndirectSpecularColor: {r: 14.4010315, g: 30.811104, b: 37.752254, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11451,9 +11451,9 @@ MonoBehaviour:
   wall: {fileID: 1676891725}
   wallHitbox: {fileID: 1885294384}
   lineRenderer: {fileID: 142765631}
-  laserLight: {fileID: 0}
-  laserImpact: {fileID: 0}
-  laserWarmUp: {fileID: 0}
+  laserLight: {fileID: 1152165680}
+  laserImpact: {fileID: 400961135}
+  laserWarmUp: {fileID: 1411527124}
 --- !u!54 &142765633
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -51671,8 +51671,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.4157633, y: 0, z: 0, w: 0.9094729}
-  m_LocalPosition: {x: 0, y: 55, z: -89.4}
+  m_LocalRotation: {x: 0.43846858, y: 0.03292813, z: -0.016077911, w: 0.89799917}
+  m_LocalPosition: {x: 0, y: 55, z: 530.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
