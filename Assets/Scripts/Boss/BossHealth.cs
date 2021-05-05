@@ -62,7 +62,7 @@ public class BossHealth : MonoBehaviour
             boss.GetComponent<BossController>().anim.speed = 1;
             boss.GetComponent<BossController>().transitioningLevels = 1;
             boss.GetComponent<BossController>().TransitionToState(boss.GetComponent<BossController>().IdleState);
-            boss.transform.position = new Vector3(27, boss.transform.position.y, 900);
+            boss.transform.position = new Vector3(27, boss.transform.position.y, 858);
         }
         else if (currentHealth <= 0 && gameManager.currLevel == 2)
         {
