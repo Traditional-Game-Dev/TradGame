@@ -91,6 +91,16 @@ public class GameManager : MonoBehaviour
         {
             teleporter.gameObject.SetActive(false);
         }
+        var hpPad = GameObject.Find("HealthBlueprint");
+        if (hpPad != null)
+        {
+            hpPad.gameObject.SetActive(false);
+        }
+        var reflector = GameObject.Find("reflectorBlueprint");
+        if (reflector != null)
+        {
+            reflector.gameObject.SetActive(false);
+        }
 
         LinkTeleporters();
 
