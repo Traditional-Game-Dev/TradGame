@@ -15,6 +15,11 @@ public class spawnObject : MonoBehaviour
     public int rockCost;
     public GameObject teleporter;
     public int teleporterCost;
+    public GameObject healthPickup;
+    public int healthPickupCost;
+    public GameObject reflector;
+    public int reflectorCost;
+
 
     void Awake()
     {
@@ -22,6 +27,8 @@ public class spawnObject : MonoBehaviour
         GameObject.Find("SpawnRock").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Rock\n{rockCost}";
         GameObject.Find("SpawnRuins").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Wide Wall\n{ruinsWallCost}";
         GameObject.Find("SpawnTeleporter").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Teleporter\n{teleporterCost}";
+        GameObject.Find("SpawnReflector").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Reflector\n{reflectorCost}";
+        GameObject.Find("SpawnHealthPad").GetComponentInChildren<TMPro.TextMeshProUGUI>().text = $"Health Pad\n{healthPickupCost}";
         GameObject.Find("ManaBarSlider").GetComponent<Slider>().maxValue = planningMana;
 
         mana = planningMana;
@@ -34,40 +41,55 @@ public class spawnObject : MonoBehaviour
         costs.Add(rock, rockCost);
         costs.Add(ruinsWall, ruinsWallCost);
         costs.Add(teleporter, teleporterCost);
+        costs.Add(reflector, reflectorCost);
+        costs.Add(healthPickup, healthPickupCost);
 
         return costs;
     }
 
     public void createWall()
     {
-        rock.SetActive(false);
-        ruinsWall.SetActive(false);
-        teleporter.SetActive(false);
+        deactivateAll();
         wall.SetActive(true);
     }
 
     public void createRock()
     {
-        wall.SetActive(false);
-        ruinsWall.SetActive(false);
-        teleporter.SetActive(false);
+        deactivateAll();
         rock.SetActive(true);
     }
 
     public void createRuinsWall()
     {
-        wall.SetActive(false);
-        rock.SetActive(false);
-        teleporter.SetActive(false);
+        deactivateAll();
         ruinsWall.SetActive(true);
     }
-
     public void createTeleporter()
+    {
+        deactivateAll();
+        teleporter.SetActive(true);
+    }
+
+    public void createHealth()
+    {
+        deactivateAll();
+        healthPickup.SetActive(true);
+    }
+
+    public void createReflector()
+    {
+        deactivateAll();
+        reflector.SetActive(true);
+    }
+
+    private void deactivateAll()
     {
         wall.SetActive(false);
         rock.SetActive(false);
         ruinsWall.SetActive(false);
-        teleporter.SetActive(true);
+        teleporter.SetActive(false);
+        healthPickup.SetActive(false);
+        reflector.SetActive(false);
     }
 
     void Update()

@@ -54,20 +54,21 @@ public class BlueprintScript : MonoBehaviour
         Vector3 tempLocation;
 
 
-        //Place At Ground Mouse
-        if(Physics.Raycast(ray, out hit, 50000.0f) && Gamepad.current == null)
-        {   
-            tempLocation = hit.point;
-            tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y;
-            transform.position = tempLocation;
-        }
         //Place At Ground Controller
-        else
+        if(Gamepad.current != null)
         {
             tempLocation = new Vector3 ((Gamepad.current.leftStick.x.ReadValue() * Time.deltaTime * 30) + transform.position.x, -0.25f, (Gamepad.current.leftStick.y.ReadValue() * Time.deltaTime * 30) + transform.position.z);
-            tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y;
+            tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y - 0.25f;
             transform.position = tempLocation;
         }
+        //Place At Ground Mouse
+        else if(Physics.Raycast(ray, out hit, 50000.0f))
+        {   
+            tempLocation = hit.point;
+            tempLocation.y += GetComponent<MeshFilter>().mesh.bounds.extents.y*transform.localScale.y -0.25f;
+            transform.position = tempLocation;
+        }
+
 
         //Object Recoloration
         if(Vector3.Distance(transform.position, GameObject.Find("Boss").transform.position) < 25)
@@ -101,11 +102,11 @@ public class BlueprintScript : MonoBehaviour
         {
             if(rotate.ReadValue<float>() > 0)
             {
-                transform.Rotate(Vector3.down * 10f, Space.Self);
+                transform.Rotate(Vector3.down * 10f, Space.World);
             }
             else if(rotate.ReadValue<float>() < 0)
             {
-              transform.Rotate(Vector3.up * 10f, Space.Self);
+              transform.Rotate(Vector3.up * 10f, Space.World);
             }
         }
 
@@ -115,8 +116,16 @@ public class BlueprintScript : MonoBehaviour
         {
             if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
-                Instantiate(prefab, transform.position, transform.rotation);
-                planningUI.GetComponent<spawnObject>().mana = cashAfterPurchase;
+                if(gameObject.name == "reflectorBlueprint")
+                {
+                    Instantiate(prefab, transform.position, transform.rotation * Quaternion.Euler(90, 0, 0) );
+                    planningUI.GetComponent<spawnObject>().mana = cashAfterPurchase;
+                }
+                else
+                {
+                    Instantiate(prefab, transform.position, transform.rotation);
+                    planningUI.GetComponent<spawnObject>().mana = cashAfterPurchase;
+                }
             }
         }
     }
