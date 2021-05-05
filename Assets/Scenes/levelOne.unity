@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.504407, g: 30.416113, b: 35.078243, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11383,7 +11383,7 @@ GameObject:
   - component: {fileID: 142765632}
   - component: {fileID: 142765633}
   - component: {fileID: 142765627}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -11407,6 +11407,7 @@ MonoBehaviour:
   bossAttackTime: 4
   bossWaitTime: 2
   transitioningLevels: 0
+  currPosition: 0
   lineRenderer: {fileID: 142765631}
   laserImpact: {fileID: 400961135}
   laserLight: {fileID: 1152165680}
