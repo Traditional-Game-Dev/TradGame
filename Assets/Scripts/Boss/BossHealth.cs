@@ -49,9 +49,6 @@ public class BossHealth : MonoBehaviour
         if (currentHealth <= 33 && gameManager.currLevel == 1){
             cutscene.SetActive(true);
             gameManager.currLevel = 2;
-            //rock1.SetActive(false);
-            //rock2.SetActive(false);
-            //rock3.SetActive(false);
             wall.SetActive(false);
             wallHitbox.SetActive(false);
             lineRenderer.enabled = false;

@@ -35,9 +35,11 @@ public class BulletScript : MonoBehaviour
         //Reset Color (In Case of Reflect)
         objectRenderer.material.SetColor("_Color", Color.red);
         objectRenderer.material.SetColor("_EmissiveColor", Color.red);
+        objectRenderer.material.SetFloat("_EmissionIntensity", 100);
         gameObject.GetComponentInChildren<Light>().color = Color.red;
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_Color", Color.red);
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_EmissiveColor", Color.red);
+        gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetFloat("_EmissionIntensity", 25);
         hitReflect = false;
     }
 
@@ -57,11 +59,15 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)    
     {
-        if(!other.isTrigger && !other.CompareTag("Boss") && !other.CompareTag("Bullet") && !other.CompareTag("Reflector"))
+        if(other.CompareTag("Boss") && hitReflect == true){
+            manager.DamageBoss(1);
+            Debug.Log("Hit The Boss!");
+        }
+        else if(!other.isTrigger && !other.CompareTag("Boss") && !other.CompareTag("Bullet") && !other.CompareTag("Reflector"))
         {
             movementSpeed = 0;
             gameObject.GetComponentInChildren<Light>().enabled = false;
-            if(other.CompareTag("Player") && !manager.playerIvin)
+            if(other.CompareTag("Player") && !manager.playerIvin && hitReflect == false)
             {
                 other.gameObject.GetComponent<PlayerHealth>().damagePlayer(damageDealt);
             }
