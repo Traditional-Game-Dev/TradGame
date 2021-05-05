@@ -15,6 +15,7 @@ public class LevelTwo : MonoBehaviour
             boss.SetActive(true);
             topDownCamera.gameObject.SetActive(true);
             bridgeCamera.gameObject.SetActive(false);
+            boss.GetComponent<BossController>().transitioningLevels = 0;
             manager.GetComponent<GameManager>().SwapToPlanning();
         }
     }

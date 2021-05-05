@@ -12,6 +12,7 @@ public class BossStompState : BossBaseState
 
     private float timerDuringAttacks;
     private bool triedStomp;
+    private float random;
 
     private readonly float windUpTime = 1.0f;
 
@@ -56,6 +57,40 @@ public class BossStompState : BossBaseState
             if (Vector3.Distance(boss.transform.position, boss.player.transform.position) < stompRadius)
             {
                 projectileScript.Begin(boss.player.transform, manager.playerSpawnLocation, new Vector2(), 45.0f, 29.4f);
+            }
+
+            if(manager.currLevel == 2){
+                random = UnityEngine.Random.value;
+                if(boss.currPosition == 1){
+                    if(random < 0.5){
+                        boss.currPosition = 2;
+                        boss.transform.position = new Vector3(27, boss.transform.position.y, 858);
+                    }
+                    else if(random >= 0.51){
+                        boss.currPosition = 3;
+                        boss.transform.position = new Vector3(122, boss.transform.position.y, 806);
+                    }
+                }
+                else if(boss.currPosition == 2){
+                    if(random < 0.5){
+                        boss.currPosition = 1;
+                        boss.transform.position = new Vector3(-65, boss.transform.position.y, 867);
+                    }
+                    else if(random >= 0.51){
+                        boss.currPosition = 3;
+                        boss.transform.position = new Vector3(122, boss.transform.position.y, 806);
+                    }
+                }
+                else{
+                    if(random < 0.5){
+                        boss.currPosition = 1;
+                        boss.transform.position = new Vector3(-65, boss.transform.position.y, 867);
+                    }
+                    else if(random >= 0.51){
+                        boss.currPosition = 2;
+                        boss.transform.position = new Vector3(27, boss.transform.position.y, 858);
+                    }
+                }
             }
 
             triedStomp = true;

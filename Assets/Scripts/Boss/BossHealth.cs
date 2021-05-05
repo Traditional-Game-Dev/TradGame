@@ -46,8 +46,8 @@ public class BossHealth : MonoBehaviour
         healthBar.SetHealth(currentHealth);
 
         StartCoroutine(BossDamageColor());
-
-        if (currentHealth <= 33 && gameManager.currLevel == 1){
+        //TODO: CHANGE ME BACK TO 33
+        if (currentHealth <= 99 && gameManager.currLevel == 1){
             cutscene.SetActive(true);
             gameManager.currLevel = 2;
             //rock1.SetActive(false);
