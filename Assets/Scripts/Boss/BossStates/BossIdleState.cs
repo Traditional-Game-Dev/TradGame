@@ -6,6 +6,7 @@ using UnityEngine;
 public class BossIdleState : BossBaseState
 {
     private float timerDuringAttacks = 0;
+    private GameManager manager;
 
     public override void EnterState(BossController boss)
     {
@@ -13,6 +14,7 @@ public class BossIdleState : BossBaseState
         boss.anim.SetBool("playLaserAnim", false);
         boss.anim.SetBool("playBulletAnim", false);
         boss.anim.SetBool("playPoisonAnim", false);
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public override void Update(BossController boss)
@@ -115,7 +117,7 @@ public class BossIdleState : BossBaseState
             }
             //Midrange shoots all attacks
             //Bullets aim towards player in cone
-            else if (distance < 100)
+            else if (distance < 100 || (manager.currLevel == 2 && distance >= 25))
             {
                 switch (boss.prevAttack)
                 {
@@ -182,8 +184,9 @@ public class BossIdleState : BossBaseState
             //Far Range
             //Fires bullets in 180(ish) towards player or poison
             //TODO: POISON TRI SHOT
-            else
+            else if(manager.currLevel == 1)
             {
+                Debug.Log("Firing long range");
                 switch (boss.prevAttack)
                 {
                     case BossAttacks.Laser:
