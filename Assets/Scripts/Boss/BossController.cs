@@ -35,6 +35,9 @@ public class BossController : MonoBehaviour
 
     [Header("Bullet Hell Attack:")]
     public GameObject bulletObject;
+    public AudioClip bulletWindupNoise;
+    public AudioClip bulletFireNoise;
+    public AudioClip bulletFireEnd;
     [Range(1, 100)] public int bulletDamage;
     [Range(1, 500)] public int bulletCount;
     [System.NonSerialized] public float bulletStartDegree;

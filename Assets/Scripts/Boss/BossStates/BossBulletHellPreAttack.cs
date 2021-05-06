@@ -16,15 +16,15 @@ public class BossBulletHellPreAttack : BossBaseState
         timeForLoading = boss.timeForLoad;
         boss.anim.SetBool("playBulletAnim", true);
         boss.anim.speed = 2f;
-        //TODO: Transition Animation to pre poison ball animation here
+        boss.GetComponent<AudioSource>().clip = boss.bulletWindupNoise;
+        timeForLoading = boss.bulletWindupNoise.length - 0.75f;
+        boss.GetComponent<AudioSource>().Play();
     }
 
     public override void Update(BossController boss)
     {
         timerDuringAttacks += Time.deltaTime;
         if(timerDuringAttacks >= timeForLoading){
-            //TODO: Transition Animation back to Idle here
-            //boss.anim.SetBool("playBulletAnim", false);
             boss.TransitionToState(boss.BulletState);
         }
     }

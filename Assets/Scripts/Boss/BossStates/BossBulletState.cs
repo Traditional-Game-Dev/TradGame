@@ -24,6 +24,9 @@ public class BossBulletState : BossBaseState
         bulletPool = boss.bulletPool;
         bulletCount = boss.bulletCount;
         bulletSpeed = boss.bulletSpeed;
+        boss.GetComponent<AudioSource>().clip = boss.bulletFireNoise;
+        boss.GetComponent<AudioSource>().loop = true;
+        boss.GetComponent<AudioSource>().Play();
     }
 
     public override void Update(BossController boss)
@@ -41,6 +44,8 @@ public class BossBulletState : BossBaseState
         {
             timerDuringAttacks -= bossAttackTime;
             boss.anim.speed = 1f;
+            boss.GetComponent<AudioSource>().clip = boss.bulletFireEnd;
+            boss.GetComponent<AudioSource>().loop = false;
             boss.TransitionToState(boss.IdleState);
         }
 
