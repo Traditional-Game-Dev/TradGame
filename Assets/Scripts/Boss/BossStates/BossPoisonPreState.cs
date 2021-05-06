@@ -15,6 +15,7 @@ public class BossPoisonPreState : BossBaseState
         player = boss.player;
         timeForAim = boss.timeForAim;
         boss.GetComponent<AudioSource>().clip = boss.poisonWindupNoise;
+        timeForAim = boss.poisonWindupNoise.length - 3.5f;
         boss.GetComponent<AudioSource>().Play();
     }
 
