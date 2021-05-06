@@ -10,6 +10,7 @@ public class BulletScript : MonoBehaviour
     MeshRenderer objectRenderer;
     private GameManager manager;
     private bool hitReflect;
+    private float timerDuringAttacks;
 
     Quaternion reflectorAngle;
     Vector3 reflectorForwardVector;
@@ -18,6 +19,7 @@ public class BulletScript : MonoBehaviour
 
     void Awake()
     {
+        timerDuringAttacks = 0;
         //Init All Colors to Red
         objectRenderer = gameObject.GetComponent<MeshRenderer>();
         objectRenderer.material.SetColor("_Color", Color.red);
@@ -41,10 +43,12 @@ public class BulletScript : MonoBehaviour
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_EmissiveColor", Color.red);
         gameObject.GetComponentInChildren<ParticleSystemRenderer>().material.SetFloat("_EmissionIntensity", 25);
         hitReflect = false;
+        timerDuringAttacks = 0;
     }
 
     void Update()
     {
+        timerDuringAttacks += Time.deltaTime;
         transform.position += transform.forward * Time.deltaTime * movementSpeed;
         if(transform.position.y > 1)
         {
@@ -54,6 +58,13 @@ public class BulletScript : MonoBehaviour
         if(!gameObject.GetComponentInChildren<Light>().enabled && Vector3.Distance(transform.position, startPos) > 30)
         {
             gameObject.GetComponentInChildren<Light>().enabled = true;
+        }
+
+        if(timerDuringAttacks >= 7.0f){
+            Debug.Log("Timer Expired");
+            movementSpeed = 0;
+            gameObject.GetComponentInChildren<Light>().enabled = false;
+            gameObject.SetActive(false);
         }
     }
 

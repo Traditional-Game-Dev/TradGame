@@ -47,6 +47,7 @@ public class BossHealth : MonoBehaviour
 
         StartCoroutine(BossDamageColor());
         if (currentHealth <= 33 && gameManager.currLevel == 1){
+            currentHealth = maxHealth;
             cutscene.SetActive(true);
             gameManager.currLevel = 2;
             wall.SetActive(false);
@@ -58,12 +59,15 @@ public class BossHealth : MonoBehaviour
             boss.GetComponent<BossController>().anim.speed = 1;
             boss.GetComponent<BossController>().transitioningLevels = 1;
             boss.GetComponent<BossController>().TransitionToState(boss.GetComponent<BossController>().IdleState);
-            boss.transform.position = new Vector3(27, boss.transform.position.y, 858);
         }
         else if (currentHealth <= 0 && gameManager.currLevel == 2)
         {
             SceneManager.LoadScene("winScreen");
         }
+    }
+
+    public void moveBoss(){
+        boss.transform.position = new Vector3(27, boss.transform.position.y, 858);
     }
 
     IEnumerator BossDamageColor()
