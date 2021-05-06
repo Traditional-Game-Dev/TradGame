@@ -50,7 +50,6 @@ public class BossHealth : MonoBehaviour
             currentHealth = maxHealth;
             cutscene.SetActive(true);
             gameManager.currLevel = 2;
-            wall.SetActive(false);
             wallHitbox.SetActive(false);
             lineRenderer.enabled = false;
             laserImpact.Stop();
