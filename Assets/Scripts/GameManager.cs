@@ -15,6 +15,20 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    void Awake()
+    {
+        playerDisabled = true;
+
+        var gameplayActionMap = playerControls.FindActionMap("Gameplay");
+        pauseButton = gameplayActionMap.FindAction("Pause");
+        pauseButton.performed += ctx =>
+        {
+            TogglePause();
+        };
+        pauseButton.Enable();
+        currLevel = 1;
+    }
+
     #region UI
 
     public GameObject gameplayUI;
@@ -25,18 +39,6 @@ public class GameManager : MonoBehaviour
     private float tempTime;
     public GameObject pauseMenuUI;
     public int currLevel;
-
-    void Awake()
-    {
-        var gameplayActionMap = playerControls.FindActionMap("Gameplay");
-        pauseButton = gameplayActionMap.FindAction("Pause");
-        pauseButton.performed += ctx =>
-        {
-            TogglePause();
-        };
-        pauseButton.Enable();
-        currLevel = 1;
-    }
 
     void TogglePause()
     {
@@ -68,7 +70,6 @@ public class GameManager : MonoBehaviour
         player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         playerIvin = false;
         playerDisabled = false;
-
 
 
         var rock = GameObject.Find("Rock1Blueprint");
@@ -113,7 +114,6 @@ public class GameManager : MonoBehaviour
         planningUI.SetActive(true);
         planningUI.GetComponent<spawnObject>().mana = planningUI.GetComponent<spawnObject>().planningMana;
 
-        //player.SetActive(false);
         player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         playerIvin = true;
         playerDisabled = true;
