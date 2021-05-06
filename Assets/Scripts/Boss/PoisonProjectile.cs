@@ -79,6 +79,7 @@ public class PoisonProjectile : MonoBehaviour
 
         // finished flight, time to play some particles and possibly damage the target (player)
         projectileTransform.gameObject.GetComponentInChildren<VisualEffect>().Play();
+        projectileTransform.gameObject.GetComponent<AudioSource>().Play();
 
         elapsedTime = 0;
         float currDamageInterval = 0;
