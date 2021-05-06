@@ -14,15 +14,14 @@ public class BossPoisonPreState : BossBaseState
         timerDuringAttacks = 0.0f;
         player = boss.player;
         timeForAim = boss.timeForAim;
-        //boss.anim.Play("PoisonAnim");
-        //TODO: Transition Animation to pre poison ball animation here
+        boss.GetComponent<AudioSource>().clip = boss.poisonWindupNoise;
+        boss.GetComponent<AudioSource>().Play();
     }
 
     public override void Update(BossController boss)
     {
         timerDuringAttacks += Time.deltaTime;
         if(timerDuringAttacks >= timeForAim){
-            //TODO: Transition Animation back to Idle here
             boss.anim.SetBool("playPoisonAnim", true);
             switch(boss.poisonType)
             {

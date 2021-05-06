@@ -45,6 +45,7 @@ public class BossController : MonoBehaviour
     public float timeForLoad;
 
     [Header("Poison Cloud Attack:")]
+    public AudioClip poisonWindupNoise;
     public GameObject poisonObject;
     [Range(1, 100)] public int poisonDamage;
     [Range(50, 500)] public int poisonRadius;
