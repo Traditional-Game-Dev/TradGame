@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.401029, g: 30.810951, b: 37.75375, a: 1}
+  m_IndirectSpecularColor: {r: 14.400996, g: 30.812462, b: 37.758266, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12857,7 +12857,7 @@ MonoBehaviour:
   poisonWindupNoise: {fileID: 8300000, guid: 604d3515590e3b84999c20095243aad0, type: 3}
   poisonObject: {fileID: 1791321562027408554, guid: 1f23e243680748d4b8e6b63ee59dd286,
     type: 3}
-  poisonDamage: 5
+  poisonDamage: 10
   poisonRadius: 100
   emissionDuration: 5
   timeForAim: 2
@@ -66176,6 +66176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1044697306}
+  - component: {fileID: 1044697307}
   m_Layer: 5
   m_Name: PlayerHealth
   m_TagString: Untagged
@@ -66207,6 +66208,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1044697307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044697305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faab3a71c9607e54e816962c26f941a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HeartOne: {fileID: 1857375156}
+  HeartTwo: {fileID: 736798944}
+  HeartThree: {fileID: 826160612}
+  HeartFour: {fileID: 1915795381}
+  HeartFive: {fileID: 1473743933}
+  halfHeart: {fileID: 21300000, guid: cb8dbe7ca7e5f0446a613b3c49ddbfbc, type: 3}
 --- !u!1001 &1046791636
 PrefabInstance:
   m_ObjectHideFlags: 0
