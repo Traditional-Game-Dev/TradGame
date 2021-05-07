@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     private float tempTime;
     public GameObject pauseMenuUI;
     public int currLevel;
+    public GameObject damageVignette;
 
     void TogglePause()
     {
@@ -63,9 +64,9 @@ public class GameManager : MonoBehaviour
     {
         gameplayUI.SetActive(true);
         planningUI.SetActive(false);
+        damageVignette.SetActive(false);
 
         player.transform.position = playerSpawnLocation;
-        
         
         player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         playerIvin = false;
@@ -172,6 +173,21 @@ public class GameManager : MonoBehaviour
     public bool playerIvin { get; set; } = false;
 
     public bool playerDisabled { get; set; } = false;
+
+    public IEnumerator ShowDamageVignette()
+    {
+        if (gameplayUI.activeSelf)
+        {
+            damageVignette.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(0.35f);
+
+        if (gameplayUI.activeSelf)
+        {
+            damageVignette.SetActive(false);
+        }
+    }
 
     #endregion
 

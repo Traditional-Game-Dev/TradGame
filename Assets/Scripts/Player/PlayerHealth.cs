@@ -65,6 +65,8 @@ public class PlayerHealth : MonoBehaviour
         if (!manager.playerIvin)
         {
             currentHP -= totalDamage;
+
+            StartCoroutine(manager.ShowDamageVignette());
         }
     }
 

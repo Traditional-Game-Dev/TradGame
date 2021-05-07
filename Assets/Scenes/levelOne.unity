@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.505536, g: 30.776192, b: 37.69192, a: 1}
+  m_IndirectSpecularColor: {r: 14.505536, g: 30.776192, b: 37.691677, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -53516,6 +53516,7 @@ MonoBehaviour:
     type: 3}
   pauseMenuUI: {fileID: 15959719}
   currLevel: 0
+  damageVignette: {fileID: 739071331}
   timeManager: {fileID: 1262566578}
   boss: {fileID: 142765625}
   playerSpawnLocation: {x: 0, y: 1, z: -50}
