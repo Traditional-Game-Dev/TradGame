@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 14.522297, g: 30.772697, b: 37.68069, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27096,6 +27096,7 @@ MonoBehaviour:
   dashMultiplier: 18
   dashCounter: 0
   dashUI: {fileID: 399057585}
+  dashing: 0
 --- !u!143 &452722199
 CharacterController:
   m_ObjectHideFlags: 0
@@ -91848,8 +91849,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15.89, y: 15, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 40.647854, y: 15, z: 32.594177}
+  m_Center: {x: -1.9859978, y: 0, z: 15.797159}
 --- !u!114 &1417828907
 MonoBehaviour:
   m_ObjectHideFlags: 0
