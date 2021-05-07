@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
         };
         pauseButton.Enable();
         currLevel = 1;
+
+        heartSprites = heartUI.GetComponent<HeartSprites>();
     }
 
     #region UI
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public int currLevel;
     public GameObject damageVignette;
+    public GameObject heartUI;
+    private HeartSprites heartSprites;
 
     void TogglePause()
     {
@@ -114,6 +118,8 @@ public class GameManager : MonoBehaviour
         gameplayUI.SetActive(false);
         planningUI.SetActive(true);
         planningUI.GetComponent<spawnObject>().mana = planningUI.GetComponent<spawnObject>().planningMana;
+
+        heartSprites.RefillHearts();
 
         player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         playerIvin = true;

@@ -13,12 +13,17 @@ public class PlayerHealth : MonoBehaviour
     [System.NonSerialized] public int currentHP;
     [System.NonSerialized] public int currentLives;
     public GameManager manager;
+    public GameObject heartUI;
+
+    private HeartSprites heartSprites;
 
     void Start()
     {
         currentHP = totalHp;
         currentLives = totalLives;
         livesUI.GetComponent<LivesSprites>().UpdateLivesImage(currentLives + 1);
+
+        heartSprites = heartUI.GetComponent<HeartSprites>();
     }
 
     void Update()
@@ -42,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         //TODO: Update HP bar (temp implementation done)
-        healthUI.text = $"HP: {currentHP}/{totalHp}";
+        //healthUI.text = $"HP: {currentHP}/{totalHp}";
 
         //TODO: Update Lives Counter (temp implementation done)
         //livesUI.text = $"Lives: {currentLives}/{totalLives}";
@@ -64,7 +69,14 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!manager.playerIvin)
         {
-            currentHP -= totalDamage;
+            // this gon be weird
+            int div = totalDamage / 10;
+
+            for (int i = 0; i < div; i++)
+            {
+                currentHP -= 10;
+                heartSprites.UpdateHeartImage(currentHP / 10);
+            }
 
             StartCoroutine(manager.ShowDamageVignette());
         }
@@ -73,5 +85,11 @@ public class PlayerHealth : MonoBehaviour
     public void healPlayer(int totalHeal)
     {
         currentHP += totalHeal;
+        int div = totalHeal / 10;
+        for (int i = 0; i < div; i++)
+        {
+            currentHP += currentHP <= 90 ? 10: 0;
+            heartSprites.UpdateHeartImage(currentHP / 10);
+        }
     }
 }

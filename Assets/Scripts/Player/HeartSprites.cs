@@ -11,32 +11,71 @@ public class HeartSprites : MonoBehaviour
     public Image HeartFour;
     public Image HeartFive;
 
+    public Sprite fullHeart;
     public Sprite halfHeart;
-
-    private Color baseColor;
-    private Color usedColor;
+    public Sprite emptyHeart;
 
     void Start()
     {
-        baseColor = HeartOne.color;
-        usedColor = Color.black;
+        
     }
 
-    public void UpdateDashImage(int num)
+    public void UpdateHeartImage(int num)
     {
         switch (num)
         {
+            case 0:
+                HeartFive.sprite = emptyHeart;
+                break;
             case 1:
-                //DashOne.color = DashOne.color == baseColor ? usedColor : baseColor;
+                HeartFive.sprite = halfHeart;
                 break;
             case 2:
-                //DashTwo.color = DashTwo.color == baseColor ? usedColor : baseColor;
+                HeartFive.sprite = fullHeart;
+                HeartFour.sprite = emptyHeart;
                 break;
             case 3:
-                //DashThree.color = DashThree.color == baseColor ? usedColor : baseColor;
+                HeartFive.sprite = fullHeart;
+                HeartFour.sprite = halfHeart;
+                break;
+            case 4:
+                HeartFour.sprite = fullHeart;
+                HeartThree.sprite = emptyHeart;
+                break;
+            case 5:
+                HeartFour.sprite = fullHeart;
+                HeartThree.sprite = halfHeart;
+                break;
+            case 6:
+                HeartThree.sprite = fullHeart;
+                HeartTwo.sprite = emptyHeart;
+                break;
+            case 7:
+                HeartThree.sprite = fullHeart;
+                HeartTwo.sprite = halfHeart;
+                break;
+            case 8:
+                HeartTwo.sprite = fullHeart;
+                HeartOne.sprite = emptyHeart;
+                break;
+            case 9:
+                HeartTwo.sprite = fullHeart;
+                HeartOne.sprite = halfHeart;
+                break;
+            case 10:
+                HeartOne.sprite = fullHeart;
                 break;
             default:
                 break;
         }
+    }
+
+    public void RefillHearts()
+    {
+        HeartFive.sprite = fullHeart;
+        HeartFour.sprite = fullHeart;
+        HeartThree.sprite = fullHeart;
+        HeartTwo.sprite = fullHeart;
+        HeartOne.sprite = fullHeart;
     }
 }

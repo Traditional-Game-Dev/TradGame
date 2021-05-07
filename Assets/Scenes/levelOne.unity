@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.400996, g: 30.812462, b: 37.758266, a: 1}
+  m_IndirectSpecularColor: {r: 14.401029, g: 30.810951, b: 37.753872, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5707,7 +5707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &102108335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27449,9 +27449,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHp: 100
   totalLives: 3
-  healthUI: {fileID: 102108336}
+  healthUI: {fileID: 0}
   livesUI: {fileID: 412165824}
   manager: {fileID: 816283669}
+  heartUI: {fileID: 1044697305}
 --- !u!95 &452722205
 Animator:
   serializedVersion: 3
@@ -53592,6 +53593,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 15959719}
   currLevel: 0
   damageVignette: {fileID: 739071331}
+  heartUI: {fileID: 1044697305}
   timeManager: {fileID: 1262566578}
   boss: {fileID: 142765625}
   playerSpawnLocation: {x: 0, y: 1, z: -50}
@@ -66178,7 +66180,7 @@ GameObject:
   - component: {fileID: 1044697306}
   - component: {fileID: 1044697307}
   m_Layer: 5
-  m_Name: PlayerHealth
+  m_Name: Hearts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66225,7 +66227,9 @@ MonoBehaviour:
   HeartThree: {fileID: 826160612}
   HeartFour: {fileID: 1915795381}
   HeartFive: {fileID: 1473743933}
+  fullHeart: {fileID: 21300000, guid: 090db0fce47c3524f92bea04a3deda4d, type: 3}
   halfHeart: {fileID: 21300000, guid: cb8dbe7ca7e5f0446a613b3c49ddbfbc, type: 3}
+  emptyHeart: {fileID: 21300000, guid: 4464e4fafa041844099d4f059a740212, type: 3}
 --- !u!1001 &1046791636
 PrefabInstance:
   m_ObjectHideFlags: 0
