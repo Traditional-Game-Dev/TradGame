@@ -24,6 +24,7 @@ public class PlayerIdleState : PlayerBaseState
             timer = 0f;        
         }
         else{
+            player.anim.SetBool("Jogging", false);
             timer += Time.deltaTime;
             if (timer > timeToWatch)
             {

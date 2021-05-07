@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
             Vector3 direction = new Vector3(dir.x, 0f, dir.y).normalized;
             if (direction.magnitude >= 0.1f && dashCounter < MAX_DASH_COUNTER)
             {
+                anim.SetBool("Jogging", false);
+                anim.SetTrigger("Dash");
                 currentDashTime = 0;
                 currentDashCooldownTime = 0;
                 dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
