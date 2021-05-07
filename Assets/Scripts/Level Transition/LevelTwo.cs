@@ -17,6 +17,7 @@ public class LevelTwo : MonoBehaviour
             bridgeCamera.gameObject.SetActive(false);
             boss.GetComponent<BossController>().transitioningLevels = 0;
             manager.GetComponent<GameManager>().SwapToPlanning();
+            Destroy(gameObject);
         }
     }
 }
