@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerBaseState
     public override void EnterState(PlayerController player)
     {
         player.anim.SetBool("Jogging", false);
-        timeToWatch = 5f;
+        timeToWatch = 20f;
         timer = 0f;
         player.anim.speed = 1;
     }
