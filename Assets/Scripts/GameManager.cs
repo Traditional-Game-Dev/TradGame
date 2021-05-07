@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public VisualEffect electric;
+    public VisualEffect bossTeleport;
 
     #endregion
 
@@ -29,6 +30,9 @@ public class GameManager : MonoBehaviour
         currLevel = 1;
 
         heartSprites = heartUI.GetComponent<HeartSprites>();
+
+        bossTeleport.gameObject.SetActive(true);
+        bossTeleport.Stop();
     }
 
     #region UI

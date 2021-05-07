@@ -18,10 +18,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 767
-    y: -424
-    width: 728
-    height: 1912
+    x: 853
+    y: -417
+    width: 616
+    height: 1899
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1470,7 +1470,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 63
           m_Value: 1
         - m_ExpressionIndex: 64
-          m_Value: 5
+          m_Value: 2
         - m_ExpressionIndex: 66
           m_Value: 0.1
         - m_ExpressionIndex: 68
@@ -2307,7 +2307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78581a96eae8bf4398c282eb0b098bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
@@ -2747,7 +2747,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 5
+      m_SerializableObject: 2
     m_Space: 2147483647
   m_Property:
     name: B
@@ -4357,7 +4357,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614667}
       inputSlot: {fileID: 8926484042661614612}
-    position: {x: 768.1024, y: 89.20734}
+    position: {x: 854, y: 86}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614667
@@ -4519,7 +4519,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614672}
   m_ExposedName: Radius
   m_Exposed: 1
-  m_Order: 0
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:
@@ -4536,7 +4536,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614672}
       inputSlot: {fileID: 8926484042661614616}
-    position: {x: 767.1024, y: 135.20734}
+    position: {x: 853, y: 132}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614672
