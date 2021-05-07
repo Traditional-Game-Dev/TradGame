@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class CameraRot : MonoBehaviour
 {
+    public AudioMixer mixer;
     public GameObject manager;
     void OnTriggerEnter(Collider other)
     {
@@ -18,7 +20,8 @@ public class CameraRot : MonoBehaviour
             {
                 Destroy(backdrop);
             }
-            
+            StartCoroutine(FadeMixerGroup.StartFade(mixer, "MenuBGM", 10, 1));
+            StartCoroutine(FadeMixerGroup.StartFade(mixer, "GameBGM", 1, 0));
         }
     }
 }

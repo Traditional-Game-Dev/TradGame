@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
+
 
 public class CameraController : MonoBehaviour
 {
@@ -10,11 +12,16 @@ public class CameraController : MonoBehaviour
     public GameObject bridgeCamera;
     public GameManager manager;
     public AudioClip tempMusicEnd;
+    public AudioMixer mixer;
+    private float gameVol;
+    private float menuVol;
+
 
     private AudioSource bgMusic;
 
     void Awake()
     {
+        gameObject.GetComponent<AudioSource>().Play();
         var cameraSwap = new InputAction(binding: "<Keyboard>/q");
         cameraSwap.started += cxt =>
         {
@@ -22,13 +29,11 @@ public class CameraController : MonoBehaviour
         };
         cameraSwap.Enable();
 
-        bgMusic = gameObject.GetComponent<AudioSource>();
-        bgMusic.Pause();
-    }
+        mixer.GetFloat("GameBGM", out float gameVol);
+        mixer.GetFloat("MenuBGM", out float menuVol);
 
-    void Update()
-    {
-
+        bgMusic = GameObject.Find("BGM").GetComponent<AudioSource>();
+        //bgMusic.Pause();
     }
 
     public void BridgeCameraSwap()
@@ -41,22 +46,21 @@ public class CameraController : MonoBehaviour
     {
         if (thirdPersonCamera.activeSelf)
         {
-            //Debug.Log("going top down");
             topDownCamera.gameObject.SetActive(true);
             thirdPersonCamera.gameObject.SetActive(false);
             manager.SwapToPlanning();
-            
-            gameObject.GetComponent<AudioSource>().Stop();
-            gameObject.GetComponent<AudioSource>().PlayOneShot(tempMusicEnd);
+
+            StartCoroutine(FadeMixerGroup.StartFade(mixer, "MenuBGM", 0.75f, 1));
+            StartCoroutine(FadeMixerGroup.StartFade(mixer, "GameBGM", 0.25f, 0));
         }
         else
         {
-            //Debug.Log("going third person");
             topDownCamera.gameObject.SetActive(false);
             thirdPersonCamera.gameObject.SetActive(true);
             manager.SwapToGameplay();
 
-            gameObject.GetComponent<AudioSource>().Play();
+            StartCoroutine(FadeMixerGroup.StartFade(mixer, "GameBGM", 0.75f, 1));
+            StartCoroutine(FadeMixerGroup.StartFade(mixer, "MenuBGM", 0.25f, 0));
         }
     }
 }
