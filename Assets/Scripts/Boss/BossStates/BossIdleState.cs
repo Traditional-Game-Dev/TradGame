@@ -32,10 +32,6 @@ public class BossIdleState : BossBaseState
             //Really Close to Boss
             else if (distance < 15)
             {
-                //boss.prevAttack = BossAttacks.Poison;
-                //boss.poisonType = PoisonType.Defense;
-                //boss.TransitionToState(boss.PoisonPreState);
-
                 switch (boss.prevAttack)
                 {
                     case BossAttacks.Bullets:
@@ -183,7 +179,6 @@ public class BossIdleState : BossBaseState
             }
             //Far Range
             //Fires bullets in 180(ish) towards player or poison
-            //TODO: POISON TRI SHOT
             else if(manager.currLevel == 1)
             {
                 Debug.Log("Firing long range");
@@ -241,16 +236,8 @@ public class BossIdleState : BossBaseState
     {
         if (width > 150)
         {
-            if (boss.player.transform.position.x < boss.transform.position.x)
-            {
                 boss.bulletStartDegree = 180 - (width / 2);
                 boss.bulletEndDegree = 180 + (width / 2);
-            }
-            else
-            {
-                boss.bulletStartDegree = 0 - (width / 2);
-                boss.bulletEndDegree = 0 + (width / 2);
-            }
         }
         else
         {
