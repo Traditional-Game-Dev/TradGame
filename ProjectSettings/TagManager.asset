@@ -8,6 +8,7 @@ TagManager:
   - Boss
   - Bullet
   - Reflector
+  - Bomb
   layers:
   - Default
   - TransparentFX

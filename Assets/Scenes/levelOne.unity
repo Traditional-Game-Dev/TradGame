@@ -39390,6 +39390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617208127}
   - component: {fileID: 617208128}
+  - component: {fileID: 617208129}
   m_Layer: 0
   m_Name: BossTP Cutscene
   m_TagString: Untagged
@@ -39450,6 +39451,18 @@ PlayableDirector:
     - f3bb89a9b7efbfb44b6b66180d8dde87: {fileID: 656378124}
     - 6f1e6ff8b6673974bb9656069d9c1875: {fileID: 179106459}
     - d1b46e0a8236cbd4e8d8a531318921ef: {fileID: 656378124}
+--- !u!114 &617208129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617208126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4054db97177f1744db61aab5f15b57cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &618321715
 GameObject:
   m_ObjectHideFlags: 0
