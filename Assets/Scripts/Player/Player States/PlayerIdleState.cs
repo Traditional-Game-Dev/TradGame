@@ -13,6 +13,7 @@ public class PlayerIdleState : PlayerBaseState
         player.anim.SetBool("Jogging", false);
         timeToWatch = 5f;
         timer = 0f;
+        player.anim.speed = 1;
     }
 
     public override void Update(PlayerController player)
