@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private float dashStoppingSpeed = 0.1f;
     private float currentDashTime = MAX_DASH_TIME;
     private float currentDashCooldownTime = 0f;
+    public bool dashing = false;
 
     private InputAction movement;
     private InputAction dash;
@@ -84,6 +85,10 @@ public class PlayerController : MonoBehaviour
             Vector3 direction = new Vector3(dir.x, 0f, dir.y).normalized;
             if (direction.magnitude >= 0.1f && dashCounter < MAX_DASH_COUNTER)
             {
+                TransitionToState(IdleState);
+                anim.SetBool("Jogging", false);
+                anim.SetBool("Dash", true);
+                dashing = true;
                 currentDashTime = 0;
                 currentDashCooldownTime = 0;
                 dashCounter += dashCounter <= MAX_DASH_COUNTER ? 1 : 0;
@@ -103,13 +108,18 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         dashSprites = dashUI.GetComponent<DashSprites>();
-
         TransitionToState(IdleState);
     }
 
     void Update()
     {
         currentState.Update(this);
+        if(dashing == true){
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerDash")){
+                dashing = false;
+                TransitionToState(MovingState);
+            }
+        }
     }
 
     void FixedUpdate()
