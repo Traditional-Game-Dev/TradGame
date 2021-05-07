@@ -18,7 +18,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void Update(PlayerController player)
     {
-        if (player.GetDirectionMag() >= 0.1)
+        if (player.GetDirectionMag() >= 0.1 && player.dashing != true)
         {
             player.TransitionToState(player.MovingState);
             timer = 0f;        

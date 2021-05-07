@@ -30,6 +30,8 @@ public class BossStompState : BossBaseState
         timerDuringAttacks = 0.0f;
         triedStomp = false;
 
+        boss.player.GetComponent<PlayerController>().anim.SetTrigger("Launch");
+
         boss.anim.SetTrigger("playStompAnim");
         bossAttackTime = boss.bossAttackTime;
         boss.anim.speed = 3;
