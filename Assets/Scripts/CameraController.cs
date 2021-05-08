@@ -16,9 +16,6 @@ public class CameraController : MonoBehaviour
     private float gameVol;
     private float menuVol;
 
-
-    private AudioSource bgMusic;
-
     void Awake()
     {
         gameObject.GetComponent<AudioSource>().Play();
@@ -31,9 +28,6 @@ public class CameraController : MonoBehaviour
 
         mixer.GetFloat("GameBGM", out float gameVol);
         mixer.GetFloat("MenuBGM", out float menuVol);
-
-        bgMusic = GameObject.Find("BGM").GetComponent<AudioSource>();
-        //bgMusic.Pause();
     }
 
     public void BridgeCameraSwap()
