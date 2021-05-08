@@ -49,6 +49,7 @@ public class BossHealth : MonoBehaviour
         StartCoroutine(BossDamageColor());
         if (currentHealth <= 33 && gameManager.currLevel == 1){
             currentHealth = maxHealth;
+            healthBar.SetHealth(currentHealth);
             cutscene.SetActive(true);
             gameManager.currLevel = 2;
             lineRenderer.enabled = false;
