@@ -14,6 +14,7 @@ public class BossHealth : MonoBehaviour
     private float currentHealth;
     private GameManager gameManager;
     private GameObject boss;
+    public BossController bossControl;
     public GameObject rock1;
     public GameObject rock2;
     public GameObject rock3;
@@ -61,7 +62,15 @@ public class BossHealth : MonoBehaviour
         }
         else if (currentHealth <= 0 && gameManager.currLevel == 2)
         {
-            SceneManager.LoadScene("winScreen");
+            lineRenderer.enabled = false;
+            laserImpact.Stop();
+            laserWarmUp.Stop();
+            laserLight.SetActive(false); 
+            boss.GetComponent<BossController>().anim.speed = 1;
+            boss.GetComponent<BossController>().transitioningLevels = 1;
+            boss.GetComponent<BossController>().TransitionToState(boss.GetComponent<BossController>().IdleState);
+            bossControl.anim.SetTrigger("Die");
+            //SceneManager.LoadScene("winScreen");
         }
     }
 
