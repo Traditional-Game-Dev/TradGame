@@ -19,12 +19,12 @@ public class CameraController : MonoBehaviour
     void Awake()
     {
         gameObject.GetComponent<AudioSource>().Play();
-        var cameraSwap = new InputAction(binding: "<Keyboard>/q");
-        cameraSwap.started += cxt =>
-        {
-            swapMode();
-        };
-        cameraSwap.Enable();
+        // var cameraSwap = new InputAction(binding: "<Keyboard>/q");
+        // cameraSwap.started += cxt =>
+        // {
+        //     swapMode();
+        // };
+        // cameraSwap.Enable();
 
         mixer.GetFloat("GameBGM", out float gameVol);
         mixer.GetFloat("MenuBGM", out float menuVol);

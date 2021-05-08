@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caa594a1e97953b44852269e01174af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownLength: 5
+  cooldownLength: 30
 --- !u!65 &-5208066126164787167
 BoxCollider:
   m_ObjectHideFlags: 0
