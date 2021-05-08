@@ -17,7 +17,7 @@ public class BossLaserPreState : BossBaseState
         laserWarmUp = boss.laserWarmUp;
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         if(manager.currLevel == 2){
-            laserWarmUp.transform.position = new Vector3(27, boss.transform.position.y + 5, 858);
+            laserWarmUp.transform.position = new Vector3(boss.transform.position.x, boss.transform.position.y + 5, boss.transform.position.z);
         }
         laserWarmUp.Play();
         laserWarmUp.GetComponentInParent<AudioSource>().Play();
