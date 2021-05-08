@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.401029, g: 30.810951, b: 37.753384, a: 1}
+  m_IndirectSpecularColor: {r: 14.401133, g: 30.777813, b: 37.703434, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12922,6 +12922,7 @@ MonoBehaviour:
   damagedBossMat: {fileID: 2100000, guid: 238d04b390715af479f6bf363461ed66, type: 2}
   healthBar: {fileID: 1127596275}
   maxHealth: 100
+  bossControl: {fileID: 142765626}
   rock1: {fileID: 1805315018}
   rock2: {fileID: 1107529953}
   rock3: {fileID: 1305652881}
