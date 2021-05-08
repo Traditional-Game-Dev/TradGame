@@ -110,7 +110,16 @@ public class BlueprintScript : MonoBehaviour
             }
         }
 
-        int cashAfterPurchase = planningUI.GetComponent<spawnObject>().mana - cost[gameObject];
+        int cashAfterPurchase;
+
+        if(gameObject.name == "TeleporterBlueprint")
+        {
+            cashAfterPurchase = planningUI.GetComponent<spawnObject>().mana - (cost[gameObject]/2);
+        }
+        else
+        {
+            cashAfterPurchase = planningUI.GetComponent<spawnObject>().mana - cost[gameObject];
+        }
 
         if(place.triggered && cashAfterPurchase >= 0 && gameObject.GetComponent<MeshRenderer>().material.color != blueprintError.color)
         {

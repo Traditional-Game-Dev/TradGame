@@ -71,7 +71,7 @@ public class BulletScript : MonoBehaviour
     void OnTriggerEnter(Collider other)    
     {
         if(other.CompareTag("Boss") && hitReflect == true){
-            manager.DamageBoss(1);
+            manager.DamageBoss(0.25f);
             Debug.Log("Hit The Boss!");
         }
         else if(!other.isTrigger && !other.CompareTag("Boss") && !other.CompareTag("Bullet") && !other.CompareTag("Reflector"))
