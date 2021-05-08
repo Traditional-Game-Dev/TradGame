@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 14.401029, g: 30.810951, b: 37.753506, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12704,7 +12704,7 @@ MonoBehaviour:
   slowDown: 15
   bulletObject: {fileID: 1693783851390844515, guid: acec094922fd7524eac6de1c7c7ff671,
     type: 3}
-  bulletWindupNoise: {fileID: 8300000, guid: 3bf9b2f3ff330084ba13297401650cb4, type: 3}
+  bulletWindupNoise: {fileID: 8300000, guid: ad476efd0ff97ab4eb44b7d3b8d3d14f, type: 3}
   bulletFireNoise: {fileID: 8300000, guid: 7107dec5f9e86f44a9a80faa76c7951b, type: 3}
   bulletFireEnd: {fileID: 8300000, guid: 0e82cf53c61794f40b9f9e645e36e248, type: 3}
   bulletDamage: 10
