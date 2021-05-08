@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Reflector
   - Bomb
+  - HealthPack
   layers:
   - Default
   - TransparentFX
