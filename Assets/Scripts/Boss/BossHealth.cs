@@ -19,7 +19,6 @@ public class BossHealth : MonoBehaviour
     public GameObject rock2;
     public GameObject rock3;
     public GameObject wall;
-    public GameObject wallHitbox;
     public LineRenderer lineRenderer;
     public GameObject laserLight;
     public ParticleSystem laserImpact;
@@ -53,7 +52,6 @@ public class BossHealth : MonoBehaviour
             healthBar.SetHealth(currentHealth);
             cutscene.SetActive(true);
             gameManager.currLevel = 2;
-            wallHitbox.SetActive(false);
             lineRenderer.enabled = false;
             laserImpact.Stop();
             laserWarmUp.Stop();

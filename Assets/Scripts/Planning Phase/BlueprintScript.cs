@@ -45,7 +45,26 @@ public class BlueprintScript : MonoBehaviour
 
     void OnDisable()
     {
-        transform.position = new Vector3(0, 0, 0);
+        if(GameObject.Find("GameManager").GetComponent<GameManager>().currLevel == 1)
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(0, 0, 585);
+        }
+    }
+
+    void OnEnable()
+    {
+        if(GameObject.Find("GameManager").GetComponent<GameManager>().currLevel == 1)
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(0, 0, 585);
+        }
     }
 
     void Update()
