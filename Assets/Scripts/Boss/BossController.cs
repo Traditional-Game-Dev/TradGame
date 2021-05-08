@@ -57,6 +57,7 @@ public class BossController : MonoBehaviour
 
     [Header("Stomp Attack:")]
     [Range(1, 100)] public float stompRadius;
+    public AudioClip stompNoise;
     public VisualEffect shockwave;
     public GameObject genericProjectile;
 

@@ -79,6 +79,7 @@ public class PlayerHealth : MonoBehaviour
             }
 
             StartCoroutine(manager.ShowDamageVignette());
+            gameObject.GetComponent<AudioSource>().Play();
         }
     }
 

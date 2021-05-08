@@ -58,6 +58,8 @@ public class BossStompState : BossBaseState
             }
             shockwave.gameObject.transform.position = boss.transform.position - new Vector3(0.0f, 4.1f, 0.0f);
             shockwave.Play();
+            boss.GetComponent<AudioSource>().clip = boss.stompNoise;
+            boss.GetComponent<AudioSource>().Play();
 
             if (Vector3.Distance(boss.transform.position, boss.player.transform.position) < stompRadius)
             {
