@@ -28,6 +28,14 @@ public class CameraRot : MonoBehaviour
             {
                 Destroy(tele);
             }
+            foreach(GameObject health in GameObject.FindGameObjectsWithTag("HealthPack"))
+            {
+                Destroy(health);
+            }
+            foreach(GameObject reflect in GameObject.FindGameObjectsWithTag("Reflector"))
+            {
+                Destroy(reflect);
+            }
             wallHitbox.SetActive(false);
 
         }
