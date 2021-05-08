@@ -94,8 +94,10 @@ public class BossLaserAttackState : BossBaseState
                 i = 0;
             }
 
+            int mask = 1 << 10;
+            mask = ~mask;   
             RaycastHit hitNotPlayer;
-            if (Physics.Linecast(new Vector3(boss.transform.position.x - headOffset, 10, boss.transform.position.z), lineEndPosition, out hitNotPlayer))
+            if (Physics.Linecast(new Vector3(boss.transform.position.x - headOffset, 10, boss.transform.position.z), lineEndPosition, out hitNotPlayer, mask))
             {
                 lineRenderer.SetPosition(1, hitNotPlayer.point);
                 laserImpact.transform.position = hitNotPlayer.point;
@@ -103,7 +105,7 @@ public class BossLaserAttackState : BossBaseState
 
 
             RaycastHit hit;
-            if (Physics.Linecast(new Vector3(boss.transform.position.x - headOffset, 10, boss.transform.position.z), lineEndPosition, out hit))
+            if (Physics.Linecast(new Vector3(boss.transform.position.x - headOffset, 10, boss.transform.position.z), lineEndPosition, out hit, mask))
             {
                 if (hit.collider.name == "Player")
                 {
