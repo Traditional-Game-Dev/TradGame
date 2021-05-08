@@ -25,6 +25,7 @@ public class BossHealth : MonoBehaviour
     public ParticleSystem laserWarmUp;
     public GameObject cutscene;
     public AudioClip deathRattle;
+    public GameObject deathScene;
 
     // Start is called before the first frame update
     void Start()
@@ -72,7 +73,8 @@ public class BossHealth : MonoBehaviour
             bossControl.anim.SetTrigger("Die");
             boss.GetComponent<AudioSource>().clip = deathRattle;
             boss.GetComponent<AudioSource>().Play();
-            //SceneManager.LoadScene("winScreen");
+            deathScene.SetActive(true);
+
         }
     }
 
@@ -94,5 +96,10 @@ public class BossHealth : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         bossMeshRenderer.material = originalBossMat;
+    }
+
+    public void endGame()
+    {
+        SceneManager.LoadScene("Win Screen");
     }
 }
