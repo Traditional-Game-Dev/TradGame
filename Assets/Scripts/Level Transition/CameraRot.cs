@@ -22,6 +22,7 @@ public class CameraRot : MonoBehaviour
             }
             StartCoroutine(FadeMixerGroup.StartFade(mixer, "MenuBGM", 10, 1));
             StartCoroutine(FadeMixerGroup.StartFade(mixer, "GameBGM", 1, 0));
+            manager.GetComponent<GameManager>().player.GetComponent<PlayerController>().baseSpeed = 20;
         }
     }
 }
