@@ -25,6 +25,7 @@ public class BossHealth : MonoBehaviour
     public ParticleSystem laserImpact;
     public ParticleSystem laserWarmUp;
     public GameObject cutscene;
+    public AudioClip deathRattle;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,8 @@ public class BossHealth : MonoBehaviour
             boss.GetComponent<BossController>().transitioningLevels = 1;
             boss.GetComponent<BossController>().TransitionToState(boss.GetComponent<BossController>().IdleState);
             bossControl.anim.SetTrigger("Die");
+            boss.GetComponent<AudioSource>().clip = deathRattle;
+            boss.GetComponent<AudioSource>().Play();
             //SceneManager.LoadScene("winScreen");
         }
     }
